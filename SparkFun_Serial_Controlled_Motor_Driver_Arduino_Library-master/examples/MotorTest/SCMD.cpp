@@ -1,3 +1,7 @@
+#include <SPI.h>
+
+#include <SPI.h>
+
 /******************************************************************************
 SCMD.cpp
 SCMD Arduino and Teensy Driver
@@ -92,24 +96,24 @@ uint8_t SCMD::begin( void )
 	{
 
 	case I2C_MODE:
-		Wire.begin();
+		Wire1.begin();
 		break;
 
-	case SPI_MODE:
-		// initalize the  data ready and chip select pins:
-		pinMode(settings.chipSelectPin, OUTPUT);
-		digitalWrite(settings.chipSelectPin, HIGH);
-		// Delay to give the target time to clear any faults induced by the low
-		// start the SPI library:
-		SPI.begin();
-		// Maximum SPI frequency is 1MHz use SPI_CLK_DIV16
-		SPI.setClockDivider(SPI_CLOCK_DIV32);
-		// Data is read and written MSb first.
-		SPI.setBitOrder(MSBFIRST);
-		// Data is captured on rising edge of clock (CPHA = 0)
-		// Base value of the clock is LOW (CPOL = 0)
-		SPI.setDataMode(SPI_MODE0);
-		break;
+//	case SPI_MODE:
+//		// initalize the  data ready and chip select pins:
+//		pinMode(settings.chipSelectPin, OUTPUT);
+//		digitalWrite(settings.chipSelectPin, HIGH);
+//		// Delay to give the target time to clear any faults induced by the low
+//		// start the SPI library:
+//		SPI.begin();
+//		// Maximum SPI frequency is 1MHz use SPI_CLK_DIV16
+//		SPI.setClockDivider(SPI_CLOCK_DIV32);
+//		// Data is read and written MSb first.
+//		SPI.setBitOrder(MSBFIRST);
+//		// Data is captured on rising edge of clock (CPHA = 0)
+//		// Base value of the clock is LOW (CPOL = 0)
+//		SPI.setDataMode(SPI_MODE0);
+//		break;
 
 	default:
 		break;
@@ -177,8 +181,8 @@ void SCMD::reset( void )
 	*I2C_CTRL1_reg = 0x00;
 	//Waiting seems like a good idea
 	delay(10);
-	Wire.resetBus(); //Strictly resets.  Run .begin() afterwards
-	Wire.begin();
+	Wire1.resetBus(); //Strictly resets.  Run .begin() afterwards
+	Wire1.begin();
 #endif
 	
 }
@@ -425,21 +429,21 @@ uint8_t SCMD::readRegister(uint8_t offset)
 	switch (settings.commInterface) {
 
 	case I2C_MODE:
-		Wire.beginTransmission(settings.I2CAddress);
-		Wire.write(offset);
+		Wire1.beginTransmission(settings.I2CAddress);
+		Wire1.write(offset);
 #ifdef USE_ALT_I2C
-		if(Wire.endTransmission(I2C_STOP, I2C_FAULT_TIMEOUT)) i2cFaults++;
+		if(Wire1.endTransmission(I2C_STOP, I2C_FAULT_TIMEOUT)) i2cFaults++;
 #else
-		Wire.endTransmission();
+		Wire1.endTransmission();
 #endif
 #ifdef USE_ALT_I2C
-		if( Wire.requestFrom(settings.I2CAddress, numBytes, I2C_STOP, I2C_FAULT_TIMEOUT) == 0 )i2cFaults++;
+		if( Wire1.requestFrom(settings.I2CAddress, numBytes, I2C_STOP, I2C_FAULT_TIMEOUT) == 0 )i2cFaults++;
 #else
-		Wire.requestFrom(settings.I2CAddress, numBytes);
+		Wire1.requestFrom(settings.I2CAddress, numBytes);
 #endif
-		while ( Wire.available() ) // slave may send less than requested
+		while ( Wire1.available() ) // slave may send less than requested
 		{
-			result = Wire.read(); // receive a byte as a proper uint8_t
+			result = Wire1.read(); // receive a byte as a proper uint8_t
 		}
 		break;
 
@@ -491,13 +495,13 @@ void SCMD::writeRegister(uint8_t offset, uint8_t dataToWrite)
 	{
 	case I2C_MODE:
 		//Write the byte
-		Wire.beginTransmission(settings.I2CAddress);
-		Wire.write(offset);
-		Wire.write(dataToWrite);
+		Wire1.beginTransmission(settings.I2CAddress);
+		Wire1.write(offset);
+		Wire1.write(dataToWrite);
 #ifdef USE_ALT_I2C
-		if(Wire.endTransmission(I2C_STOP,I2C_FAULT_TIMEOUT)) i2cFaults++;
+		if(Wire1.endTransmission(I2C_STOP,I2C_FAULT_TIMEOUT)) i2cFaults++;
 #else
-		Wire.endTransmission();
+		Wire1.endTransmission();
 #endif
 //		delay(1);
 		break;

@@ -39,8 +39,8 @@
 
 #include <Arduino.h>
 #include <stdint.h>
-#include "SCMD.h"
-#include "SCMD_config.h" //Contains #defines for common SCMD register names and values
+#include "/home/connerparker/ASEN_4013/AERIS-Software/SparkFun_Serial_Controlled_Motor_Driver_Arduino_Library-master/src/SCMD.h"
+#include "/home/connerparker/ASEN_4013/AERIS-Software/SparkFun_Serial_Controlled_Motor_Driver_Arduino_Library-master/src/SCMD_config.h" //Contains #defines for common SCMD register names and values
 #include "Wire.h"
 
 //#defines
