@@ -55,4 +55,8 @@ CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/s
  /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_resets/include/hardware/resets.h \
  /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/resets.h \
  /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/resets.h \
- /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_uart/include/pico/stdio_uart.h
+ /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/include/pico/stdio_usb.h \
+ /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/common/pico_binary_info/include/pico/binary_info.h \
+ /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/common/pico_binary_info/include/pico/binary_info/defs.h \
+ /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/common/pico_binary_info/include/pico/binary_info/structure.h \
+ /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/common/pico_binary_info/include/pico/binary_info/code.h

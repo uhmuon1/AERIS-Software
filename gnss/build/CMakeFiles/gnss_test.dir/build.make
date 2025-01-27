@@ -842,24 +842,360 @@ CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/s
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio/stdio.c.s"
 	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio/stdio.c -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio/stdio.c.s
 
-CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.o: CMakeFiles/gnss_test.dir/flags.make
-CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.o: /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c
-CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.o: CMakeFiles/gnss_test.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jkbernst/Senior_Projects/AERIS-Software/gnss/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_57) "Building C object CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.o"
-	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.o -MF CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.o.d -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.o -c /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.o: CMakeFiles/gnss_test.dir/flags.make
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.o: /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.o: CMakeFiles/gnss_test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jkbernst/Senior_Projects/AERIS-Software/gnss/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_57) "Building C object CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.o"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.o -MF CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.o.d -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.o -c /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c
 
-CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.i"
-	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c > CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.i
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.i"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c > CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.i
 
-CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.s"
-	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.s
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.s"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.s
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.o: CMakeFiles/gnss_test.dir/flags.make
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.o: /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.o: CMakeFiles/gnss_test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jkbernst/Senior_Projects/AERIS-Software/gnss/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_58) "Building C object CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.o"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.o -MF CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.o.d -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.o -c /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.i"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c > CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.i
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.s"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.s
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.o: CMakeFiles/gnss_test.dir/flags.make
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.o: /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.o: CMakeFiles/gnss_test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jkbernst/Senior_Projects/AERIS-Software/gnss/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_59) "Building C object CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.o"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.o -MF CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.o.d -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.o -c /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.i"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c > CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.i
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.s"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.s
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.o: CMakeFiles/gnss_test.dir/flags.make
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.o: /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.o: CMakeFiles/gnss_test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jkbernst/Senior_Projects/AERIS-Software/gnss/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_60) "Building C object CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.o"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.o -MF CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.o.d -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.o -c /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.i"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c > CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.i
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.s"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.s
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_flash/flash.c.o: CMakeFiles/gnss_test.dir/flags.make
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_flash/flash.c.o: /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_flash/flash.c
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_flash/flash.c.o: CMakeFiles/gnss_test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jkbernst/Senior_Projects/AERIS-Software/gnss/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_61) "Building C object CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_flash/flash.c.o"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_flash/flash.c.o -MF CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_flash/flash.c.o.d -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_flash/flash.c.o -c /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_flash/flash.c
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_flash/flash.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_flash/flash.c.i"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_flash/flash.c > CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_flash/flash.c.i
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_flash/flash.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_flash/flash.c.s"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_flash/flash.c -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_flash/flash.c.s
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_xip_cache/xip_cache.c.o: CMakeFiles/gnss_test.dir/flags.make
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_xip_cache/xip_cache.c.o: /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_xip_cache/xip_cache.c
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_xip_cache/xip_cache.c.o: CMakeFiles/gnss_test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jkbernst/Senior_Projects/AERIS-Software/gnss/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_62) "Building C object CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_xip_cache/xip_cache.c.o"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_xip_cache/xip_cache.c.o -MF CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_xip_cache/xip_cache.c.o.d -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_xip_cache/xip_cache.c.o -c /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_xip_cache/xip_cache.c
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_xip_cache/xip_cache.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_xip_cache/xip_cache.c.i"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_xip_cache/xip_cache.c > CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_xip_cache/xip_cache.c.i
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_xip_cache/xip_cache.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_xip_cache/xip_cache.c.s"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_xip_cache/xip_cache.c -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_xip_cache/xip_cache.c.s
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o: CMakeFiles/gnss_test.dir/flags.make
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o: /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o: CMakeFiles/gnss_test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jkbernst/Senior_Projects/AERIS-Software/gnss/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_63) "Building C object CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o -MF CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o.d -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o -c /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.i"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c > CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.i
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.s"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.s
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.o: CMakeFiles/gnss_test.dir/flags.make
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.o: /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.o: CMakeFiles/gnss_test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jkbernst/Senior_Projects/AERIS-Software/gnss/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_64) "Building C object CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.o"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.o -MF CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.o.d -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.o -c /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.i"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c > CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.i
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.s"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.s
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd.c.o: CMakeFiles/gnss_test.dir/flags.make
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd.c.o: /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd.c
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd.c.o: CMakeFiles/gnss_test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jkbernst/Senior_Projects/AERIS-Software/gnss/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_65) "Building C object CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd.c.o"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd.c.o -MF CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd.c.o.d -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd.c.o -c /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd.c
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd.c.i"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd.c > CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd.c.i
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd.c.s"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd.c -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd.c.s
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd_control.c.o: CMakeFiles/gnss_test.dir/flags.make
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd_control.c.o: /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd_control.c
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd_control.c.o: CMakeFiles/gnss_test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jkbernst/Senior_Projects/AERIS-Software/gnss/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_66) "Building C object CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd_control.c.o"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd_control.c.o -MF CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd_control.c.o.d -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd_control.c.o -c /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd_control.c
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd_control.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd_control.c.i"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd_control.c > CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd_control.c.i
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd_control.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd_control.c.s"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd_control.c -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd_control.c.s
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/audio/audio_device.c.o: CMakeFiles/gnss_test.dir/flags.make
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/audio/audio_device.c.o: /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/audio/audio_device.c
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/audio/audio_device.c.o: CMakeFiles/gnss_test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jkbernst/Senior_Projects/AERIS-Software/gnss/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_67) "Building C object CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/audio/audio_device.c.o"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/audio/audio_device.c.o -MF CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/audio/audio_device.c.o.d -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/audio/audio_device.c.o -c /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/audio/audio_device.c
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/audio/audio_device.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/audio/audio_device.c.i"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/audio/audio_device.c > CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/audio/audio_device.c.i
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/audio/audio_device.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/audio/audio_device.c.s"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/audio/audio_device.c -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/audio/audio_device.c.s
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.o: CMakeFiles/gnss_test.dir/flags.make
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.o: /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.o: CMakeFiles/gnss_test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jkbernst/Senior_Projects/AERIS-Software/gnss/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_68) "Building C object CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.o"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.o -MF CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.o.d -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.o -c /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.i"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c > CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.i
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.s"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.s
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_device.c.o: CMakeFiles/gnss_test.dir/flags.make
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_device.c.o: /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_device.c
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_device.c.o: CMakeFiles/gnss_test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jkbernst/Senior_Projects/AERIS-Software/gnss/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_69) "Building C object CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_device.c.o"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_device.c.o -MF CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_device.c.o.d -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_device.c.o -c /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_device.c
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_device.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_device.c.i"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_device.c > CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_device.c.i
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_device.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_device.c.s"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_device.c -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_device.c.s
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_rt_device.c.o: CMakeFiles/gnss_test.dir/flags.make
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_rt_device.c.o: /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_rt_device.c
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_rt_device.c.o: CMakeFiles/gnss_test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jkbernst/Senior_Projects/AERIS-Software/gnss/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_70) "Building C object CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_rt_device.c.o"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_rt_device.c.o -MF CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_rt_device.c.o.d -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_rt_device.c.o -c /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_rt_device.c
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_rt_device.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_rt_device.c.i"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_rt_device.c > CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_rt_device.c.i
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_rt_device.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_rt_device.c.s"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_rt_device.c -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_rt_device.c.s
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.o: CMakeFiles/gnss_test.dir/flags.make
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.o: /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.o: CMakeFiles/gnss_test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jkbernst/Senior_Projects/AERIS-Software/gnss/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_71) "Building C object CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.o"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.o -MF CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.o.d -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.o -c /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.i"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c > CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.i
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.s"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.s
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/midi/midi_device.c.o: CMakeFiles/gnss_test.dir/flags.make
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/midi/midi_device.c.o: /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/midi/midi_device.c
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/midi/midi_device.c.o: CMakeFiles/gnss_test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jkbernst/Senior_Projects/AERIS-Software/gnss/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_72) "Building C object CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/midi/midi_device.c.o"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/midi/midi_device.c.o -MF CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/midi/midi_device.c.o.d -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/midi/midi_device.c.o -c /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/midi/midi_device.c
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/midi/midi_device.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/midi/midi_device.c.i"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/midi/midi_device.c > CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/midi/midi_device.c.i
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/midi/midi_device.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/midi/midi_device.c.s"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/midi/midi_device.c -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/midi/midi_device.c.s
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/msc/msc_device.c.o: CMakeFiles/gnss_test.dir/flags.make
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/msc/msc_device.c.o: /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/msc/msc_device.c
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/msc/msc_device.c.o: CMakeFiles/gnss_test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jkbernst/Senior_Projects/AERIS-Software/gnss/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_73) "Building C object CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/msc/msc_device.c.o"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/msc/msc_device.c.o -MF CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/msc/msc_device.c.o.d -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/msc/msc_device.c.o -c /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/msc/msc_device.c
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/msc/msc_device.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/msc/msc_device.c.i"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/msc/msc_device.c > CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/msc/msc_device.c.i
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/msc/msc_device.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/msc/msc_device.c.s"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/msc/msc_device.c -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/msc/msc_device.c.s
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ecm_rndis_device.c.o: CMakeFiles/gnss_test.dir/flags.make
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ecm_rndis_device.c.o: /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ecm_rndis_device.c
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ecm_rndis_device.c.o: CMakeFiles/gnss_test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jkbernst/Senior_Projects/AERIS-Software/gnss/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_74) "Building C object CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ecm_rndis_device.c.o"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ecm_rndis_device.c.o -MF CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ecm_rndis_device.c.o.d -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ecm_rndis_device.c.o -c /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ecm_rndis_device.c
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ecm_rndis_device.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ecm_rndis_device.c.i"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ecm_rndis_device.c > CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ecm_rndis_device.c.i
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ecm_rndis_device.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ecm_rndis_device.c.s"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ecm_rndis_device.c -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ecm_rndis_device.c.s
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ncm_device.c.o: CMakeFiles/gnss_test.dir/flags.make
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ncm_device.c.o: /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ncm_device.c
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ncm_device.c.o: CMakeFiles/gnss_test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jkbernst/Senior_Projects/AERIS-Software/gnss/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_75) "Building C object CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ncm_device.c.o"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ncm_device.c.o -MF CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ncm_device.c.o.d -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ncm_device.c.o -c /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ncm_device.c
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ncm_device.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ncm_device.c.i"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ncm_device.c > CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ncm_device.c.i
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ncm_device.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ncm_device.c.s"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ncm_device.c -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ncm_device.c.s
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/usbtmc/usbtmc_device.c.o: CMakeFiles/gnss_test.dir/flags.make
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/usbtmc/usbtmc_device.c.o: /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/usbtmc/usbtmc_device.c
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/usbtmc/usbtmc_device.c.o: CMakeFiles/gnss_test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jkbernst/Senior_Projects/AERIS-Software/gnss/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_76) "Building C object CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/usbtmc/usbtmc_device.c.o"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/usbtmc/usbtmc_device.c.o -MF CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/usbtmc/usbtmc_device.c.o.d -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/usbtmc/usbtmc_device.c.o -c /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/usbtmc/usbtmc_device.c
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/usbtmc/usbtmc_device.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/usbtmc/usbtmc_device.c.i"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/usbtmc/usbtmc_device.c > CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/usbtmc/usbtmc_device.c.i
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/usbtmc/usbtmc_device.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/usbtmc/usbtmc_device.c.s"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/usbtmc/usbtmc_device.c -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/usbtmc/usbtmc_device.c.s
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.o: CMakeFiles/gnss_test.dir/flags.make
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.o: /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.o: CMakeFiles/gnss_test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jkbernst/Senior_Projects/AERIS-Software/gnss/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_77) "Building C object CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.o"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.o -MF CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.o.d -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.o -c /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.i"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c > CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.i
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.s"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.s
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/video/video_device.c.o: CMakeFiles/gnss_test.dir/flags.make
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/video/video_device.c.o: /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/video/video_device.c
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/video/video_device.c.o: CMakeFiles/gnss_test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jkbernst/Senior_Projects/AERIS-Software/gnss/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_78) "Building C object CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/video/video_device.c.o"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/video/video_device.c.o -MF CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/video/video_device.c.o.d -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/video/video_device.c.o -c /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/video/video_device.c
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/video/video_device.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/video/video_device.c.i"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/video/video_device.c > CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/video/video_device.c.i
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/video/video_device.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/video/video_device.c.s"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/video/video_device.c -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/video/video_device.c.s
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/tusb.c.o: CMakeFiles/gnss_test.dir/flags.make
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/tusb.c.o: /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/tusb.c
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/tusb.c.o: CMakeFiles/gnss_test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jkbernst/Senior_Projects/AERIS-Software/gnss/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_79) "Building C object CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/tusb.c.o"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/tusb.c.o -MF CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/tusb.c.o.d -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/tusb.c.o -c /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/tusb.c
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/tusb.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/tusb.c.i"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/tusb.c > CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/tusb.c.i
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/tusb.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/tusb.c.s"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/tusb.c -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/tusb.c.s
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.o: CMakeFiles/gnss_test.dir/flags.make
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.o: /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.o: CMakeFiles/gnss_test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jkbernst/Senior_Projects/AERIS-Software/gnss/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_80) "Building C object CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.o"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.o -MF CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.o.d -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.o -c /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.i"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c > CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.i
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.s"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.s
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/rp2040_usb_device_enumeration.c.o: CMakeFiles/gnss_test.dir/flags.make
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/rp2040_usb_device_enumeration.c.o: /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/rp2040_usb_device_enumeration.c
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/rp2040_usb_device_enumeration.c.o: CMakeFiles/gnss_test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jkbernst/Senior_Projects/AERIS-Software/gnss/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_81) "Building C object CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/rp2040_usb_device_enumeration.c.o"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/rp2040_usb_device_enumeration.c.o -MF CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/rp2040_usb_device_enumeration.c.o.d -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/rp2040_usb_device_enumeration.c.o -c /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/rp2040_usb_device_enumeration.c
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/rp2040_usb_device_enumeration.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/rp2040_usb_device_enumeration.c.i"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/rp2040_usb_device_enumeration.c > CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/rp2040_usb_device_enumeration.c.i
+
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/rp2040_usb_device_enumeration.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/rp2040_usb_device_enumeration.c.s"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/rp2040_usb_device_enumeration.c -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/rp2040_usb_device_enumeration.c.s
 
 CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.o: CMakeFiles/gnss_test.dir/flags.make
 CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.o: /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_i2c/i2c.c
 CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.o: CMakeFiles/gnss_test.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jkbernst/Senior_Projects/AERIS-Software/gnss/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_58) "Building C object CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jkbernst/Senior_Projects/AERIS-Software/gnss/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_82) "Building C object CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.o"
 	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.o -MF CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.o.d -o CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.o -c /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_i2c/i2c.c
 
 CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.i: cmake_force
@@ -928,7 +1264,31 @@ gnss_test_OBJECTS = \
 "CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_crt0/crt0.S.o" \
 "CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.o" \
 "CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio/stdio.c.o" \
-"CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.o" \
+"CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.o" \
+"CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.o" \
+"CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.o" \
+"CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.o" \
+"CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_flash/flash.c.o" \
+"CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_xip_cache/xip_cache.c.o" \
+"CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o" \
+"CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.o" \
+"CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd.c.o" \
+"CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd_control.c.o" \
+"CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/audio/audio_device.c.o" \
+"CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.o" \
+"CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_device.c.o" \
+"CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_rt_device.c.o" \
+"CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.o" \
+"CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/midi/midi_device.c.o" \
+"CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/msc/msc_device.c.o" \
+"CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ecm_rndis_device.c.o" \
+"CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ncm_device.c.o" \
+"CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/usbtmc/usbtmc_device.c.o" \
+"CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.o" \
+"CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/video/video_device.c.o" \
+"CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/tusb.c.o" \
+"CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.o" \
+"CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/rp2040_usb_device_enumeration.c.o" \
 "CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.o"
 
 # External object files for target gnss_test
@@ -990,13 +1350,37 @@ gnss_test.elf: CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Soft
 gnss_test.elf: CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_crt0/crt0.S.o
 gnss_test.elf: CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.o
 gnss_test.elf: CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio/stdio.c.o
-gnss_test.elf: CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.o
+gnss_test.elf: CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.o
+gnss_test.elf: CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.o
+gnss_test.elf: CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.o
+gnss_test.elf: CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.o
+gnss_test.elf: CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_flash/flash.c.o
+gnss_test.elf: CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_xip_cache/xip_cache.c.o
+gnss_test.elf: CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o
+gnss_test.elf: CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.o
+gnss_test.elf: CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd.c.o
+gnss_test.elf: CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd_control.c.o
+gnss_test.elf: CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/audio/audio_device.c.o
+gnss_test.elf: CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.o
+gnss_test.elf: CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_device.c.o
+gnss_test.elf: CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_rt_device.c.o
+gnss_test.elf: CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.o
+gnss_test.elf: CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/midi/midi_device.c.o
+gnss_test.elf: CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/msc/msc_device.c.o
+gnss_test.elf: CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ecm_rndis_device.c.o
+gnss_test.elf: CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ncm_device.c.o
+gnss_test.elf: CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/usbtmc/usbtmc_device.c.o
+gnss_test.elf: CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.o
+gnss_test.elf: CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/class/video/video_device.c.o
+gnss_test.elf: CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/tusb.c.o
+gnss_test.elf: CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.o
+gnss_test.elf: CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/rp2040_usb_device_enumeration.c.o
 gnss_test.elf: CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.o
 gnss_test.elf: CMakeFiles/gnss_test.dir/build.make
 gnss_test.elf: pico-sdk/src/rp2040/boot_stage2/CMakeFiles/bs2_default_library.dir/bs2_default_padded_checksummed.S.o
 gnss_test.elf: /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_crt0/rp2040/memmap_default.ld
 gnss_test.elf: CMakeFiles/gnss_test.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/jkbernst/Senior_Projects/AERIS-Software/gnss/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_59) "Linking CXX executable gnss_test.elf"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/jkbernst/Senior_Projects/AERIS-Software/gnss/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_83) "Linking CXX executable gnss_test.elf"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/gnss_test.dir/link.txt --verbose=$(VERBOSE)
 	/usr/bin/arm-none-eabi-objdump -h /home/jkbernst/Senior_Projects/AERIS-Software/gnss/build/gnss_test.elf > gnss_test.dis
 	/usr/bin/arm-none-eabi-objdump -d /home/jkbernst/Senior_Projects/AERIS-Software/gnss/build/gnss_test.elf >> gnss_test.dis

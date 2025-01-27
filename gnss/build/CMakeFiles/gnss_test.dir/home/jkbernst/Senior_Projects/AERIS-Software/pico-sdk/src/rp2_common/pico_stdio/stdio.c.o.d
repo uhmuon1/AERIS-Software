@@ -52,11 +52,4 @@ CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/s
  /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/common/pico_sync/include/pico/lock_core.h \
  /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_sync/include/hardware/sync.h \
  /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_sync_spin_lock/include/hardware/sync/spin_lock.h \
- /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_uart/include/pico/stdio_uart.h \
- /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_uart/include/hardware/uart.h \
- /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/uart.h \
- /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/uart.h \
- /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/dreq.h \
- /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_resets/include/hardware/resets.h \
- /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/resets.h \
- /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/resets.h
+ /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/include/pico/stdio_usb.h

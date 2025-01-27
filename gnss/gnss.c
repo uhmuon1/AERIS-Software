@@ -13,6 +13,7 @@ int buffer_index = 0;
 
 // Function to read data from the GPS via I2C
 void read_gps_data() {
+    printf('Attempting to read data \n');
     uint8_t data[64]; // Buffer to store incoming data
     int length = i2c_read_blocking(GPS_I2C, GPS_I2C_ADDR, data, sizeof(data), false);
     
@@ -44,12 +45,12 @@ void setup_i2c() {
     i2c_init(GPS_I2C, I2C_BAUD);
 
     // Set the I2C pins (GPIO0 for SDA, GPIO1 for SCL)
-    gpio_set_function(0, GPIO_FUNC_I2C);
-    gpio_set_function(1, GPIO_FUNC_I2C);
+    gpio_set_function(4, GPIO_FUNC_I2C);
+    gpio_set_function(5, GPIO_FUNC_I2C);
 
     // Enable internal pullups on the SDA and SCL pins
-    gpio_pull_up(0);
-    gpio_pull_up(1);
+    gpio_pull_up(4);
+    gpio_pull_up(5);
 }
 
 int main() {

@@ -34,6 +34,9 @@ add_executable(gnss_test gnss.c)
 target_link_libraries(gnss_test pico_stdlib)
 target_link_libraries(gnss_test pico_stdlib hardware_i2c)
 
+pico_enable_stdio_usb(gnss_test 1)
+pico_enable_stdio_uart(gnss_test 0)
+
 # Create map/bin/hex/uf2 file etc.
 pico_add_extra_outputs(gnss_test)
 

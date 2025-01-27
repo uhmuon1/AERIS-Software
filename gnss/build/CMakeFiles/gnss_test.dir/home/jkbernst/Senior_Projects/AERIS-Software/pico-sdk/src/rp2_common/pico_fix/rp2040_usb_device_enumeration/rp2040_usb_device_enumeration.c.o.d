@@ -1,7 +1,5 @@
-CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.o: \
- /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c \
- /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio/include/pico/stdio/driver.h \
- /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio/include/pico/stdio.h \
+CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/rp2040_usb_device_enumeration.c.o: \
+ /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/rp2040_usb_device_enumeration.c \
  /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/common/pico_base_headers/include/pico.h \
  /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/common/pico_base_headers/include/pico/types.h \
  /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/common/pico_base_headers/include/pico/assert.h \
@@ -28,21 +26,15 @@ CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/s
  /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/addressmap.h \
  /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/sio.h \
  /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/common/pico_base_headers/include/pico/error.h \
- /usr/lib/gcc/arm-none-eabi/10.3.1/include/stdarg.h \
- /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_uart/include/pico/stdio_uart.h \
- /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_uart/include/hardware/uart.h \
- /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/uart.h \
+ /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/common/pico_time/include/pico/time.h \
+ /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_timer/include/hardware/timer.h \
+ /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/timer.h \
  /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_base/include/hardware/address_mapped.h \
- /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/uart.h \
- /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/dreq.h \
+ /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/timer.h \
  /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/intctrl.h \
- /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_resets/include/hardware/resets.h \
- /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/resets.h \
- /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/resets.h \
- /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/common/pico_binary_info/include/pico/binary_info.h \
- /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/common/pico_binary_info/include/pico/binary_info/defs.h \
- /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/common/pico_binary_info/include/pico/binary_info/structure.h \
- /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/common/pico_binary_info/include/pico/binary_info/code.h \
+ /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/usb.h \
+ /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/usb.h \
+ /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/usb_dpram.h \
  /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_gpio/include/hardware/gpio.h \
  /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/sio.h \
  /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/interp.h \
@@ -55,4 +47,5 @@ CMakeFiles/gnss_test.dir/home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/s
  /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/m0plus.h \
  /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/m0plus.h \
  /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/nvic.h \
- /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/scb.h
+ /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/scb.h \
+ /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/include/pico/fix/rp2040_usb_device_enumeration.h
