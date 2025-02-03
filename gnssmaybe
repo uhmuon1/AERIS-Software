@@ -1,131 +1,30 @@
-#include <stdio.h>
-#include "pico/stdlib.h"
-#include "hardware/i2c.h"
+// Thing Plus RP2040 Qwiic pins
+#define SDA_PIN 4
+#define SCL_PIN 5
 
-// SparkFun GNSS default I2C address
-#define GNSS_ADDR 0x42
+// Setup
+printf("Initializing I2C...\n");
+i2c_init(GPS_I2C, 100000);  // 100kHz
 
-// I2C pins for QWIIC connector on SparkFun RP2040
-#define I2C_SDA 4
-#define I2C_SCL 5
+// Setup pins with validation prints
+gpio_set_function(SDA_PIN, GPIO_FUNC_I2C);
+gpio_set_function(SCL_PIN, GPIO_FUNC_I2C);
+gpio_pull_up(SDA_PIN);
+gpio_pull_up(SCL_PIN);
 
-// Buffer for GNSS data
-#define MAX_BUFFER_SIZE 256
-uint8_t buffer[MAX_BUFFER_SIZE];
+printf("Pin functions set:\n");
+printf("SDA (GPIO4) function: %d\n", gpio_get_function(SDA_PIN));
+printf("SCL (GPIO5) function: %d\n", gpio_get_function(SCL_PIN));
 
-void init_i2c() {
-    // Initialize I2C peripheral
-    i2c_init(i2c0, 100 * 1000);  // 100kHz
-    
-    // Set up I2C pins
-    gpio_set_function(I2C_SDA, GPIO_FUNC_I2C);
-    gpio_set_function(I2C_SCL, GPIO_FUNC_I2C);
-    
-    // Enable internal pull-ups
-    gpio_pull_up(I2C_SDA);
-    gpio_pull_up(I2C_SCL);
-}
+// Try direct communication with NEO-M9N
+uint8_t rxdata;
+int ret = i2c_read_blocking(GPS_I2C, 0x42, &rxdata, 1, false);
+printf("Direct NEO-M9N read result: %d\n", ret);
 
-// Read data from GNSS receiver
-bool read_gnss_data() {
-    uint8_t available_bytes[2];
-    
-    // Read number of available bytes (2-byte length)
-    if (i2c_read_blocking(i2c0, GNSS_ADDR, available_bytes, 2, false) != 2) {
-        printf("Failed to read data length\n");
-        return false;
+// Then do full scan
+for (uint8_t addr = 0; addr < 128; addr++) {
+    ret = i2c_read_blocking(GPS_I2C, addr, &rxdata, 1, false);
+    if (ret >= 0) {
+        printf("Device responded at address: 0x%02X\n", addr);
     }
-    
-    // Calculate actual data length
-    uint16_t length = (available_bytes[0] << 8) | available_bytes[1];
-    
-    // Check if data length is valid
-    if (length == 0 || length >= MAX_BUFFER_SIZE) {
-        return false;
-    }
-    
-    // Read the actual NMEA or UBX data
-    if (i2c_read_blocking(i2c0, GNSS_ADDR, buffer, length, false) != length) {
-        printf("Failed to read GNSS data\n");
-        return false;
-    }
-    
-    // Null terminate the buffer for string operations
-    buffer[length] = '\0';
-    
-    return true;
-}
-
-int main() {
-    // Initialize standard I/O
-    stdio_init_all();
-    
-    // Initialize I2C
-    init_i2c();
-    
-    printf("Starting GNSS data collection...\n");
-    
-    while (1) {
-        if (read_gnss_data()) {
-            // Print received data
-            printf("GNSS Data: %s\n", buffer);
-            
-            // Parse NMEA sentences
-            if (buffer[0] == '
-            
-            // Add delay to prevent overwhelming the receiver
-            sleep_ms(1000);
-        }
-        
-        // Small delay if read fails
-        sleep_ms(100);
-    }
-    
-    return 0;
-}
-) {
-                // Example parsing GGA sentence (Global Positioning System Fix Data)
-                if (strncmp((char*)buffer, "$GPGGA,", 7) == 0 || strncmp((char*)buffer, "$GNGGA,", 7) == 0) {
-                    char *token;
-                    char *saveptr;
-                    int field = 0;
-                    
-                    // Get first token (message ID)
-                    token = strtok_r((char*)buffer, ",", &saveptr);
-                    
-                    while (token != NULL) {
-                        switch(field) {
-                            case 1: // Time
-                                printf("Time: %s\n", token);
-                                break;
-                            case 2: // Latitude
-                                printf("Latitude: %s", token);
-                                break;
-                            case 3: // N/S indicator
-                                printf(" %s\n", token);
-                                break;
-                            case 4: // Longitude
-                                printf("Longitude: %s", token);
-                                break;
-                            case 5: // E/W indicator
-                                printf(" %s\n", token);
-                                break;
-                            case 9: // Altitude
-                                printf("Altitude: %s meters\n", token);
-                                break;
-                        }
-                        token = strtok_r(NULL, ",", &saveptr);
-                        field++;
-                    }
-                }
-            
-            // Add delay to prevent overwhelming the receiver
-            sleep_ms(1000);
-        }
-        
-        // Small delay if read fails
-        sleep_ms(100);
-    }
-    
-    return 0;
 }
