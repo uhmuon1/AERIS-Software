@@ -1,0 +1,131 @@
+#include <stdio.h>
+#include "pico/stdlib.h"
+#include "hardware/i2c.h"
+
+// SparkFun GNSS default I2C address
+#define GNSS_ADDR 0x42
+
+// I2C pins for QWIIC connector on SparkFun RP2040
+#define I2C_SDA 4
+#define I2C_SCL 5
+
+// Buffer for GNSS data
+#define MAX_BUFFER_SIZE 256
+uint8_t buffer[MAX_BUFFER_SIZE];
+
+void init_i2c() {
+    // Initialize I2C peripheral
+    i2c_init(i2c0, 100 * 1000);  // 100kHz
+    
+    // Set up I2C pins
+    gpio_set_function(I2C_SDA, GPIO_FUNC_I2C);
+    gpio_set_function(I2C_SCL, GPIO_FUNC_I2C);
+    
+    // Enable internal pull-ups
+    gpio_pull_up(I2C_SDA);
+    gpio_pull_up(I2C_SCL);
+}
+
+// Read data from GNSS receiver
+bool read_gnss_data() {
+    uint8_t available_bytes[2];
+    
+    // Read number of available bytes (2-byte length)
+    if (i2c_read_blocking(i2c0, GNSS_ADDR, available_bytes, 2, false) != 2) {
+        printf("Failed to read data length\n");
+        return false;
+    }
+    
+    // Calculate actual data length
+    uint16_t length = (available_bytes[0] << 8) | available_bytes[1];
+    
+    // Check if data length is valid
+    if (length == 0 || length >= MAX_BUFFER_SIZE) {
+        return false;
+    }
+    
+    // Read the actual NMEA or UBX data
+    if (i2c_read_blocking(i2c0, GNSS_ADDR, buffer, length, false) != length) {
+        printf("Failed to read GNSS data\n");
+        return false;
+    }
+    
+    // Null terminate the buffer for string operations
+    buffer[length] = '\0';
+    
+    return true;
+}
+
+int main() {
+    // Initialize standard I/O
+    stdio_init_all();
+    
+    // Initialize I2C
+    init_i2c();
+    
+    printf("Starting GNSS data collection...\n");
+    
+    while (1) {
+        if (read_gnss_data()) {
+            // Print received data
+            printf("GNSS Data: %s\n", buffer);
+            
+            // Parse NMEA sentences
+            if (buffer[0] == '
+            
+            // Add delay to prevent overwhelming the receiver
+            sleep_ms(1000);
+        }
+        
+        // Small delay if read fails
+        sleep_ms(100);
+    }
+    
+    return 0;
+}
+) {
+                // Example parsing GGA sentence (Global Positioning System Fix Data)
+                if (strncmp((char*)buffer, "$GPGGA,", 7) == 0 || strncmp((char*)buffer, "$GNGGA,", 7) == 0) {
+                    char *token;
+                    char *saveptr;
+                    int field = 0;
+                    
+                    // Get first token (message ID)
+                    token = strtok_r((char*)buffer, ",", &saveptr);
+                    
+                    while (token != NULL) {
+                        switch(field) {
+                            case 1: // Time
+                                printf("Time: %s\n", token);
+                                break;
+                            case 2: // Latitude
+                                printf("Latitude: %s", token);
+                                break;
+                            case 3: // N/S indicator
+                                printf(" %s\n", token);
+                                break;
+                            case 4: // Longitude
+                                printf("Longitude: %s", token);
+                                break;
+                            case 5: // E/W indicator
+                                printf(" %s\n", token);
+                                break;
+                            case 9: // Altitude
+                                printf("Altitude: %s meters\n", token);
+                                break;
+                        }
+                        token = strtok_r(NULL, ",", &saveptr);
+                        field++;
+                    }
+                }
+            
+            // Add delay to prevent overwhelming the receiver
+            sleep_ms(1000);
+        }
+        
+        // Small delay if read fails
+        sleep_ms(100);
+    }
+    
+    return 0;
+}
