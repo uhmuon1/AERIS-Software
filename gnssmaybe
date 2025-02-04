@@ -1,14 +1,127 @@
-#define SDA_PIN 6  // GPIO6
-#define SCL_PIN 7  // GPIO7
+#include "pico/stdlib.h"
+#include "hardware/i2c.h"
+#include <stdio.h>
+#include <string.h>
 
-// Setup with correct pins
-i2c_init(GPS_I2C, 100000);  // 100kHz
-gpio_set_function(SDA_PIN, GPIO_FUNC_I2C);
-gpio_set_function(SCL_PIN, GPIO_FUNC_I2C);
-gpio_pull_up(SDA_PIN);
-gpio_pull_up(SCL_PIN);
+#define GPS_I2C i2c0
+#define GPS_I2C_ADDR 0x42  // NEO-M9N default address
+#define I2C_BAUD 100000    // Starting with 100kHz for reliability
 
-// Test read from GNSS
-uint8_t rxdata;
-int ret = i2c_read_blocking(GPS_I2C, 0x42, &rxdata, 1, false);
-printf("Read result: %d\n", ret);
+// Thing Plus RP2040 Qwiic pins
+#define SDA_PIN 4
+#define SCL_PIN 5
+
+// UBX protocol sync chars
+#define UBX_SYNC_1 0xB5
+#define UBX_SYNC_2 0x62
+
+// Function to scan I2C bus and print found devices
+void scan_i2c_bus() {
+    printf("\nScanning I2C bus...\n");
+    for (uint8_t addr = 0; addr < 128; addr++) {
+        uint8_t rxdata;
+        int ret = i2c_read_blocking(GPS_I2C, addr, &rxdata, 1, false);
+        if (ret >= 0) {
+            printf("* Device found at address: 0x%02X (decimal: %d)\n", addr, addr);
+            // If we found the NEO-M9N
+            if (addr == GPS_I2C_ADDR) {
+                printf("  --> This appears to be the NEO-M9N!\n");
+            }
+        }
+    }
+    printf("I2C scan complete\n\n");
+}
+
+// Try to read the NEO-M9N version info
+bool test_gps_communication() {
+    uint8_t reg = 0xFD; // Register containing bytes available
+    uint8_t bytes_available[2];
+    
+    printf("Testing NEO-M9N communication...\n");
+    
+    // Try to read the bytes available register
+    int ret = i2c_write_blocking(GPS_I2C, GPS_I2C_ADDR, &reg, 1, true);
+    if (ret < 0) {
+        printf("Failed to write to NEO-M9N\n");
+        return false;
+    }
+    
+    ret = i2c_read_blocking(GPS_I2C, GPS_I2C_ADDR, bytes_available, 2, false);
+    if (ret < 0) {
+        printf("Failed to read from NEO-M9N\n");
+        return false;
+    }
+    
+    uint16_t available = (bytes_available[0] << 8) | bytes_available[1];
+    printf("Bytes available in GPS: %d\n", available);
+    
+    return true;
+}
+
+// Setup I2C with validation
+bool setup_i2c() {
+    printf("Starting I2C setup...\n");
+    
+    // Initialize I2C
+    i2c_init(GPS_I2C, I2C_BAUD);
+    printf("I2C initialized at %d Hz\n", I2C_BAUD);
+
+    // Configure pins
+    gpio_set_function(SDA_PIN, GPIO_FUNC_I2C);
+    gpio_set_function(SCL_PIN, GPIO_FUNC_I2C);
+    gpio_pull_up(SDA_PIN);
+    gpio_pull_up(SCL_PIN);
+    
+    // Verify pin configuration
+    printf("Pin configuration:\n");
+    printf("* SDA (GPIO%d) function: %d (should be 3 for I2C)\n", 
+           SDA_PIN, gpio_get_function(SDA_PIN));
+    printf("* SCL (GPIO%d) function: %d (should be 3 for I2C)\n", 
+           SCL_PIN, gpio_get_function(SCL_PIN));
+    
+    // Validate pin functions
+    if (gpio_get_function(SDA_PIN) != GPIO_FUNC_I2C || 
+        gpio_get_function(SCL_PIN) != GPIO_FUNC_I2C) {
+        printf("ERROR: Pins not properly configured for I2C!\n");
+        return false;
+    }
+    
+    printf("I2C setup complete\n");
+    return true;
+}
+
+int main() {
+    // Initialize stdio for debugging output
+    stdio_init_all();
+    
+    // Wait a moment for serial to connect
+    sleep_ms(2000);
+    printf("\n\nNEO-M9N I2C Debug Program Starting...\n");
+    
+    // Setup I2C
+    if (!setup_i2c()) {
+        printf("Failed to setup I2C. Halting.\n");
+        while(1) { sleep_ms(1000); }
+    }
+    
+    // Main loop
+    while (true) {
+        scan_i2c_bus();
+        
+        if (test_gps_communication()) {
+            printf("Successfully communicated with NEO-M9N!\n");
+        } else {
+            printf("Failed to communicate with NEO-M9N\n");
+            printf("Troubleshooting tips:\n");
+            printf("1. Check power LED on NEO-M9N\n");
+            printf("2. Verify Qwiic cable connection at both ends\n");
+            printf("3. Try a different Qwiic cable\n");
+            printf("4. Check for any bent pins if not using Qwiic\n");
+        }
+        
+        printf("\nWaiting 5 seconds before next attempt...\n");
+        sleep_ms(5000);
+    }
+
+    return 0;
+}
