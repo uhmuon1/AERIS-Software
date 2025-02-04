@@ -1,30 +1,14 @@
-// Thing Plus RP2040 Qwiic pins
-#define SDA_PIN 4
-#define SCL_PIN 5
+#define SDA_PIN 6  // GPIO6
+#define SCL_PIN 7  // GPIO7
 
-// Setup
-printf("Initializing I2C...\n");
+// Setup with correct pins
 i2c_init(GPS_I2C, 100000);  // 100kHz
-
-// Setup pins with validation prints
 gpio_set_function(SDA_PIN, GPIO_FUNC_I2C);
 gpio_set_function(SCL_PIN, GPIO_FUNC_I2C);
 gpio_pull_up(SDA_PIN);
 gpio_pull_up(SCL_PIN);
 
-printf("Pin functions set:\n");
-printf("SDA (GPIO4) function: %d\n", gpio_get_function(SDA_PIN));
-printf("SCL (GPIO5) function: %d\n", gpio_get_function(SCL_PIN));
-
-// Try direct communication with NEO-M9N
+// Test read from GNSS
 uint8_t rxdata;
 int ret = i2c_read_blocking(GPS_I2C, 0x42, &rxdata, 1, false);
-printf("Direct NEO-M9N read result: %d\n", ret);
-
-// Then do full scan
-for (uint8_t addr = 0; addr < 128; addr++) {
-    ret = i2c_read_blocking(GPS_I2C, addr, &rxdata, 1, false);
-    if (ret >= 0) {
-        printf("Device responded at address: 0x%02X\n", addr);
-    }
-}
+printf("Read result: %d\n", ret);
