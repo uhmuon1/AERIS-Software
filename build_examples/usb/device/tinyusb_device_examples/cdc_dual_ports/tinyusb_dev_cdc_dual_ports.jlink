@@ -1,0 +1,5 @@
+halt
+loadfile /home/connerparker/ASEN_4013/AERIS-Software/pico-examples/build/usb/device/tinyusb_device_examples/cdc_dual_ports/tinyusb_dev_cdc_dual_ports.elf
+r
+go
+exit

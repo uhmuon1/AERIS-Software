@@ -1,0 +1,5 @@
+/home/connerparker/ASEN_4013/AERIS-Software/pico-examples/build/pioasm-install/pioasm/pioasm
+/home/connerparker/ASEN_4013/AERIS-Software/pico-examples/build/pioasm-install/pioasm/pioasmTargets.cmake
+/home/connerparker/ASEN_4013/AERIS-Software/pico-examples/build/pioasm-install/pioasm/pioasmTargets-release.cmake
+/home/connerparker/ASEN_4013/AERIS-Software/pico-examples/build/pioasm-install/pioasm/pioasmConfig.cmake
+/home/connerparker/ASEN_4013/AERIS-Software/pico-examples/build/pioasm-install/pioasm/pioasmConfigVersion.cmake

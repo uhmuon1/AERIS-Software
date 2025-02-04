@@ -1,0 +1,5 @@
+halt
+loadfile /home/connerparker/ASEN_4013/AERIS-Software/pico-examples/build/usb/host/tinyusb_host_examples/device_info/tinyusb_host_device_info.elf
+r
+go
+exit

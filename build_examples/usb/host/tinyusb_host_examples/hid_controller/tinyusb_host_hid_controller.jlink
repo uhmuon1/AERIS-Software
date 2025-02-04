@@ -1,0 +1,5 @@
+halt
+loadfile /home/connerparker/ASEN_4013/AERIS-Software/pico-examples/build/usb/host/tinyusb_host_examples/hid_controller/tinyusb_host_hid_controller.elf
+r
+go
+exit
