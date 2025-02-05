@@ -1,27 +1,4 @@
-/**
- * Copyright (c) 2020 Raspberry Pi (Trading) Ltd.
- *
- * SPDX-License-Identifier: BSD-3-Clause
- */
-
-// Sweep through all 7-bit I2C addresses, to see if any slaves are present on
-// the I2C bus. Print out a table that looks like this:
-//
-// I2C Bus Scan
-//    0 1 2 3 4 5 6 7 8 9 A B C D E F
-// 00 . . . . . . . . . . . . . . . .
-// 10 . . @ . . . . . . . . . . . . .
-// 20 . . . . . . . . . . . . . . . .
-// 30 . . . . @ . . . . . . . . . . .
-// 40 . . . . . . . . . . . . . . . .
-// 50 . . . . . . . . . . . . . . . .
-// 60 . . . . . . . . . . . . . . . .
-// 70 . . . . . . . . . . . . . . . .
-// E.g. if addresses 0x12 and 0x34 were acknowledged.
-
-#include <stdio.h>
 #include "pico/stdlib.h"
-#include "pico/binary_info.h"
 #include "hardware/i2c.h"
 
 // I2C reserves some addresses for special purposes. We exclude these from the scan.
@@ -56,7 +33,6 @@ void pico_set_led(bool led_on) {
 
 
 int main() {
-    // Enable UART so we can print status output
     stdio_init_all();
 #if !defined(i2c_default) || !defined(PICO_DEFAULT_I2C_SDA_PIN) || !defined(PICO_DEFAULT_I2C_SCL_PIN)
 #warning i2c/bus_scan example requires a board with I2C pins
@@ -101,5 +77,4 @@ int main() {
     printf("Done.\n");
 
     return 0;
-#endif
 }
