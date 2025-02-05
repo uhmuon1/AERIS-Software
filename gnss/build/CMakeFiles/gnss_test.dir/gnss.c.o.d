@@ -58,14 +58,4 @@ CMakeFiles/gnss_test.dir/gnss.c.o: \
  /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/include/pico/stdio_usb.h \
  /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2_common/hardware_i2c/include/hardware/i2c.h \
  /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/i2c.h \
- /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/i2c.h \
- /usr/include/newlib/stdio.h /usr/include/newlib/sys/reent.h \
- /usr/include/newlib/_ansi.h /usr/include/newlib/sys/_types.h \
- /usr/include/newlib/machine/_types.h /usr/include/newlib/sys/lock.h \
- /usr/include/newlib/sys/types.h /usr/include/newlib/sys/_stdint.h \
- /usr/include/newlib/machine/endian.h \
- /usr/include/newlib/machine/_endian.h /usr/include/newlib/sys/select.h \
- /usr/include/newlib/sys/_sigset.h /usr/include/newlib/sys/_timeval.h \
- /usr/include/newlib/sys/timespec.h /usr/include/newlib/sys/_timespec.h \
- /usr/include/newlib/sys/_pthreadtypes.h /usr/include/newlib/sys/sched.h \
- /usr/include/newlib/machine/types.h /usr/include/newlib/sys/stdio.h
+ /home/jkbernst/Senior_Projects/AERIS-Software/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/i2c.h
