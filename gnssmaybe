@@ -89,3 +89,74 @@ int main() {
     
     return 0;
 }
+
+
+
+void read_gps_data() {
+    uint8_t bytes_available[2];
+    uint8_t reg = BYTES_AVAILABLE_REG;
+    
+    printf("Attempting I2C write to address 0x%02X with register 0x%02X\n", GPS_ADDR, reg);
+    
+    // Check if bus is busy first
+    if (i2c_get_write_available(GPS_I2C) == 0) {
+        printf("I2C bus is busy or not ready\n");
+        return;
+    }
+    
+    int ret = i2c_write_blocking(GPS_I2C, GPS_ADDR, &reg, 1, true);
+    printf("Write returned: %d\n", ret);
+    
+    if (ret < 0) {
+        // Try to reset the I2C peripheral
+        i2c_deinit(GPS_I2C);
+        sleep_ms(100);
+        i2c_init(GPS_I2C, 100000);
+        printf("Attempted I2C reset after error\n");
+        return;
+    }
+    // ... rest of your function
+}
+
+
+int main() {
+    stdio_init_all();
+    stdio_usb_init();
+    sleep_ms(3000);
+    
+    // Initialize LED
+    gpio_init(LED_PIN);
+    gpio_set_dir(LED_PIN, GPIO_OUT);
+    
+    // First set up the pins
+    gpio_set_function(SDA_PIN, GPIO_FUNC_I2C);
+    gpio_set_function(SCL_PIN, GPIO_FUNC_I2C);
+    gpio_pull_up(SDA_PIN);
+    gpio_pull_up(SCL_PIN);
+    
+    // Give the pull-ups time to stabilize
+    sleep_ms(250);
+    
+    // Now initialize I2C with a slower clock for testing
+    printf("Initializing I2C...\n");
+    i2c_init(GPS_I2C, 50000);  // Try 50kHz
+    
+    // Check if I2C initialized successfully
+    if (!i2c_get_write_available(GPS_I2C)) {
+        printf("I2C failed to initialize properly\n");
+        return -1;
+    }
+    
+    printf("I2C initialized successfully\n");
+    printf("Starting GPS read loop...\n");
+    
+    while (true) {
+        gpio_put(LED_PIN, 1);
+        read_gps_data();
+        sleep_ms(1000);  // Longer delay for testing
+        gpio_put(LED_PIN, 0);
+        sleep_ms(1000);
+    }
+    
+    return 0;
+}
