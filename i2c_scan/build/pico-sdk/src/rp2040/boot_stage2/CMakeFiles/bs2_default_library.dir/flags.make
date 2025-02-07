@@ -4,7 +4,7 @@
 # compile ASM with /usr/bin/arm-none-eabi-gcc
 ASM_DEFINES = 
 
-ASM_INCLUDES = -I/home/connerparker/ASEN_4013/AERIS-Software/i2c_scan/$(PICO_SDK_PATH)/src
+ASM_INCLUDES = -I/home/connerparker/ASEN_4013/AERIS-Software/i2c_scan/$(PICO_SDK_PATH)/src -I"/home/connerparker/ASEN_4013/AERIS-Software/i2c_scan/(" -I/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk -I"/home/connerparker/ASEN_4013/AERIS-Software/i2c_scan/)" -I/src/rp2_common/hardware_i2c/include
 
 ASM_FLAGS = -mcpu=cortex-m0plus -mthumb -g -O3 -DNDEBUG
 

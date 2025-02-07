@@ -169,7 +169,7 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=bus_scan
+CMAKE_PROJECT_NAME:STATIC=i2c_scan
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/usr/bin/arm-none-eabi-ranlib
@@ -319,13 +319,13 @@ PICO_STDIO_USB:BOOL=OFF
 PIOASM_INSTALL_DIR:PATH=/home/connerparker/ASEN_4013/AERIS-Software/i2c_scan/build/pioasm-install
 
 //Value Computed by CMake
-bus_scan_BINARY_DIR:STATIC=/home/connerparker/ASEN_4013/AERIS-Software/i2c_scan/build
+i2c_scan_BINARY_DIR:STATIC=/home/connerparker/ASEN_4013/AERIS-Software/i2c_scan/build
 
 //Value Computed by CMake
-bus_scan_IS_TOP_LEVEL:STATIC=ON
+i2c_scan_IS_TOP_LEVEL:STATIC=ON
 
 //Value Computed by CMake
-bus_scan_SOURCE_DIR:STATIC=/home/connerparker/ASEN_4013/AERIS-Software/i2c_scan
+i2c_scan_SOURCE_DIR:STATIC=/home/connerparker/ASEN_4013/AERIS-Software/i2c_scan
 
 //Value Computed by CMake
 pico_sdk_BINARY_DIR:STATIC=/home/connerparker/ASEN_4013/AERIS-Software/i2c_scan/build/pico-sdk

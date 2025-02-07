@@ -117,17 +117,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named bus_scan
+# Target rules for targets named i2c_scan
 
 # Build rule for target.
-bus_scan: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 bus_scan
-.PHONY : bus_scan
+i2c_scan: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 i2c_scan
+.PHONY : i2c_scan
 
 # fast build rule for target.
-bus_scan/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/build
-.PHONY : bus_scan/fast
+i2c_scan/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/build
+.PHONY : i2c_scan/fast
 
 #=============================================================================
 # Target rules for targets named bs2_default
@@ -199,7 +199,7 @@ bus_scan.o: bus_scan.c.o
 
 # target to build an object file
 bus_scan.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/bus_scan.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/bus_scan.c.o
 .PHONY : bus_scan.c.o
 
 bus_scan.i: bus_scan.c.i
@@ -207,7 +207,7 @@ bus_scan.i: bus_scan.c.i
 
 # target to preprocess a source file
 bus_scan.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/bus_scan.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/bus_scan.c.i
 .PHONY : bus_scan.c.i
 
 bus_scan.s: bus_scan.c.s
@@ -215,7 +215,7 @@ bus_scan.s: bus_scan.c.s
 
 # target to generate assembly for a file
 bus_scan.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/bus_scan.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/bus_scan.c.s
 .PHONY : bus_scan.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/audio/audio_device.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/audio/audio_device.c.o
@@ -223,7 +223,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/audio/
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/audio/audio_device.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/audio/audio_device.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/audio/audio_device.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/audio/audio_device.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/audio/audio_device.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/audio/audio_device.c.i
@@ -231,7 +231,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/audio/
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/audio/audio_device.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/audio/audio_device.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/audio/audio_device.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/audio/audio_device.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/audio/audio_device.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/audio/audio_device.c.s
@@ -239,7 +239,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/audio/
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/audio/audio_device.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/audio/audio_device.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/audio/audio_device.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/audio/audio_device.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.o
@@ -247,7 +247,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/cdc/cd
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.i
@@ -255,7 +255,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/cdc/cd
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.s
@@ -263,7 +263,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/cdc/cd
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_device.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_device.c.o
@@ -271,7 +271,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/df
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_device.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_device.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_device.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_device.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_device.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_device.c.i
@@ -279,7 +279,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/df
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_device.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_device.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_device.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_device.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_device.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_device.c.s
@@ -287,7 +287,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/df
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_device.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_device.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_device.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_device.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_rt_device.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_rt_device.c.o
@@ -295,7 +295,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/df
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_rt_device.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_rt_device.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_rt_device.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_rt_device.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_rt_device.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_rt_device.c.i
@@ -303,7 +303,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/df
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_rt_device.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_rt_device.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_rt_device.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_rt_device.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_rt_device.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_rt_device.c.s
@@ -311,7 +311,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/df
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_rt_device.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_rt_device.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_rt_device.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/dfu/dfu_rt_device.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/hid/hid_device.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.o
@@ -319,7 +319,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/hid/hi
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/hid/hid_device.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.i
@@ -327,7 +327,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/hid/hi
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/hid/hid_device.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.s
@@ -335,7 +335,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/hid/hi
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/midi/midi_device.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/midi/midi_device.c.o
@@ -343,7 +343,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/midi/m
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/midi/midi_device.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/midi/midi_device.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/midi/midi_device.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/midi/midi_device.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/midi/midi_device.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/midi/midi_device.c.i
@@ -351,7 +351,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/midi/m
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/midi/midi_device.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/midi/midi_device.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/midi/midi_device.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/midi/midi_device.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/midi/midi_device.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/midi/midi_device.c.s
@@ -359,7 +359,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/midi/m
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/midi/midi_device.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/midi/midi_device.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/midi/midi_device.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/midi/midi_device.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/msc/msc_device.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/msc/msc_device.c.o
@@ -367,7 +367,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/msc/ms
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/msc/msc_device.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/msc/msc_device.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/msc/msc_device.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/msc/msc_device.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/msc/msc_device.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/msc/msc_device.c.i
@@ -375,7 +375,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/msc/ms
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/msc/msc_device.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/msc/msc_device.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/msc/msc_device.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/msc/msc_device.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/msc/msc_device.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/msc/msc_device.c.s
@@ -383,7 +383,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/msc/ms
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/msc/msc_device.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/msc/msc_device.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/msc/msc_device.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/msc/msc_device.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ecm_rndis_device.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ecm_rndis_device.c.o
@@ -391,7 +391,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ec
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ecm_rndis_device.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ecm_rndis_device.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ecm_rndis_device.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ecm_rndis_device.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ecm_rndis_device.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ecm_rndis_device.c.i
@@ -399,7 +399,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ec
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ecm_rndis_device.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ecm_rndis_device.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ecm_rndis_device.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ecm_rndis_device.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ecm_rndis_device.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ecm_rndis_device.c.s
@@ -407,7 +407,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ec
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ecm_rndis_device.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ecm_rndis_device.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ecm_rndis_device.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ecm_rndis_device.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ncm_device.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ncm_device.c.o
@@ -415,7 +415,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/nc
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ncm_device.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ncm_device.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ncm_device.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ncm_device.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ncm_device.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ncm_device.c.i
@@ -423,7 +423,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/nc
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ncm_device.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ncm_device.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ncm_device.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ncm_device.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ncm_device.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ncm_device.c.s
@@ -431,7 +431,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/nc
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ncm_device.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ncm_device.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ncm_device.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/net/ncm_device.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/usbtmc/usbtmc_device.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/usbtmc/usbtmc_device.c.o
@@ -439,7 +439,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/usbtmc
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/usbtmc/usbtmc_device.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/usbtmc/usbtmc_device.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/usbtmc/usbtmc_device.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/usbtmc/usbtmc_device.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/usbtmc/usbtmc_device.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/usbtmc/usbtmc_device.c.i
@@ -447,7 +447,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/usbtmc
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/usbtmc/usbtmc_device.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/usbtmc/usbtmc_device.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/usbtmc/usbtmc_device.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/usbtmc/usbtmc_device.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/usbtmc/usbtmc_device.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/usbtmc/usbtmc_device.c.s
@@ -455,7 +455,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/usbtmc
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/usbtmc/usbtmc_device.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/usbtmc/usbtmc_device.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/usbtmc/usbtmc_device.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/usbtmc/usbtmc_device.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.o
@@ -463,7 +463,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/vendor
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.i
@@ -471,7 +471,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/vendor
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.s
@@ -479,7 +479,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/vendor
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/video/video_device.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/video/video_device.c.o
@@ -487,7 +487,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/video/
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/video/video_device.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/video/video_device.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/video/video_device.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/video/video_device.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/video/video_device.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/video/video_device.c.i
@@ -495,7 +495,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/video/
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/video/video_device.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/video/video_device.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/video/video_device.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/video/video_device.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/video/video_device.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/video/video_device.c.s
@@ -503,7 +503,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/video/
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/video/video_device.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/video/video_device.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/video/video_device.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/class/video/video_device.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/common/tusb_fifo.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.o
@@ -511,7 +511,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/common/tusb_
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/common/tusb_fifo.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.i
@@ -519,7 +519,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/common/tusb_
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/common/tusb_fifo.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.s
@@ -527,7 +527,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/common/tusb_
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd.c.o
@@ -535,7 +535,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd.
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd.c.i
@@ -543,7 +543,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd.
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd.c.s
@@ -551,7 +551,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd.
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd_control.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd_control.c.o
@@ -559,7 +559,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd_
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd_control.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd_control.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd_control.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd_control.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd_control.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd_control.c.i
@@ -567,7 +567,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd_
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd_control.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd_control.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd_control.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd_control.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd_control.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd_control.c.s
@@ -575,7 +575,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd_
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd_control.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd_control.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd_control.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/device/usbd_control.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o
@@ -583,7 +583,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/ras
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.i
@@ -591,7 +591,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/ras
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.s
@@ -599,7 +599,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/ras
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.o
@@ -607,7 +607,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/ras
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.i
@@ -615,7 +615,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/ras
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.s
@@ -623,7 +623,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/ras
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/tusb.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/tusb.c.o
@@ -631,7 +631,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/tusb.o: home
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/tusb.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/tusb.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/tusb.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/tusb.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/tusb.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/tusb.c.i
@@ -639,7 +639,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/tusb.i: home
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/tusb.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/tusb.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/tusb.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/tusb.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/tusb.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/tusb.c.s
@@ -647,7 +647,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/tusb.s: home
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/tusb.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/tusb.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/tusb.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src/tusb.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/hardware_claim/claim.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/hardware_claim/claim.c.o
@@ -655,7 +655,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/hardware_claim/cl
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/hardware_claim/claim.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/hardware_claim/claim.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/hardware_claim/claim.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/hardware_claim/claim.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/hardware_claim/claim.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/hardware_claim/claim.c.i
@@ -663,7 +663,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/hardware_claim/cl
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/hardware_claim/claim.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/hardware_claim/claim.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/hardware_claim/claim.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/hardware_claim/claim.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/hardware_claim/claim.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/hardware_claim/claim.c.s
@@ -671,7 +671,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/hardware_claim/cl
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/hardware_claim/claim.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/hardware_claim/claim.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/hardware_claim/claim.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/hardware_claim/claim.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/critical_section.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/critical_section.c.o
@@ -679,7 +679,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/critica
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/critical_section.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/critical_section.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/critical_section.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/critical_section.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/critical_section.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/critical_section.c.i
@@ -687,7 +687,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/critica
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/critical_section.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/critical_section.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/critical_section.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/critical_section.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/critical_section.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/critical_section.c.s
@@ -695,7 +695,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/critica
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/critical_section.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/critical_section.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/critical_section.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/critical_section.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/lock_core.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/lock_core.c.o
@@ -703,7 +703,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/lock_co
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/lock_core.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/lock_core.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/lock_core.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/lock_core.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/lock_core.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/lock_core.c.i
@@ -711,7 +711,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/lock_co
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/lock_core.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/lock_core.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/lock_core.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/lock_core.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/lock_core.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/lock_core.c.s
@@ -719,7 +719,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/lock_co
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/lock_core.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/lock_core.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/lock_core.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/lock_core.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/mutex.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/mutex.c.o
@@ -727,7 +727,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/mutex.o
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/mutex.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/mutex.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/mutex.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/mutex.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/mutex.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/mutex.c.i
@@ -735,7 +735,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/mutex.i
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/mutex.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/mutex.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/mutex.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/mutex.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/mutex.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/mutex.c.s
@@ -743,7 +743,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/mutex.s
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/mutex.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/mutex.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/mutex.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/mutex.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/sem.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/sem.c.o
@@ -751,7 +751,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/sem.o: 
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/sem.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/sem.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/sem.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/sem.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/sem.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/sem.c.i
@@ -759,7 +759,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/sem.i: 
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/sem.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/sem.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/sem.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/sem.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/sem.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/sem.c.s
@@ -767,7 +767,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/sem.s: 
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/sem.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/sem.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/sem.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/sem.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_time/time.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_time/time.c.o
@@ -775,7 +775,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_time/time.o:
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_time/time.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_time/time.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_time/time.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_time/time.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_time/time.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_time/time.c.i
@@ -783,7 +783,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_time/time.i:
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_time/time.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_time/time.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_time/time.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_time/time.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_time/time.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_time/time.c.s
@@ -791,7 +791,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_time/time.s:
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_time/time.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_time/time.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_time/time.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_time/time.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_time/timeout_helper.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_time/timeout_helper.c.o
@@ -799,7 +799,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_time/timeout
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_time/timeout_helper.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_time/timeout_helper.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_time/timeout_helper.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_time/timeout_helper.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_time/timeout_helper.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_time/timeout_helper.c.i
@@ -807,7 +807,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_time/timeout
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_time/timeout_helper.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_time/timeout_helper.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_time/timeout_helper.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_time/timeout_helper.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_time/timeout_helper.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_time/timeout_helper.c.s
@@ -815,7 +815,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_time/timeout
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_time/timeout_helper.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_time/timeout_helper.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_time/timeout_helper.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_time/timeout_helper.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/datetime.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/datetime.c.o
@@ -823,7 +823,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/datetim
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/datetime.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/datetime.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/datetime.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/datetime.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/datetime.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/datetime.c.i
@@ -831,7 +831,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/datetim
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/datetime.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/datetime.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/datetime.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/datetime.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/datetime.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/datetime.c.s
@@ -839,7 +839,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/datetim
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/datetime.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/datetime.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/datetime.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/datetime.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/pheap.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/pheap.c.o
@@ -847,7 +847,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/pheap.o
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/pheap.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/pheap.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/pheap.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/pheap.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/pheap.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/pheap.c.i
@@ -855,7 +855,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/pheap.i
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/pheap.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/pheap.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/pheap.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/pheap.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/pheap.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/pheap.c.s
@@ -863,7 +863,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/pheap.s
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/pheap.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/pheap.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/pheap.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/pheap.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/queue.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/queue.c.o
@@ -871,7 +871,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/queue.o
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/queue.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/queue.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/queue.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/queue.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/queue.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/queue.c.i
@@ -879,7 +879,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/queue.i
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/queue.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/queue.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/queue.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/queue.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/queue.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/queue.c.s
@@ -887,7 +887,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/queue.s
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/queue.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/queue.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/queue.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_util/queue.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2040/pico_platform/platform.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2040/pico_platform/platform.c.o
@@ -895,7 +895,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2040/pico_platform/pla
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2040/pico_platform/platform.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2040/pico_platform/platform.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2040/pico_platform/platform.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2040/pico_platform/platform.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2040/pico_platform/platform.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2040/pico_platform/platform.c.i
@@ -903,7 +903,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2040/pico_platform/pla
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2040/pico_platform/platform.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2040/pico_platform/platform.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2040/pico_platform/platform.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2040/pico_platform/platform.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2040/pico_platform/platform.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2040/pico_platform/platform.c.s
@@ -911,7 +911,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2040/pico_platform/pla
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2040/pico_platform/platform.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2040/pico_platform/platform.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2040/pico_platform/platform.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2040/pico_platform/platform.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_boot_lock/boot_lock.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_boot_lock/boot_lock.c.o
@@ -919,7 +919,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_boot
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_boot_lock/boot_lock.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_boot_lock/boot_lock.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_boot_lock/boot_lock.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_boot_lock/boot_lock.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_boot_lock/boot_lock.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_boot_lock/boot_lock.c.i
@@ -927,7 +927,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_boot
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_boot_lock/boot_lock.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_boot_lock/boot_lock.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_boot_lock/boot_lock.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_boot_lock/boot_lock.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_boot_lock/boot_lock.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_boot_lock/boot_lock.c.s
@@ -935,7 +935,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_boot
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_boot_lock/boot_lock.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_boot_lock/boot_lock.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_boot_lock/boot_lock.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_boot_lock/boot_lock.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_clocks/clocks.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.o
@@ -943,7 +943,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_cloc
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_clocks/clocks.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.i
@@ -951,7 +951,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_cloc
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_clocks/clocks.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.s
@@ -959,7 +959,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_cloc
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_divider/divider.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_divider/divider.S.o
@@ -967,7 +967,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_divi
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_divider/divider.S.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_divider/divider.S.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_divider/divider.S.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_divider/divider.S.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_flash/flash.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_flash/flash.c.o
@@ -975,7 +975,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_flas
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_flash/flash.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_flash/flash.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_flash/flash.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_flash/flash.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_flash/flash.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_flash/flash.c.i
@@ -983,7 +983,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_flas
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_flash/flash.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_flash/flash.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_flash/flash.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_flash/flash.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_flash/flash.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_flash/flash.c.s
@@ -991,7 +991,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_flas
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_flash/flash.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_flash/flash.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_flash/flash.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_flash/flash.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_gpio/gpio.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.o
@@ -999,7 +999,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_gpio
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_gpio/gpio.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.i
@@ -1007,7 +1007,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_gpio
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_gpio/gpio.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.s
@@ -1015,7 +1015,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_gpio
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_i2c/i2c.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.o
@@ -1023,7 +1023,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_i2c/
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_i2c/i2c.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.i
@@ -1031,7 +1031,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_i2c/
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_i2c/i2c.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.s
@@ -1039,7 +1039,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_i2c/
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_irq/irq.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_irq/irq.c.o
@@ -1047,7 +1047,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_irq/
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_irq/irq.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_irq/irq.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_irq/irq.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_irq/irq.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_irq/irq.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_irq/irq.c.i
@@ -1055,7 +1055,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_irq/
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_irq/irq.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_irq/irq.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_irq/irq.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_irq/irq.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_irq/irq.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_irq/irq.c.s
@@ -1063,7 +1063,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_irq/
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_irq/irq.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_irq/irq.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_irq/irq.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_irq/irq.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_irq/irq_handler_chain.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_irq/irq_handler_chain.S.o
@@ -1071,7 +1071,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_irq/
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_irq/irq_handler_chain.S.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_irq/irq_handler_chain.S.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_irq/irq_handler_chain.S.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_irq/irq_handler_chain.S.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_pll/pll.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_pll/pll.c.o
@@ -1079,7 +1079,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_pll/
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_pll/pll.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_pll/pll.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_pll/pll.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_pll/pll.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_pll/pll.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_pll/pll.c.i
@@ -1087,7 +1087,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_pll/
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_pll/pll.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_pll/pll.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_pll/pll.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_pll/pll.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_pll/pll.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_pll/pll.c.s
@@ -1095,7 +1095,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_pll/
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_pll/pll.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_pll/pll.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_pll/pll.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_pll/pll.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_sync/sync.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_sync/sync.c.o
@@ -1103,7 +1103,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_sync
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_sync/sync.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_sync/sync.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_sync/sync.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_sync/sync.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_sync/sync.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_sync/sync.c.i
@@ -1111,7 +1111,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_sync
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_sync/sync.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_sync/sync.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_sync/sync.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_sync/sync.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_sync/sync.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_sync/sync.c.s
@@ -1119,7 +1119,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_sync
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_sync/sync.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_sync/sync.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_sync/sync.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_sync/sync.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.o
@@ -1127,7 +1127,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_sync
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.i
@@ -1135,7 +1135,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_sync
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.s
@@ -1143,7 +1143,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_sync
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_ticks/ticks.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_ticks/ticks.c.o
@@ -1151,7 +1151,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_tick
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_ticks/ticks.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_ticks/ticks.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_ticks/ticks.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_ticks/ticks.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_ticks/ticks.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_ticks/ticks.c.i
@@ -1159,7 +1159,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_tick
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_ticks/ticks.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_ticks/ticks.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_ticks/ticks.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_ticks/ticks.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_ticks/ticks.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_ticks/ticks.c.s
@@ -1167,7 +1167,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_tick
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_ticks/ticks.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_ticks/ticks.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_ticks/ticks.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_ticks/ticks.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_timer/timer.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_timer/timer.c.o
@@ -1175,7 +1175,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_time
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_timer/timer.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_timer/timer.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_timer/timer.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_timer/timer.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_timer/timer.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_timer/timer.c.i
@@ -1183,7 +1183,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_time
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_timer/timer.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_timer/timer.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_timer/timer.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_timer/timer.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_timer/timer.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_timer/timer.c.s
@@ -1191,7 +1191,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_time
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_timer/timer.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_timer/timer.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_timer/timer.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_timer/timer.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_uart/uart.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_uart/uart.c.o
@@ -1199,7 +1199,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_uart
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_uart/uart.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_uart/uart.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_uart/uart.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_uart/uart.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_uart/uart.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_uart/uart.c.i
@@ -1207,7 +1207,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_uart
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_uart/uart.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_uart/uart.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_uart/uart.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_uart/uart.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_uart/uart.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_uart/uart.c.s
@@ -1215,7 +1215,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_uart
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_uart/uart.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_uart/uart.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_uart/uart.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_uart/uart.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_vreg/vreg.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_vreg/vreg.c.o
@@ -1223,7 +1223,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_vreg
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_vreg/vreg.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_vreg/vreg.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_vreg/vreg.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_vreg/vreg.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_vreg/vreg.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_vreg/vreg.c.i
@@ -1231,7 +1231,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_vreg
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_vreg/vreg.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_vreg/vreg.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_vreg/vreg.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_vreg/vreg.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_vreg/vreg.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_vreg/vreg.c.s
@@ -1239,7 +1239,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_vreg
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_vreg/vreg.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_vreg/vreg.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_vreg/vreg.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_vreg/vreg.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.o
@@ -1247,7 +1247,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_watc
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.i
@@ -1255,7 +1255,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_watc
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.s
@@ -1263,7 +1263,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_watc
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_xip_cache/xip_cache.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_xip_cache/xip_cache.c.o
@@ -1271,7 +1271,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_xip_
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_xip_cache/xip_cache.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_xip_cache/xip_cache.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_xip_cache/xip_cache.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_xip_cache/xip_cache.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_xip_cache/xip_cache.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_xip_cache/xip_cache.c.i
@@ -1279,7 +1279,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_xip_
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_xip_cache/xip_cache.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_xip_cache/xip_cache.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_xip_cache/xip_cache.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_xip_cache/xip_cache.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_xip_cache/xip_cache.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_xip_cache/xip_cache.c.s
@@ -1287,7 +1287,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_xip_
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_xip_cache/xip_cache.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_xip_cache/xip_cache.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_xip_cache/xip_cache.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_xip_cache/xip_cache.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_xosc/xosc.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.o
@@ -1295,7 +1295,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_xosc
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_xosc/xosc.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.i
@@ -1303,7 +1303,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_xosc
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_xosc/xosc.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.s
@@ -1311,7 +1311,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_xosc
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_atomic/atomic.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_atomic/atomic.c.o
@@ -1319,7 +1319,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_atomic/a
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_atomic/atomic.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_atomic/atomic.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_atomic/atomic.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_atomic/atomic.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_atomic/atomic.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_atomic/atomic.c.i
@@ -1327,7 +1327,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_atomic/a
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_atomic/atomic.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_atomic/atomic.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_atomic/atomic.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_atomic/atomic.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_atomic/atomic.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_atomic/atomic.c.s
@@ -1335,7 +1335,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_atomic/a
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_atomic/atomic.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_atomic/atomic.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_atomic/atomic.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_atomic/atomic.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.o
@@ -1343,7 +1343,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bit_ops/
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bootrom/bootrom.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.o
@@ -1351,7 +1351,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bootrom/
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bootrom/bootrom.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.i
@@ -1359,7 +1359,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bootrom/
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bootrom/bootrom.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.s
@@ -1367,7 +1367,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bootrom/
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bootrom/bootrom_lock.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bootrom/bootrom_lock.c.o
@@ -1375,7 +1375,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bootrom/
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bootrom/bootrom_lock.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bootrom/bootrom_lock.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bootrom/bootrom_lock.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bootrom/bootrom_lock.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bootrom/bootrom_lock.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bootrom/bootrom_lock.c.i
@@ -1383,7 +1383,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bootrom/
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bootrom/bootrom_lock.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bootrom/bootrom_lock.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bootrom/bootrom_lock.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bootrom/bootrom_lock.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bootrom/bootrom_lock.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bootrom/bootrom_lock.c.s
@@ -1391,7 +1391,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bootrom/
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bootrom/bootrom_lock.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bootrom/bootrom_lock.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bootrom/bootrom_lock.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bootrom/bootrom_lock.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.o
@@ -1399,7 +1399,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_clib_int
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.i
@@ -1407,7 +1407,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_clib_int
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.s
@@ -1415,7 +1415,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_clib_int
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_crt0/crt0.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_crt0/crt0.S.o
@@ -1423,7 +1423,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_crt0/crt
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_crt0/crt0.S.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_crt0/crt0.S.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_crt0/crt0.S.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_crt0/crt0.S.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_cxx_options/new_delete.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_cxx_options/new_delete.cpp.o
@@ -1431,7 +1431,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_cxx_opti
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_cxx_options/new_delete.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_cxx_options/new_delete.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_cxx_options/new_delete.cpp.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_cxx_options/new_delete.cpp.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_cxx_options/new_delete.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_cxx_options/new_delete.cpp.i
@@ -1439,7 +1439,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_cxx_opti
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_cxx_options/new_delete.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_cxx_options/new_delete.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_cxx_options/new_delete.cpp.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_cxx_options/new_delete.cpp.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_cxx_options/new_delete.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_cxx_options/new_delete.cpp.s
@@ -1447,7 +1447,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_cxx_opti
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_cxx_options/new_delete.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_cxx_options/new_delete.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_cxx_options/new_delete.cpp.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_cxx_options/new_delete.cpp.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_divider/divider_hardware.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.o
@@ -1455,7 +1455,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_divider/
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
@@ -1463,7 +1463,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/d
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.o
@@ -1471,7 +1471,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/d
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.i
@@ -1479,7 +1479,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/d
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.s
@@ -1487,7 +1487,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/d
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_math.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_math.c.o
@@ -1495,7 +1495,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/d
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_math.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_math.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_math.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_math.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_math.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_math.c.i
@@ -1503,7 +1503,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/d
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_math.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_math.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_math.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_math.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_math.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_math.c.s
@@ -1511,7 +1511,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/d
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_math.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_math.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_math.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_math.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.o
@@ -1519,7 +1519,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/d
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/rp2040_usb_device_enumeration.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/rp2040_usb_device_enumeration.c.o
@@ -1527,7 +1527,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_fix/rp20
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/rp2040_usb_device_enumeration.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/rp2040_usb_device_enumeration.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/rp2040_usb_device_enumeration.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/rp2040_usb_device_enumeration.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/rp2040_usb_device_enumeration.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/rp2040_usb_device_enumeration.c.i
@@ -1535,7 +1535,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_fix/rp20
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/rp2040_usb_device_enumeration.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/rp2040_usb_device_enumeration.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/rp2040_usb_device_enumeration.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/rp2040_usb_device_enumeration.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/rp2040_usb_device_enumeration.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/rp2040_usb_device_enumeration.c.s
@@ -1543,7 +1543,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_fix/rp20
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/rp2040_usb_device_enumeration.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/rp2040_usb_device_enumeration.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/rp2040_usb_device_enumeration.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/rp2040_usb_device_enumeration.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_flash/flash.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_flash/flash.c.o
@@ -1551,7 +1551,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_flash/fl
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_flash/flash.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_flash/flash.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_flash/flash.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_flash/flash.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_flash/flash.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_flash/flash.c.i
@@ -1559,7 +1559,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_flash/fl
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_flash/flash.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_flash/flash.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_flash/flash.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_flash/flash.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_flash/flash.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_flash/flash.c.s
@@ -1567,7 +1567,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_flash/fl
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_flash/flash.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_flash/flash.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_flash/flash.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_flash/flash.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
@@ -1575,7 +1575,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/fl
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.S.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.S.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.o
@@ -1583,7 +1583,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/fl
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.i
@@ -1591,7 +1591,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/fl
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.s
@@ -1599,7 +1599,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/fl
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_math.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_math.c.o
@@ -1607,7 +1607,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/fl
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_math.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_math.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_math.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_math.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_math.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_math.c.i
@@ -1615,7 +1615,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/fl
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_math.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_math.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_math.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_math.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_math.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_math.c.s
@@ -1623,7 +1623,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/fl
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_math.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_math.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_math.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_math.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.o
@@ -1631,7 +1631,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/fl
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.o
@@ -1639,7 +1639,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_int64_op
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_malloc/malloc.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_malloc/malloc.c.o
@@ -1647,7 +1647,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_malloc/m
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_malloc/malloc.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_malloc/malloc.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_malloc/malloc.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_malloc/malloc.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_malloc/malloc.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_malloc/malloc.c.i
@@ -1655,7 +1655,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_malloc/m
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_malloc/malloc.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_malloc/malloc.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_malloc/malloc.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_malloc/malloc.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_malloc/malloc.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_malloc/malloc.c.s
@@ -1663,7 +1663,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_malloc/m
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_malloc/malloc.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_malloc/malloc.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_malloc/malloc.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_malloc/malloc.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.o
@@ -1671,7 +1671,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_mem_ops/
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_platform_panic/panic.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_platform_panic/panic.c.o
@@ -1679,7 +1679,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_platform
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_platform_panic/panic.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_platform_panic/panic.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_platform_panic/panic.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_platform_panic/panic.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_platform_panic/panic.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_platform_panic/panic.c.i
@@ -1687,7 +1687,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_platform
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_platform_panic/panic.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_platform_panic/panic.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_platform_panic/panic.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_platform_panic/panic.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_platform_panic/panic.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_platform_panic/panic.c.s
@@ -1695,7 +1695,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_platform
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_platform_panic/panic.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_platform_panic/panic.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_platform_panic/panic.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_platform_panic/panic.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_printf/printf.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_printf/printf.c.o
@@ -1703,7 +1703,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_printf/p
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_printf/printf.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_printf/printf.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_printf/printf.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_printf/printf.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_printf/printf.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_printf/printf.c.i
@@ -1711,7 +1711,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_printf/p
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_printf/printf.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_printf/printf.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_printf/printf.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_printf/printf.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_printf/printf.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_printf/printf.c.s
@@ -1719,7 +1719,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_printf/p
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_printf/printf.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_printf/printf.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_printf/printf.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_printf/printf.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime/runtime.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime/runtime.c.o
@@ -1727,7 +1727,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime/
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime/runtime.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime/runtime.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime/runtime.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime/runtime.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime/runtime.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime/runtime.c.i
@@ -1735,7 +1735,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime/
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime/runtime.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime/runtime.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime/runtime.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime/runtime.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime/runtime.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime/runtime.c.s
@@ -1743,7 +1743,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime/
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime/runtime.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime/runtime.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime/runtime.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime/runtime.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.o
@@ -1751,7 +1751,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.i
@@ -1759,7 +1759,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.s
@@ -1767,7 +1767,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_clocks.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.o
@@ -1775,7 +1775,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_clocks.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.i
@@ -1783,7 +1783,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_clocks.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.s
@@ -1791,7 +1791,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_stack_guard.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_stack_guard.c.o
@@ -1799,7 +1799,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_stack_guard.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_stack_guard.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_stack_guard.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_stack_guard.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_stack_guard.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_stack_guard.c.i
@@ -1807,7 +1807,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_stack_guard.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_stack_guard.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_stack_guard.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_stack_guard.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_stack_guard.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_stack_guard.c.s
@@ -1815,7 +1815,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_stack_guard.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_stack_guard.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_stack_guard.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_stack_guard.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
@@ -1823,7 +1823,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_standard
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.i
@@ -1831,7 +1831,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_standard
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.s
@@ -1839,7 +1839,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_standard
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio/stdio.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio/stdio.c.o
@@ -1847,7 +1847,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio/st
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio/stdio.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio/stdio.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio/stdio.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio/stdio.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio/stdio.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio/stdio.c.i
@@ -1855,7 +1855,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio/st
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio/stdio.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio/stdio.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio/stdio.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio/stdio.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio/stdio.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio/stdio.c.s
@@ -1863,7 +1863,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio/st
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio/stdio.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio/stdio.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio/stdio.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio/stdio.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.o
@@ -1871,7 +1871,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_us
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.i
@@ -1879,7 +1879,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_us
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.s
@@ -1887,7 +1887,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_us
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.o
@@ -1895,7 +1895,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_us
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.i
@@ -1903,7 +1903,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_us
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.s
@@ -1911,7 +1911,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_us
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.o
@@ -1919,7 +1919,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_us
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.i
@@ -1927,7 +1927,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_us
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.s
@@ -1935,7 +1935,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_us
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdlib/stdlib.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c.o
@@ -1943,7 +1943,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdlib/s
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdlib/stdlib.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c.i
@@ -1951,7 +1951,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdlib/s
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdlib/stdlib.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c.s
@@ -1959,7 +1959,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdlib/s
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c.s
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_unique_id/unique_id.o: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.o
@@ -1967,7 +1967,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_unique_i
 
 # target to build an object file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.o
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.o
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_unique_id/unique_id.i: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.i
@@ -1975,7 +1975,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_unique_i
 
 # target to preprocess a source file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.i
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.i
 
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_unique_id/unique_id.s: home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.s
@@ -1983,7 +1983,7 @@ home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_unique_i
 
 # target to generate assembly for a file
 home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/bus_scan.dir/build.make CMakeFiles/bus_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/i2c_scan.dir/build.make CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.s
 .PHONY : home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.s
 
 # Help Target
@@ -1999,7 +1999,7 @@ help:
 	@echo "... pioasmBuild"
 	@echo "... bs2_default"
 	@echo "... bs2_default_library"
-	@echo "... bus_scan"
+	@echo "... i2c_scan"
 	@echo "... bus_scan.o"
 	@echo "... bus_scan.i"
 	@echo "... bus_scan.s"

@@ -26,6 +26,10 @@ set(CMAKE_TARGET_DEFINITIONS_ASM
 # The include file search paths:
 set(CMAKE_ASM_TARGET_INCLUDE_PATH
   "/home/connerparker/ASEN_4013/AERIS-Software/i2c_scan/$(PICO_SDK_PATH)/src"
+  "/home/connerparker/ASEN_4013/AERIS-Software/i2c_scan/("
+  "/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk"
+  "/home/connerparker/ASEN_4013/AERIS-Software/i2c_scan/)"
+  "/src/rp2_common/hardware_i2c/include"
   "/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2040/boot_stage2/asminclude"
   "/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2040/hardware_regs/include"
   "/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_base/include"

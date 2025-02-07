@@ -1,4 +1,4 @@
-/home/connerparker/ASEN_4013/AERIS-Software/i2c_scan/build/CMakeFiles/bus_scan.dir
+/home/connerparker/ASEN_4013/AERIS-Software/i2c_scan/build/CMakeFiles/i2c_scan.dir
 /home/connerparker/ASEN_4013/AERIS-Software/i2c_scan/build/CMakeFiles/edit_cache.dir
 /home/connerparker/ASEN_4013/AERIS-Software/i2c_scan/build/CMakeFiles/rebuild_cache.dir
 /home/connerparker/ASEN_4013/AERIS-Software/i2c_scan/build/pico-sdk/CMakeFiles/edit_cache.dir
