@@ -1,41 +1,35 @@
-# Set minimum required version of CMake
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.13)
 
-set(PICO_SDK_PATH "/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk")
+# Initialize pico-sdk from submodule
+# NOTE: This must happen before project()
+include(pico_sdk_import.cmake)
 
-# Include build functions from Pico SDK
-include($ENV{PICO_SDK_PATH}/external/pico_sdk_import.cmake)
-include_directories($(PICO_SDK_PATH)/src)
-include_directories((${PICO_SDK_PATH})/src/rp2_common/hardware_i2c/include)
-
-# Set name of project (as PROJECT_NAME) and C/C++ standards
-project(sd_fat_spi C CXX ASM)
+project(sd_card_test C CXX ASM)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
 
-# Creates a pico-sdk subdirectory in our project for the libraries
+# Initialize the SDK
 pico_sdk_init()
 
-# Tell CMake where to find the executable source file
-add_executable(${PROJECT_NAME} 
+# Add FatFS_SPI library
+add_subdirectory(FatFs_SPI)
+
+# Create the main executable
+add_executable(sd_card_test
     main.c
     hw_config.c
 )
 
-# Tell CMake where to find other source code
-add_subdirectory(lib/no-OS-FatFS-SD-SPI-RPi-Pico/FatFs_SPI build)
+# Enable USB output, disable UART output
+pico_enable_stdio_usb(sd_card_test 1)
+pico_enable_stdio_uart(sd_card_test 0)
 
-
-# Link to pico_stdlib (gpio, time, etc. functions)
-target_link_libraries(${PROJECT_NAME} 
+# Add the required libraries
+target_link_libraries(sd_card_test
     pico_stdlib
+    hardware_spi
     FatFs_SPI
-    hardware_i2c
 )
 
-# Enable usb output, disable uart output
-pico_enable_stdio_usb(${PROJECT_NAME} 1)
-pico_enable_stdio_uart(${PROJECT_NAME} 0)
-
-# Create map/bin/hex/uf2 files
-pico_add_extra_outputs(${PROJECT_NAME})
+# Create map/bin/hex file etc.
+pico_add_extra_outputs(sd_card_test)
