@@ -1,0 +1,5 @@
+halt
+loadfile /home/connerparker/ASEN_4013/AERIS-Software/pico-examples/build/usb/device/tinyusb_device_examples/net_lwip_webserver/tinyusb_dev_net_lwip_webserver.elf
+r
+go
+exit
