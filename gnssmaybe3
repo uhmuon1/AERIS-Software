@@ -1,64 +1,110 @@
-#include "pico/stdlib.h"
-#include <stdio.h>
+void scan_i2c_addresses(void) {
+    printf("\n=== Scanning I2C Addresses ===\n");
+    uint8_t reg = BYTES_AVAILABLE_REG;
+    
+    // Try common GPS addresses
+    uint8_t addresses[] = {0x42, 0x84, 0x77};  // Common GPS addresses
+    
+    for (int i = 0; i < sizeof(addresses); i++) {
+        printf("Testing address 0x%02X: ", addresses[i]);
+        
+        // Try to write to the device
+        int ret = i2c_write_blocking(GPS_I2C, addresses[i], &reg, 1, false);
+        
+        if (ret >= 0) {
+            printf("DEVICE FOUND!\n");
+            printf("Working address is: 0x%02X\n", addresses[i]);
+            return;
+        } else {
+            printf("No response\n");
+        }
+        sleep_ms(100);
+    }
+    
+    printf("\nNo GPS device found at common addresses.\n");
+    printf("Performing full bus scan...\n");
+    
+    // Full bus scan
+    for (int addr = 0x08; addr < 0x77; addr++) {
+        printf("Scanning address 0x%02X: ", addr);
+        
+        int ret = i2c_write_blocking(GPS_I2C, addr, &reg, 1, false);
+        
+        if (ret >= 0) {
+            printf("DEVICE FOUND!\n");
+            return;
+        } else {
+            printf(".");
+        }
+        
+        if (addr % 16 == 15) printf("\n");
+        sleep_ms(10);
+    }
+    printf("\nScan complete.\n");
+}
 
-#define LED_PIN 25
 
 int main() {
-    // Initialize LED first for visual feedback
+    // Initialize USB serial first
+    stdio_init_all();
+    stdio_usb_init();
+    sleep_ms(3000);
+    
+    printf("\n\n=== Starting GPS Debug Program ===\n");
+    printf("Compiled on: %s %s\n", __DATE__, __TIME__);
+    
+    // Initialize LED
     gpio_init(LED_PIN);
     gpio_set_dir(LED_PIN, GPIO_OUT);
+    printf("LED initialized\n");
     
-    // Basic USB serial initialization
-    stdio_init_all();
+    // Initialize I2C pins
+    printf("\nConfiguring I2C pins...\n");
+    gpio_set_function(SDA_PIN, GPIO_FUNC_I2C);
+    gpio_set_function(SCL_PIN, GPIO_FUNC_I2C);
     
-    // Wait for USB to become available
-    sleep_ms(5000);  // Increased delay to ensure USB is ready
+    // Enable internal pullups
+    gpio_pull_up(SDA_PIN);
+    gpio_pull_up(SCL_PIN);
+    printf("Internal pullups enabled\n");
     
-    // Simple loop to verify basic functionality
+    sleep_ms(250);
+    
+    // Check initial pin states
+    check_i2c_state();
+    
+    // Initialize I2C peripheral
+    printf("\nInitializing I2C...\n");
+    i2c_init(GPS_I2C, 100000);
+    
+    if (!i2c_get_write_available(GPS_I2C)) {
+        printf("ERROR: I2C failed to initialize\n");
+        while(1) {
+            gpio_put(LED_PIN, 1);
+            sleep_ms(100);
+            gpio_put(LED_PIN, 0);
+            sleep_ms(100);
+        }
+    }
+    
+    printf("I2C initialized successfully\n");
+    
+    // Run the I2C scan right after initialization
+    scan_i2c_addresses();  // ADD THE SCAN HERE
+    
+    // Test I2C lines
+    test_i2c_pins();
+    
+    printf("\n=== Starting main loop ===\n");
+    
     while (true) {
-        printf("Hello from RP2040!\n");  // Basic serial test
-        
-        gpio_put(LED_PIN, 1);  // LED ON
-        sleep_ms(500);
-        
-        printf("LED is ON\n");
-        
-        gpio_put(LED_PIN, 0);  // LED OFF
-        sleep_ms(500);
-        
-        printf("LED is OFF\n");
+        gpio_put(LED_PIN, 1);
+        read_gps_data();
+        check_i2c_state();
+        sleep_ms(1000);
+        gpio_put(LED_PIN, 0);
+        sleep_ms(1000);
     }
     
     return 0;
 }
-
-cmake_minimum_required(VERSION 3.12)
-
-# Set Pico SDK path
-set(PICO_SDK_PATH "../../AERIS-Software/pico-sdk")
-
-# Initialize the SDK
-include(${PICO_SDK_PATH}/pico_sdk_init.cmake)
-
-# Project name
-project(basic_test C CXX ASM)
-
-# Initialize the Raspberry Pi Pico SDK
-pico_sdk_init()
-
-# Create executable
-add_executable(basic_test
-    basic_test.c
-)
-
-# Enable USB output, disable UART
-pico_enable_stdio_usb(basic_test 1)
-pico_enable_stdio_uart(basic_test 0)
-
-# Add the required libraries
-target_link_libraries(basic_test
-    pico_stdlib
-)
-
-# Create map/bin/hex/uf2 file etc.
-pico_add_extra_outputs(basic_test)
