@@ -34,6 +34,10 @@ add_executable(gnss_test gnss.c)
 target_link_libraries(gnss_test pico_stdlib)
 target_link_libraries(gnss_test pico_stdlib hardware_i2c)
 
+target_link_libraries(gnss_test pico_stdlib hardware_pio)
+target_link_libraries(gnss_test pico_stdlib hardware_clocks)
+target_link_libraries(gnss_test pico_stdlib hardware_gpio)
+
 pico_enable_stdio_usb(gnss_test 1)
 pico_enable_stdio_uart(gnss_test 0)
 
