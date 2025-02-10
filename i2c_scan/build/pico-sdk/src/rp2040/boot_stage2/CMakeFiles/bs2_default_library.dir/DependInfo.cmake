@@ -14,11 +14,6 @@ set(CMAKE_ASM_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_ASM_TARGET_INCLUDE_PATH
-  "/home/connerparker/ASEN_4013/AERIS-Software/i2c_scan/$(PICO_SDK_PATH)/src"
-  "/home/connerparker/ASEN_4013/AERIS-Software/i2c_scan/("
-  "/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk"
-  "/home/connerparker/ASEN_4013/AERIS-Software/i2c_scan/)"
-  "/src/rp2_common/hardware_i2c/include"
   )
 
 # The set of dependency files which are needed:

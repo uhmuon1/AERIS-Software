@@ -73,8 +73,10 @@ int main() {
 
             printf(ret < 0 ? "." : "@");
             printf(addr % 16 == 15 ? "\n" : "  ");
+
         }
         printf("Done.\n");
+        sleep_ms(1000);
     }
     return 0;
 #endif

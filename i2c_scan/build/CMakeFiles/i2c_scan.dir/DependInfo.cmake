@@ -20,10 +20,11 @@ set(CMAKE_DEPENDS_CHECK_ASM
   "/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S" "/home/connerparker/ASEN_4013/AERIS-Software/i2c_scan/build/CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.o"
   "/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S" "/home/connerparker/ASEN_4013/AERIS-Software/i2c_scan/build/CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.o"
   )
+set(CMAKE_ASM_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS_ASM
-  "CFG_TUSB_DEBUG=0"
+  "CFG_TUSB_DEBUG=1"
   "CFG_TUSB_MCU=OPT_MCU_RP2040"
   "CFG_TUSB_OS=OPT_OS_PICO"
   "LIB_BOOT_STAGE2_HEADERS=1"
@@ -69,9 +70,9 @@ set(CMAKE_TARGET_DEFINITIONS_ASM
   "LIB_PICO_UNIQUE_ID=1"
   "LIB_PICO_UTIL=1"
   "PICO_32BIT=1"
-  "PICO_BOARD=\"pico\""
+  "PICO_BOARD=\"sparkfun_thingplus\""
   "PICO_BUILD=1"
-  "PICO_CMAKE_BUILD_TYPE=\"Release\""
+  "PICO_CMAKE_BUILD_TYPE=\"Debug\""
   "PICO_COPY_TO_RAM=0"
   "PICO_CXX_ENABLE_EXCEPTIONS=0"
   "PICO_NO_FLASH=0"
@@ -85,11 +86,6 @@ set(CMAKE_TARGET_DEFINITIONS_ASM
 
 # The include file search paths:
 set(CMAKE_ASM_TARGET_INCLUDE_PATH
-  "../$(PICO_SDK_PATH)/src"
-  "../("
-  "/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk"
-  "../)"
-  "/src/rp2_common/hardware_i2c/include"
   "/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_atomic/include"
   "/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/lib/tinyusb/src"
   "/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_stdlib_headers/include"

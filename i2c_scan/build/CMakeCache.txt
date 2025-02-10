@@ -46,9 +46,9 @@ CMAKE_ASM_FLAGS_RELEASE:STRING=-g -O3 -DNDEBUG
 //Flags used by the ASM compiler during RELWITHDEBINFO builds.
 CMAKE_ASM_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG
 
-//Choose the type of build, options are: 'Debug', 'Release', 'MinSizeRel',
-// 'RelWithDebInfo'.
-CMAKE_BUILD_TYPE:STRING=Release
+//Choose the type of build, options are: None Debug Release RelWithDebInfo
+// MinSizeRel ...
+CMAKE_BUILD_TYPE:STRING=Debug
 
 //Enable/Disable color output during build.
 CMAKE_COLOR_MAKEFILE:BOOL=ON
@@ -256,7 +256,7 @@ FETCHCONTENT_QUIET:BOOL=ON
 FETCHCONTENT_UPDATES_DISCONNECTED:BOOL=OFF
 
 //PICO target board (e.g. pico, pico2)
-PICO_BOARD:STRING=pico
+PICO_BOARD:STRING=sparkfun_thingplus
 
 //PICO board header directories
 PICO_BOARD_HEADER_DIRS:STRING=
@@ -368,8 +368,6 @@ CMAKE_ASM_FLAGS_MINSIZEREL-ADVANCED:INTERNAL=1
 CMAKE_ASM_FLAGS_RELEASE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_ASM_FLAGS_RELWITHDEBINFO
 CMAKE_ASM_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
-//STRINGS property for variable: CMAKE_BUILD_TYPE
-CMAKE_BUILD_TYPE-STRINGS:INTERNAL=Debug;Release;MinSizeRel;RelWithDebInfo
 //This is the directory where this CMakeCache.txt was created
 CMAKE_CACHEFILE_DIR:INTERNAL=/home/connerparker/ASEN_4013/AERIS-Software/i2c_scan/build
 //Major version of cmake used to create the current loaded cache

@@ -4,6 +4,7 @@ CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/
  /usr/include/newlib/c++/10.3.1/arm-none-eabi/thumb/v6-m/nofp/bits/c++config.h \
  /usr/include/newlib/c++/10.3.1/arm-none-eabi/thumb/v6-m/nofp/bits/os_defines.h \
  /usr/include/newlib/c++/10.3.1/arm-none-eabi/thumb/v6-m/nofp/bits/cpu_defines.h \
+ /usr/include/newlib/c++/10.3.1/pstl/pstl_config.h \
  /usr/include/newlib/c++/10.3.1/stdlib.h /usr/include/newlib/stdlib.h \
  /usr/include/newlib/machine/ieeefp.h /usr/include/newlib/_ansi.h \
  /usr/include/newlib/newlib.h /usr/include/newlib/_newlib_version.h \
@@ -24,7 +25,7 @@ CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/
  /home/connerparker/ASEN_4013/AERIS-Software/i2c_scan/build/generated/pico_base/pico/version.h \
  /home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_base_headers/include/pico/config.h \
  /home/connerparker/ASEN_4013/AERIS-Software/i2c_scan/build/generated/pico_base/pico/config_autogen.h \
- /home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/boards/include/boards/pico.h \
+ /home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/boards/include/boards/sparkfun_thingplus.h \
  /home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/cmsis/include/cmsis/rename_exceptions.h \
  /home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2040/pico_platform/include/pico/platform.h \
  /home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_platform_compiler/include/pico/platform/compiler.h \

@@ -202,11 +202,11 @@ CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/
 
 CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_irq/irq_handler_chain.S.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing ASM source to CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_irq/irq_handler_chain.S.i"
-	$(CMAKE_COMMAND) -E cmake_unimplemented_variable CMAKE_ASM_CREATE_PREPROCESSED_SOURCE
+	/usr/bin/arm-none-eabi-gcc $(ASM_DEFINES) $(ASM_INCLUDES) $(ASM_FLAGS) -E /home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_irq/irq_handler_chain.S > CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_irq/irq_handler_chain.S.i
 
 CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_irq/irq_handler_chain.S.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling ASM source to assembly CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_irq/irq_handler_chain.S.s"
-	$(CMAKE_COMMAND) -E cmake_unimplemented_variable CMAKE_ASM_CREATE_ASSEMBLY_SOURCE
+	/usr/bin/arm-none-eabi-gcc $(ASM_DEFINES) $(ASM_INCLUDES) $(ASM_FLAGS) -S /home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_irq/irq_handler_chain.S -o CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_irq/irq_handler_chain.S.s
 
 CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/sem.c.o: CMakeFiles/i2c_scan.dir/flags.make
 CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/sem.c.o: /home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/common/pico_sync/sem.c
@@ -509,11 +509,11 @@ CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/
 
 CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_divider/divider.S.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing ASM source to CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_divider/divider.S.i"
-	$(CMAKE_COMMAND) -E cmake_unimplemented_variable CMAKE_ASM_CREATE_PREPROCESSED_SOURCE
+	/usr/bin/arm-none-eabi-gcc $(ASM_DEFINES) $(ASM_INCLUDES) $(ASM_FLAGS) -E /home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_divider/divider.S > CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_divider/divider.S.i
 
 CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_divider/divider.S.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling ASM source to assembly CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_divider/divider.S.s"
-	$(CMAKE_COMMAND) -E cmake_unimplemented_variable CMAKE_ASM_CREATE_ASSEMBLY_SOURCE
+	/usr/bin/arm-none-eabi-gcc $(ASM_DEFINES) $(ASM_INCLUDES) $(ASM_FLAGS) -S /home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_divider/divider.S -o CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/hardware_divider/divider.S.s
 
 CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime/runtime.c.o: CMakeFiles/i2c_scan.dir/flags.make
 CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime/runtime.c.o: /home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_runtime/runtime.c
@@ -578,11 +578,11 @@ CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/
 
 CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing ASM source to CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.i"
-	$(CMAKE_COMMAND) -E cmake_unimplemented_variable CMAKE_ASM_CREATE_PREPROCESSED_SOURCE
+	/usr/bin/arm-none-eabi-gcc $(ASM_DEFINES) $(ASM_INCLUDES) $(ASM_FLAGS) -E /home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S > CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.i
 
 CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling ASM source to assembly CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.s"
-	$(CMAKE_COMMAND) -E cmake_unimplemented_variable CMAKE_ASM_CREATE_ASSEMBLY_SOURCE
+	/usr/bin/arm-none-eabi-gcc $(ASM_DEFINES) $(ASM_INCLUDES) $(ASM_FLAGS) -S /home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S -o CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.s
 
 CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.o: CMakeFiles/i2c_scan.dir/flags.make
 CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.o: /home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S
@@ -591,11 +591,11 @@ CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/
 
 CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing ASM source to CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.i"
-	$(CMAKE_COMMAND) -E cmake_unimplemented_variable CMAKE_ASM_CREATE_PREPROCESSED_SOURCE
+	/usr/bin/arm-none-eabi-gcc $(ASM_DEFINES) $(ASM_INCLUDES) $(ASM_FLAGS) -E /home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S > CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.i
 
 CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling ASM source to assembly CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.s"
-	$(CMAKE_COMMAND) -E cmake_unimplemented_variable CMAKE_ASM_CREATE_ASSEMBLY_SOURCE
+	/usr/bin/arm-none-eabi-gcc $(ASM_DEFINES) $(ASM_INCLUDES) $(ASM_FLAGS) -S /home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S -o CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.s
 
 CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.o: CMakeFiles/i2c_scan.dir/flags.make
 CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.o: /home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S
@@ -604,11 +604,11 @@ CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/
 
 CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing ASM source to CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.i"
-	$(CMAKE_COMMAND) -E cmake_unimplemented_variable CMAKE_ASM_CREATE_PREPROCESSED_SOURCE
+	/usr/bin/arm-none-eabi-gcc $(ASM_DEFINES) $(ASM_INCLUDES) $(ASM_FLAGS) -E /home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S > CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.i
 
 CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling ASM source to assembly CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.s"
-	$(CMAKE_COMMAND) -E cmake_unimplemented_variable CMAKE_ASM_CREATE_ASSEMBLY_SOURCE
+	/usr/bin/arm-none-eabi-gcc $(ASM_DEFINES) $(ASM_INCLUDES) $(ASM_FLAGS) -S /home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S -o CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.s
 
 CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.o: CMakeFiles/i2c_scan.dir/flags.make
 CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.o: /home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c
@@ -645,11 +645,11 @@ CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/
 
 CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing ASM source to CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.i"
-	$(CMAKE_COMMAND) -E cmake_unimplemented_variable CMAKE_ASM_CREATE_PREPROCESSED_SOURCE
+	/usr/bin/arm-none-eabi-gcc $(ASM_DEFINES) $(ASM_INCLUDES) $(ASM_FLAGS) -E /home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S > CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.i
 
 CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling ASM source to assembly CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.s"
-	$(CMAKE_COMMAND) -E cmake_unimplemented_variable CMAKE_ASM_CREATE_ASSEMBLY_SOURCE
+	/usr/bin/arm-none-eabi-gcc $(ASM_DEFINES) $(ASM_INCLUDES) $(ASM_FLAGS) -S /home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S -o CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.s
 
 CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.o: CMakeFiles/i2c_scan.dir/flags.make
 CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.o: /home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S
@@ -658,11 +658,11 @@ CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/
 
 CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing ASM source to CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.i"
-	$(CMAKE_COMMAND) -E cmake_unimplemented_variable CMAKE_ASM_CREATE_PREPROCESSED_SOURCE
+	/usr/bin/arm-none-eabi-gcc $(ASM_DEFINES) $(ASM_INCLUDES) $(ASM_FLAGS) -E /home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S > CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.i
 
 CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling ASM source to assembly CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.s"
-	$(CMAKE_COMMAND) -E cmake_unimplemented_variable CMAKE_ASM_CREATE_ASSEMBLY_SOURCE
+	/usr/bin/arm-none-eabi-gcc $(ASM_DEFINES) $(ASM_INCLUDES) $(ASM_FLAGS) -S /home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S -o CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.s
 
 CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.S.o: CMakeFiles/i2c_scan.dir/flags.make
 CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.S.o: /home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.S
@@ -671,11 +671,11 @@ CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/
 
 CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.S.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing ASM source to CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.S.i"
-	$(CMAKE_COMMAND) -E cmake_unimplemented_variable CMAKE_ASM_CREATE_PREPROCESSED_SOURCE
+	/usr/bin/arm-none-eabi-gcc $(ASM_DEFINES) $(ASM_INCLUDES) $(ASM_FLAGS) -E /home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.S > CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.S.i
 
 CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.S.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling ASM source to assembly CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.S.s"
-	$(CMAKE_COMMAND) -E cmake_unimplemented_variable CMAKE_ASM_CREATE_ASSEMBLY_SOURCE
+	/usr/bin/arm-none-eabi-gcc $(ASM_DEFINES) $(ASM_INCLUDES) $(ASM_FLAGS) -S /home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.S -o CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.S.s
 
 CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.o: CMakeFiles/i2c_scan.dir/flags.make
 CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.o: /home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c
@@ -712,11 +712,11 @@ CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/
 
 CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing ASM source to CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.i"
-	$(CMAKE_COMMAND) -E cmake_unimplemented_variable CMAKE_ASM_CREATE_PREPROCESSED_SOURCE
+	/usr/bin/arm-none-eabi-gcc $(ASM_DEFINES) $(ASM_INCLUDES) $(ASM_FLAGS) -E /home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S > CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.i
 
 CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling ASM source to assembly CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.s"
-	$(CMAKE_COMMAND) -E cmake_unimplemented_variable CMAKE_ASM_CREATE_ASSEMBLY_SOURCE
+	/usr/bin/arm-none-eabi-gcc $(ASM_DEFINES) $(ASM_INCLUDES) $(ASM_FLAGS) -S /home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S -o CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.s
 
 CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_malloc/malloc.c.o: CMakeFiles/i2c_scan.dir/flags.make
 CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_malloc/malloc.c.o: /home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_malloc/malloc.c
@@ -739,11 +739,11 @@ CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/
 
 CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing ASM source to CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.i"
-	$(CMAKE_COMMAND) -E cmake_unimplemented_variable CMAKE_ASM_CREATE_PREPROCESSED_SOURCE
+	/usr/bin/arm-none-eabi-gcc $(ASM_DEFINES) $(ASM_INCLUDES) $(ASM_FLAGS) -E /home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S > CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.i
 
 CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling ASM source to assembly CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.s"
-	$(CMAKE_COMMAND) -E cmake_unimplemented_variable CMAKE_ASM_CREATE_ASSEMBLY_SOURCE
+	/usr/bin/arm-none-eabi-gcc $(ASM_DEFINES) $(ASM_INCLUDES) $(ASM_FLAGS) -S /home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S -o CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.s
 
 CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_atomic/atomic.c.o: CMakeFiles/i2c_scan.dir/flags.make
 CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_atomic/atomic.c.o: /home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_atomic/atomic.c
@@ -808,11 +808,11 @@ CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/
 
 CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_crt0/crt0.S.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing ASM source to CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_crt0/crt0.S.i"
-	$(CMAKE_COMMAND) -E cmake_unimplemented_variable CMAKE_ASM_CREATE_PREPROCESSED_SOURCE
+	/usr/bin/arm-none-eabi-gcc $(ASM_DEFINES) $(ASM_INCLUDES) $(ASM_FLAGS) -E /home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_crt0/crt0.S > CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_crt0/crt0.S.i
 
 CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_crt0/crt0.S.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling ASM source to assembly CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_crt0/crt0.S.s"
-	$(CMAKE_COMMAND) -E cmake_unimplemented_variable CMAKE_ASM_CREATE_ASSEMBLY_SOURCE
+	/usr/bin/arm-none-eabi-gcc $(ASM_DEFINES) $(ASM_INCLUDES) $(ASM_FLAGS) -S /home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_crt0/crt0.S -o CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_crt0/crt0.S.s
 
 CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.o: CMakeFiles/i2c_scan.dir/flags.make
 CMakeFiles/i2c_scan.dir/home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.o: /home/connerparker/ASEN_4013/AERIS-Software/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c

@@ -1,27 +1,22 @@
 cmake_minimum_required(VERSION 3.12)
 
-set(CMAKE_C_COMPILER /usr/bin/arm-none-eabi-gcc)
-set(CMAKE_CXX_COMPILER /usr/bin/arm-none-eabi-g++)
+include(pico_sdk_import.cmake)
+include(pico_extras_import_optional.cmake)
 
-set(PICO_SDK_PATH "../../AERIS-Software/pico-sdk")
+project(i2c_scan C CXX ASM)
 
-include(${PICO_SDK_PATH}/pico_sdk_init.cmake)
 
-include_directories($(PICO_SDK_PATH)/src)
-
-include_directories((${PICO_SDK_PATH})/src/rp2_common/hardware_i2c/include)
-
-# Set the project name
-project(i2c_scan)
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 
 # Initialize the SDK
 pico_sdk_init()
 
-# Specify the source files
-add_executable(i2c_scan bus_scan.c)
 
-# Link the Pico SDK to the project
-target_link_libraries(i2c_scan pico_stdlib)
+add_executable(i2c_scan
+    bus_scan.c
+    )
+
 target_link_libraries(i2c_scan pico_stdlib hardware_i2c)
 
 pico_enable_stdio_usb(i2c_scan 1)
