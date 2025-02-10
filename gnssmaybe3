@@ -1,0 +1,64 @@
+#include "pico/stdlib.h"
+#include <stdio.h>
+
+#define LED_PIN 25
+
+int main() {
+    // Initialize LED first for visual feedback
+    gpio_init(LED_PIN);
+    gpio_set_dir(LED_PIN, GPIO_OUT);
+    
+    // Basic USB serial initialization
+    stdio_init_all();
+    
+    // Wait for USB to become available
+    sleep_ms(5000);  // Increased delay to ensure USB is ready
+    
+    // Simple loop to verify basic functionality
+    while (true) {
+        printf("Hello from RP2040!\n");  // Basic serial test
+        
+        gpio_put(LED_PIN, 1);  // LED ON
+        sleep_ms(500);
+        
+        printf("LED is ON\n");
+        
+        gpio_put(LED_PIN, 0);  // LED OFF
+        sleep_ms(500);
+        
+        printf("LED is OFF\n");
+    }
+    
+    return 0;
+}
+
+cmake_minimum_required(VERSION 3.12)
+
+# Set Pico SDK path
+set(PICO_SDK_PATH "../../AERIS-Software/pico-sdk")
+
+# Initialize the SDK
+include(${PICO_SDK_PATH}/pico_sdk_init.cmake)
+
+# Project name
+project(basic_test C CXX ASM)
+
+# Initialize the Raspberry Pi Pico SDK
+pico_sdk_init()
+
+# Create executable
+add_executable(basic_test
+    basic_test.c
+)
+
+# Enable USB output, disable UART
+pico_enable_stdio_usb(basic_test 1)
+pico_enable_stdio_uart(basic_test 0)
+
+# Add the required libraries
+target_link_libraries(basic_test
+    pico_stdlib
+)
+
+# Create map/bin/hex/uf2 file etc.
+pico_add_extra_outputs(basic_test)
