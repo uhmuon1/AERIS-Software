@@ -7,6 +7,9 @@ cmake_minimum_required(VERSION 3.12)
 set(CMAKE_C_COMPILER /usr/bin/arm-none-eabi-gcc)
 set(CMAKE_CXX_COMPILER /usr/bin/arm-none-eabi-g++)
 
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
+
 #set(CMAKE_MAKE_PROGRAM "/usr/bin/make")
 
 # Specify the Pico SDK location (adjust path if necessary)
@@ -34,9 +37,10 @@ add_executable(gnss_test gnss.c)
 target_link_libraries(gnss_test pico_stdlib)
 target_link_libraries(gnss_test pico_stdlib hardware_i2c)
 
-target_link_libraries(gnss_test pico_stdlib hardware_pio)
-target_link_libraries(gnss_test pico_stdlib hardware_clocks)
-target_link_libraries(gnss_test pico_stdlib hardware_gpio)
+target_link_libraries(gnss_test pico_stdlib hardware_pio hardware_clocks hardware_gpio pico_binary_info)
+#target_link_libraries(gnss_test pico_stdlib hardware_clocks)
+#target_link_libraries(gnss_test pico_stdlib hardware_gpio)
+#target_link_libraries(gnss_test pico_stdlib pico_binary_info)
 
 pico_enable_stdio_usb(gnss_test 1)
 pico_enable_stdio_uart(gnss_test 0)

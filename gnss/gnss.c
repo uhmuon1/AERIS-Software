@@ -617,6 +617,7 @@
 // #include "pico/stdlib.h"
 // #include "hardware/i2c.h"
 // #include "hardware/gpio.h"
+// #include "pico/binary_info.h"
 // #include <stdio.h>
 
 // #define I2C_PORT i2c0            // Using I2C0 interface
@@ -629,13 +630,14 @@
 //     i2c_init(I2C_PORT, 100000); // Set the baud rate to 100kHz (standard for many devices)
 //     gpio_set_function(SDA_PIN, GPIO_FUNC_I2C);
 //     gpio_set_function(SCL_PIN, GPIO_FUNC_I2C);
-//     //gpio_pull_up(SDA_PIN); // Enable internal pull-up resistors
-//     //gpio_pull_up(SCL_PIN); // Enable internal pull-up resistors
+//     gpio_pull_up(SDA_PIN); // Enable internal pull-up resistors
+//     gpio_pull_up(SCL_PIN); // Enable internal pull-up resistors
+//     bi_decl(bi_2pins_with_func(SDA_PIN, SCL_PIN, GPIO_FUNC_I2C));
 // }
 
 // void write_data(uint8_t reg, uint8_t value) {
-//     uint8_t data[2] = {reg, value};
-//     i2c_write_blocking(I2C_PORT, NEO_M9N_ADDR, data, 2, false);
+//    uint8_t data[2] = {reg, value};
+//    i2c_write_blocking(I2C_PORT, NEO_M9N_ADDR, data, 2, false);
 // }
 
 // uint8_t read_data(uint8_t reg) {
@@ -683,174 +685,406 @@
 //     return 0;
 // }
 
-#include "pico/stdlib.h"
-#include "hardware/i2c.h"
+// #include "pico/stdlib.h"
+// #include "hardware/i2c.h"
+// #include "pico/binary_info.h"
+// #include <stdio.h>
+
+// // Pin Definitions
+// #define LED_PIN 25
+// #define SDA_PIN 4
+// #define SCL_PIN 5
+// #define GPS_I2C i2c0
+// #define GPS_ADDR 0x42
+
+// // NEO-M9N registers
+// #define DATA_STREAM_REG 0xFF
+// #define BYTES_AVAILABLE_REG 0xFD
+
+// // Debug function prototypes
+// void check_i2c_state(void);
+// void test_i2c_pins(void);
+// bool verify_i2c_device(void);
+// void debug_i2c_bus(void);
+// void scan_i2c_addresses(void);
+
+// void scan_i2c_addresses(void) {
+//     printf("\n=== Scanning I2C Addresses ===\n");
+//     uint8_t reg = BYTES_AVAILABLE_REG;
+    
+//     // Try common GPS addresses
+//     uint8_t addresses[] = {0x42, 0x84, 0x77};  // Common GPS addresses
+    
+//     for (int i = 0; i < sizeof(addresses); i++) {
+//         printf("Testing address 0x%02X: ", addresses[i]);
+        
+//         // Try to write to the device
+//         int ret = i2c_write_blocking(GPS_I2C, addresses[i], &reg, 1, false);
+        
+//         if (ret >= 0) {
+//             printf("DEVICE FOUND!\n");
+//             printf("Working address is: 0x%02X\n", addresses[i]);
+//             return;
+//         } else {
+//             printf("No response\n");
+//         }
+//         sleep_ms(100);
+//     }
+    
+//     printf("\nNo GPS device found at common addresses.\n");
+//     printf("Performing full bus scan...\n");
+    
+//     // Full bus scan
+//     for (int addr = 0x08; addr < 0x77; addr++) {
+//         printf("Scanning address 0x%02X: ", addr);
+        
+//         int ret = i2c_write_blocking(GPS_I2C, addr, &reg, 1, false);
+        
+//         if (ret >= 0) {
+//             printf("DEVICE FOUND!\n");
+//             return;
+//         } else {
+//             printf(".");
+//         }
+        
+//         if (addr % 16 == 15) printf("\n");
+//         sleep_ms(10);
+//     }
+//     printf("\nScan complete.\n");
+// }
+
+
+// // Function to check I2C line states
+// void check_i2c_state(void) {
+//     printf("\n=== I2C Line States ===\n");
+//     printf("SDA Current State: %d\n", gpio_get(SDA_PIN));
+//     printf("SCL Current State: %d\n", gpio_get(SCL_PIN));
+//     printf("SDA Function Mode: %d (Should be 3 for I2C)\n", gpio_get_function(SDA_PIN));
+//     printf("SCL Function Mode: %d (Should be 3 for I2C)\n", gpio_get_function(SCL_PIN));
+// }
+
+// // Function to test I2C pins over time
+// void test_i2c_pins(void) {
+//     printf("\n=== Testing I2C Lines for 1 second ===\n");
+//     int sda_low_count = 0;
+//     int scl_low_count = 0;
+    
+//     for(int i = 0; i < 10; i++) {
+//         if(gpio_get(SDA_PIN) == 0) sda_low_count++;
+//         if(gpio_get(SCL_PIN) == 0) scl_low_count++;
+//         sleep_ms(100);
+//     }
+    
+//     printf("Times SDA was LOW: %d/10\n", sda_low_count);
+//     printf("Times SCL was LOW: %d/10\n", scl_low_count);
+    
+//     if(sda_low_count > 8) printf("WARNING: SDA might be stuck LOW\n");
+//     if(scl_low_count > 8) printf("WARNING: SCL might be stuck LOW\n");
+// }
+
+// // Function to verify I2C device presence
+// bool verify_i2c_device(void) {
+//     printf("\n=== Checking for GPS Device ===\n");
+//     uint8_t rxdata;
+//     int ret;
+    
+//     // Try to read one byte from the device
+//     ret = i2c_read_blocking(GPS_I2C, GPS_ADDR, &rxdata, 1, false);
+    
+//     if (ret < 0) {
+//         printf("Error: Could not communicate with GPS device\n");
+//         printf("Return code: %d\n", ret);
+//         return false;
+//     }
+    
+//     printf("Successfully communicated with GPS device!\n");
+//     return true;
+// }
+
+// // Function to debug I2C bus
+// void debug_i2c_bus(void) {
+//     printf("\n=== I2C Bus Status ===\n");
+//     printf("Write available: %d\n", i2c_get_write_available(GPS_I2C));
+//     printf("Read available: %d\n", i2c_get_read_available(GPS_I2C));
+// }
+
+// // Main GPS data reading function
+// void read_gps_data(void) {
+//     uint8_t bytes_available[2];
+//     uint8_t reg = BYTES_AVAILABLE_REG;
+    
+//     printf("\n=== Attempting GPS Read ===\n");
+    
+//     // Check bus state before attempting read
+//     debug_i2c_bus();
+    
+//     int ret = i2c_write_blocking(GPS_I2C, GPS_ADDR, &reg, 1, true);
+//     printf("Write command return code: %d\n", ret);
+    
+//     if (ret < 0) {
+//         printf("Error writing to GPS. Attempting reset...\n");
+//         i2c_deinit(GPS_I2C);
+//         sleep_ms(100);
+//         i2c_init(GPS_I2C, 100000);
+//         return;
+//     }
+    
+//     ret = i2c_read_blocking(GPS_I2C, GPS_ADDR, bytes_available, 2, false);
+//     printf("Read command return code: %d\n", ret);
+    
+//     if (ret >= 0) {
+//         printf("Bytes available: %d\n", (bytes_available[0] << 8) | bytes_available[1]);
+//     }
+// }
+
+// int main() {
+//     // Initialize USB serial first
+//     stdio_init_all();
+//     stdio_usb_init();
+//     sleep_ms(3000);  // Wait for USB to initialize
+    
+//     printf("\n\n=== Starting GPS Debug Program ===\n");
+//     printf("Compiled on: %s %s\n", __DATE__, __TIME__);
+    
+//     // Initialize LED
+//     gpio_init(LED_PIN);
+//     gpio_set_dir(LED_PIN, GPIO_OUT);
+//     printf("LED initialized\n");
+    
+//     // Initialize I2C pins
+//     printf("\nConfiguring I2C pins...\n");
+//     gpio_set_function(SDA_PIN, GPIO_FUNC_I2C);
+//     gpio_set_function(SCL_PIN, GPIO_FUNC_I2C);
+    
+//     // Optional: Enable internal pullups if needed
+//     // Uncomment these lines if you need internal pullups
+    
+//     gpio_pull_up(SDA_PIN);
+//     gpio_pull_up(SCL_PIN);
+//     bi_decl(bi_2pins_with_func(PICO_DEFAULT_I2C_SDA_PIN, PICO_DEFAULT_I2C_SCL_PIN, GPIO_FUNC_I2C));
+//     printf("Internal pullups enabled\n");
+    
+    
+//     sleep_ms(250);  // Allow pins to stabilize
+    
+//     // Check initial pin states
+//     check_i2c_state();
+    
+//     // Initialize I2C peripheral
+//     printf("\nInitializing I2C...\n");
+//     i2c_init(GPS_I2C, 100000);  // 100kHz standard mode
+    
+//     if (!i2c_get_write_available(GPS_I2C)) {
+//         printf("ERROR: I2C failed to initialize\n");
+//         while(1) {
+//             gpio_put(LED_PIN, 1);
+//             sleep_ms(100);
+//             gpio_put(LED_PIN, 0);
+//             sleep_ms(100);
+//         }
+//     }
+    
+//     printf("I2C initialized successfully\n");
+    
+//     scan_i2c_addresses();
+//     // Test I2C lines
+//     test_i2c_pins();
+    
+//     // Verify device presence
+//     if (!verify_i2c_device()) {
+//         printf("WARNING: GPS device not responding\n");
+//     }
+    
+//     printf("\n=== Starting main loop ===\n");
+    
+//     while (true) {
+//         gpio_put(LED_PIN, 1);
+//         read_gps_data();
+//         check_i2c_state();
+//         scan_i2c_addresses();
+//         sleep_ms(1000);
+//         gpio_put(LED_PIN, 0);
+//         sleep_ms(1000);
+//     }
+    
+//     return 0;
+// }
+
 #include <stdio.h>
+#include "pico/stdlib.h"
+#include "pico/binary_info.h"
+#include "hardware/i2c.h"
 
-// Pin Definitions
-#define LED_PIN 25
-#define SDA_PIN 4
-#define SCL_PIN 5
-#define GPS_I2C i2c0
-#define GPS_ADDR 0x42
+// NEO-M9N I2C address (default)
+#define GNSS_ADDR 0x42
 
-// NEO-M9N registers
-#define DATA_STREAM_REG 0xFF
-#define BYTES_AVAILABLE_REG 0xFD
+// UBX protocol sync chars
+#define UBX_SYNC_1 0xB5
+#define UBX_SYNC_2 0x62
 
-// Debug function prototypes
-void check_i2c_state(void);
-void test_i2c_pins(void);
-bool verify_i2c_device(void);
-void debug_i2c_bus(void);
+// UBX message classes
+#define UBX_CLASS_NAV 0x01
+#define UBX_CLASS_CFG 0x06
 
-// Function to check I2C line states
-void check_i2c_state(void) {
-    printf("\n=== I2C Line States ===\n");
-    printf("SDA Current State: %d\n", gpio_get(SDA_PIN));
-    printf("SCL Current State: %d\n", gpio_get(SCL_PIN));
-    printf("SDA Function Mode: %d (Should be 3 for I2C)\n", gpio_get_function(SDA_PIN));
-    printf("SCL Function Mode: %d (Should be 3 for I2C)\n", gpio_get_function(SCL_PIN));
+// UBX message IDs
+#define UBX_NAV_PVT 0x07    // Navigation Position Velocity Time Solution
+
+// Buffer sizes
+#define MAX_PAYLOAD_SIZE 100
+
+typedef struct {
+    double latitude;
+    double longitude;
+    double altitude;
+    uint8_t satellites;
+    uint8_t fix_type;
+} gnss_data_t;
+
+int pico_led_init(void) {
+    #if defined(PICO_DEFAULT_LED_PIN)
+        // A device like Pico that uses a GPIO for the LED will define PICO_DEFAULT_LED_PIN
+        // so we can use normal GPIO functionality to turn the led on and off
+        gpio_init(PICO_DEFAULT_LED_PIN);
+        gpio_set_dir(PICO_DEFAULT_LED_PIN, GPIO_OUT);
+        return PICO_OK;
+    #elif defined(CYW43_WL_GPIO_LED_PIN)
+        // For Pico W devices we need to initialise the driver etc
+        return cyw43_arch_init();
+    #endif
+}
+    
+    // Turn the led on or off
+void pico_set_led(bool led_on) {
+    #if defined(PICO_DEFAULT_LED_PIN)
+        // Just set the GPIO on or off
+        gpio_put(PICO_DEFAULT_LED_PIN, led_on);
+    #elif defined(CYW43_WL_GPIO_LED_PIN)
+        // Ask the wifi "driver" to set the GPIO on or off
+        cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, led_on);
+    #endif
 }
 
-// Function to test I2C pins over time
-void test_i2c_pins(void) {
-    printf("\n=== Testing I2C Lines for 1 second ===\n");
-    int sda_low_count = 0;
-    int scl_low_count = 0;
+// Calculate Fletcher checksum
+void calculate_checksum(uint8_t *buffer, size_t length, uint8_t *ck_a, uint8_t *ck_b) {
+    *ck_a = 0;
+    *ck_b = 0;
     
-    for(int i = 0; i < 10; i++) {
-        if(gpio_get(SDA_PIN) == 0) sda_low_count++;
-        if(gpio_get(SCL_PIN) == 0) scl_low_count++;
-        sleep_ms(100);
+    for(size_t i = 0; i < length; i++) {
+        *ck_a += buffer[i];
+        *ck_b += *ck_a;
     }
-    
-    printf("Times SDA was LOW: %d/10\n", sda_low_count);
-    printf("Times SCL was LOW: %d/10\n", scl_low_count);
-    
-    if(sda_low_count > 8) printf("WARNING: SDA might be stuck LOW\n");
-    if(scl_low_count > 8) printf("WARNING: SCL might be stuck LOW\n");
 }
 
-// Function to verify I2C device presence
-bool verify_i2c_device(void) {
-    printf("\n=== Checking for GPS Device ===\n");
-    uint8_t rxdata;
-    int ret;
+// Send UBX message
+bool send_ubx_message(i2c_inst_t *i2c, uint8_t msg_class, uint8_t msg_id, 
+                     uint8_t *payload, uint16_t length) {
+    uint8_t header[6];
+    uint8_t checksum[2];
     
-    // Try to read one byte from the device
-    ret = i2c_read_blocking(GPS_I2C, GPS_ADDR, &rxdata, 1, false);
+    // Header
+    header[0] = UBX_SYNC_1;
+    header[1] = UBX_SYNC_2;
+    header[2] = msg_class;
+    header[3] = msg_id;
+    header[4] = length & 0xFF;
+    header[5] = (length >> 8) & 0xFF;
     
-    if (ret < 0) {
-        printf("Error: Could not communicate with GPS device\n");
-        printf("Return code: %d\n", ret);
+    // Calculate checksum
+    calculate_checksum(&header[2], 4 + length, &checksum[0], &checksum[1]);
+    
+    // Send header
+    if (i2c_write_blocking(i2c, GNSS_ADDR, header, 6, false) != 6) {
         return false;
     }
     
-    printf("Successfully communicated with GPS device!\n");
-    return true;
-}
-
-// Function to debug I2C bus
-void debug_i2c_bus(void) {
-    printf("\n=== I2C Bus Status ===\n");
-    printf("Write available: %d\n", i2c_get_write_available(GPS_I2C));
-    printf("Read available: %d\n", i2c_get_read_available(GPS_I2C));
-}
-
-// Main GPS data reading function
-void read_gps_data(void) {
-    uint8_t bytes_available[2];
-    uint8_t reg = BYTES_AVAILABLE_REG;
-    
-    printf("\n=== Attempting GPS Read ===\n");
-    
-    // Check bus state before attempting read
-    debug_i2c_bus();
-    
-    int ret = i2c_write_blocking(GPS_I2C, GPS_ADDR, &reg, 1, true);
-    printf("Write command return code: %d\n", ret);
-    
-    if (ret < 0) {
-        printf("Error writing to GPS. Attempting reset...\n");
-        i2c_deinit(GPS_I2C);
-        sleep_ms(100);
-        i2c_init(GPS_I2C, 100000);
-        return;
-    }
-    
-    ret = i2c_read_blocking(GPS_I2C, GPS_ADDR, bytes_available, 2, false);
-    printf("Read command return code: %d\n", ret);
-    
-    if (ret >= 0) {
-        printf("Bytes available: %d\n", (bytes_available[0] << 8) | bytes_available[1]);
-    }
-}
-
-int main() {
-    // Initialize USB serial first
-    stdio_init_all();
-    stdio_usb_init();
-    sleep_ms(3000);  // Wait for USB to initialize
-    
-    printf("\n\n=== Starting GPS Debug Program ===\n");
-    printf("Compiled on: %s %s\n", __DATE__, __TIME__);
-    
-    // Initialize LED
-    gpio_init(LED_PIN);
-    gpio_set_dir(LED_PIN, GPIO_OUT);
-    printf("LED initialized\n");
-    
-    // Initialize I2C pins
-    printf("\nConfiguring I2C pins...\n");
-    gpio_set_function(SDA_PIN, GPIO_FUNC_I2C);
-    gpio_set_function(SCL_PIN, GPIO_FUNC_I2C);
-    
-    // Optional: Enable internal pullups if needed
-    // Uncomment these lines if you need internal pullups
-    
-    gpio_pull_up(SDA_PIN);
-    gpio_pull_up(SCL_PIN);
-    printf("Internal pullups enabled\n");
-    
-    
-    sleep_ms(250);  // Allow pins to stabilize
-    
-    // Check initial pin states
-    check_i2c_state();
-    
-    // Initialize I2C peripheral
-    printf("\nInitializing I2C...\n");
-    i2c_init(GPS_I2C, 100000);  // 100kHz standard mode
-    
-    if (!i2c_get_write_available(GPS_I2C)) {
-        printf("ERROR: I2C failed to initialize\n");
-        while(1) {
-            gpio_put(LED_PIN, 1);
-            sleep_ms(100);
-            gpio_put(LED_PIN, 0);
-            sleep_ms(100);
+    // Send payload if any
+    if (length > 0 && payload != NULL) {
+        if (i2c_write_blocking(i2c, GNSS_ADDR, payload, length, false) != length) {
+            return false;
         }
     }
     
-    printf("I2C initialized successfully\n");
-    
-    // Test I2C lines
-    test_i2c_pins();
-    
-    // Verify device presence
-    if (!verify_i2c_device()) {
-        printf("WARNING: GPS device not responding\n");
+    // Send checksum
+    if (i2c_write_blocking(i2c, GNSS_ADDR, checksum, 2, false) != 2) {
+        return false;
     }
     
-    printf("\n=== Starting main loop ===\n");
+    return true;
+}
+
+// Read GNSS data
+bool read_gnss_data(i2c_inst_t *i2c, gnss_data_t *data) {
+    uint8_t buffer[MAX_PAYLOAD_SIZE];
+    uint8_t length = 0;
     
-    while (true) {
-        gpio_put(LED_PIN, 1);
-        read_gps_data();
-        check_i2c_state();
-        sleep_ms(1000);
-        gpio_put(LED_PIN, 0);
+    // Request PVT data
+    if (!send_ubx_message(i2c, UBX_CLASS_NAV, UBX_NAV_PVT, NULL, 0)) {
+        return false;
+    }
+    
+    // Wait for response
+    sleep_ms(100);
+    
+    // Read response
+    if (i2c_read_blocking(i2c, GNSS_ADDR, buffer, 1, false) != 1) {
+        return false;
+    }
+    
+    length = buffer[0];
+    if (length > MAX_PAYLOAD_SIZE) {
+        return false;
+    }
+    
+    if (i2c_read_blocking(i2c, GNSS_ADDR, buffer, length, false) != length) {
+        return false;
+    }
+    
+    // Parse PVT data (simplified example)
+    // Note: In real implementation, you'd need to properly parse the UBX-NAV-PVT message
+    data->latitude = ((double)((int32_t)((buffer[9] << 24) | (buffer[8] << 16) | 
+                    (buffer[7] << 8) | buffer[6]))) * 1e-7;
+    data->longitude = ((double)((int32_t)((buffer[13] << 24) | (buffer[12] << 16) | 
+                     (buffer[11] << 8) | buffer[10]))) * 1e-7;
+    data->altitude = ((double)((int32_t)((buffer[17] << 24) | (buffer[16] << 16) | 
+                    (buffer[15] << 8) | buffer[14]))) * 1e-3;
+    data->satellites = buffer[23];
+    data->fix_type = buffer[20];
+    
+    return true;
+}
+
+int main() {
+    stdio_init_all();
+    
+    // Initialize I2C
+    i2c_init(i2c_default, 100 * 1000);
+    gpio_set_function(PICO_DEFAULT_I2C_SDA_PIN, GPIO_FUNC_I2C);
+    gpio_set_function(PICO_DEFAULT_I2C_SCL_PIN, GPIO_FUNC_I2C);
+    gpio_pull_up(PICO_DEFAULT_I2C_SDA_PIN);
+    gpio_pull_up(PICO_DEFAULT_I2C_SCL_PIN);
+    
+    // Initialize LED
+    pico_led_init();
+    
+    gnss_data_t gnss_data;
+    
+    while(true) {
+        if (read_gnss_data(i2c_default, &gnss_data)) {
+            printf("\nGNSS Data:\n");
+            printf("Latitude: %f\n", gnss_data.latitude);
+            printf("Longitude: %f\n", gnss_data.longitude);
+            printf("Altitude: %f m\n", gnss_data.altitude);
+            printf("Satellites: %d\n", gnss_data.satellites);
+            printf("Fix Type: %d\n", gnss_data.fix_type);
+            
+            // Blink LED on successful read
+            pico_set_led(true);
+            sleep_ms(100);
+            pico_set_led(false);
+        } else {
+            printf("Failed to read GNSS data\n");
+        }
+        
         sleep_ms(1000);
     }
     
