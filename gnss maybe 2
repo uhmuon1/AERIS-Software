@@ -1,173 +1,225 @@
+#include <stdio.h>
 #include "pico/stdlib.h"
 #include "hardware/i2c.h"
-#include <stdio.h>
 
-// Pin Definitions
-#define LED_PIN 25
-#define SDA_PIN 4
-#define SCL_PIN 5
-#define GPS_I2C i2c0
-#define GPS_ADDR 0x42
+// UBX Protocol Constants
+#define UBX_SYNC1        0xB5    // First sync char
+#define UBX_SYNC2        0x62    // Second sync char
+#define UBX_CLASS_NAV    0x01    // Navigation message class
+#define UBX_NAV_PVT      0x07    // Position Velocity Time solution
+#define GNSS_ADDR        0x42    // NEO-M9N I2C address
 
-// NEO-M9N registers
-#define DATA_STREAM_REG 0xFF
-#define BYTES_AVAILABLE_REG 0xFD
+// UBX Message Structure Definitions
+typedef struct {
+    uint8_t sync1;
+    uint8_t sync2;
+    uint8_t message_class;
+    uint8_t message_id;
+    uint16_t payload_length;
+    uint8_t *payload;
+    uint8_t checksum_a;
+    uint8_t checksum_b;
+} ubx_message_t;
 
-// Debug function prototypes
-void check_i2c_state(void);
-void test_i2c_pins(void);
-bool verify_i2c_device(void);
-void debug_i2c_bus(void);
+// NAV-PVT Message Payload Structure (92 bytes)
+typedef struct {
+    uint32_t iTOW;          // GPS time of week (ms)
+    uint16_t year;          // Year
+    uint8_t month;          // Month (1-12)
+    uint8_t day;            // Day of month (1-31)
+    uint8_t hour;           // Hour (0-23)
+    uint8_t min;            // Minute (0-59)
+    uint8_t sec;            // Second (0-60)
+    uint8_t valid;          // Validity flags
+    uint32_t tAcc;          // Time accuracy estimate
+    int32_t nano;          // Nanoseconds of second
+    uint8_t fixType;        // GNSS fix type
+    uint8_t flags;          // Fix status flags
+    uint8_t flags2;         // Additional flags
+    uint8_t numSV;          // Number of satellites used
+    int32_t lon;           // Longitude (deg * 1e-7)
+    int32_t lat;           // Latitude (deg * 1e-7)
+    int32_t height;        // Height above ellipsoid (mm)
+    int32_t hMSL;          // Height above mean sea level (mm)
+    uint32_t hAcc;         // Horizontal accuracy (mm)
+    uint32_t vAcc;         // Vertical accuracy (mm)
+    int32_t velN;          // North velocity (mm/s)
+    int32_t velE;          // East velocity (mm/s)
+    int32_t velD;          // Down velocity (mm/s)
+    int32_t gSpeed;        // Ground Speed (mm/s)
+    int32_t headMot;       // Heading of motion (deg * 1e-5)
+    uint32_t sAcc;         // Speed accuracy (mm/s)
+    uint32_t headAcc;      // Heading accuracy (deg * 1e-5)
+    uint16_t pDOP;         // Position DOP * 0.01
+    uint8_t flags3;        // Additional flags
+    uint8_t reserved1[5];  // Reserved
+    int32_t headVeh;       // Vehicle heading
+    int16_t magDec;        // Magnetic declination
+    uint16_t magAcc;       // Magnetic declination accuracy
+} ubx_nav_pvt_t;
 
-// Function to check I2C line states
-void check_i2c_state(void) {
-    printf("\n=== I2C Line States ===\n");
-    printf("SDA Current State: %d\n", gpio_get(SDA_PIN));
-    printf("SCL Current State: %d\n", gpio_get(SCL_PIN));
-    printf("SDA Function Mode: %d (Should be 3 for I2C)\n", gpio_get_function(SDA_PIN));
-    printf("SCL Function Mode: %d (Should be 3 for I2C)\n", gpio_get_function(SCL_PIN));
-}
-
-// Function to test I2C pins over time
-void test_i2c_pins(void) {
-    printf("\n=== Testing I2C Lines for 1 second ===\n");
-    int sda_low_count = 0;
-    int scl_low_count = 0;
+// Function to calculate UBX checksum
+void calculate_ubx_checksum(uint8_t *buffer, size_t length, uint8_t *ck_a, uint8_t *ck_b) {
+    *ck_a = 0;
+    *ck_b = 0;
     
-    for(int i = 0; i < 10; i++) {
-        if(gpio_get(SDA_PIN) == 0) sda_low_count++;
-        if(gpio_get(SCL_PIN) == 0) scl_low_count++;
-        sleep_ms(100);
-    }
-    
-    printf("Times SDA was LOW: %d/10\n", sda_low_count);
-    printf("Times SCL was LOW: %d/10\n", scl_low_count);
-    
-    if(sda_low_count > 8) printf("WARNING: SDA might be stuck LOW\n");
-    if(scl_low_count > 8) printf("WARNING: SCL might be stuck LOW\n");
-}
-
-// Function to verify I2C device presence
-bool verify_i2c_device(void) {
-    printf("\n=== Checking for GPS Device ===\n");
-    uint8_t rxdata;
-    int ret;
-    
-    // Try to read one byte from the device
-    ret = i2c_read_blocking(GPS_I2C, GPS_ADDR, &rxdata, 1, false);
-    
-    if (ret < 0) {
-        printf("Error: Could not communicate with GPS device\n");
-        printf("Return code: %d\n", ret);
-        return false;
-    }
-    
-    printf("Successfully communicated with GPS device!\n");
-    return true;
-}
-
-// Function to debug I2C bus
-void debug_i2c_bus(void) {
-    printf("\n=== I2C Bus Status ===\n");
-    printf("Write available: %d\n", i2c_get_write_available(GPS_I2C));
-    printf("Read available: %d\n", i2c_get_read_available(GPS_I2C));
-}
-
-// Main GPS data reading function
-void read_gps_data(void) {
-    uint8_t bytes_available[2];
-    uint8_t reg = BYTES_AVAILABLE_REG;
-    
-    printf("\n=== Attempting GPS Read ===\n");
-    
-    // Check bus state before attempting read
-    debug_i2c_bus();
-    
-    int ret = i2c_write_blocking(GPS_I2C, GPS_ADDR, &reg, 1, true);
-    printf("Write command return code: %d\n", ret);
-    
-    if (ret < 0) {
-        printf("Error writing to GPS. Attempting reset...\n");
-        i2c_deinit(GPS_I2C);
-        sleep_ms(100);
-        i2c_init(GPS_I2C, 100000);
-        return;
-    }
-    
-    ret = i2c_read_blocking(GPS_I2C, GPS_ADDR, bytes_available, 2, false);
-    printf("Read command return code: %d\n", ret);
-    
-    if (ret >= 0) {
-        printf("Bytes available: %d\n", (bytes_available[0] << 8) | bytes_available[1]);
+    for(size_t i = 0; i < length; i++) {
+        *ck_a += buffer[i];
+        *ck_b += *ck_a;
     }
 }
 
-int main() {
-    // Initialize USB serial first
-    stdio_init_all();
-    stdio_usb_init();
-    sleep_ms(3000);  // Wait for USB to initialize
+// Function to read UBX message
+bool read_ubx_message(i2c_inst_t *i2c, ubx_message_t *message) {
+    uint8_t byte;
+    uint8_t state = 0;
+    uint16_t payload_counter = 0;
+    uint8_t ck_a = 0, ck_b = 0;
     
-    printf("\n\n=== Starting GPS Debug Program ===\n");
-    printf("Compiled on: %s %s\n", __DATE__, __TIME__);
+    // Allocate buffer for message (adjust size as needed)
+    uint8_t buffer[256];
+    size_t buffer_index = 0;
     
-    // Initialize LED
-    gpio_init(LED_PIN);
-    gpio_set_dir(LED_PIN, GPIO_OUT);
-    printf("LED initialized\n");
-    
-    // Initialize I2C pins
-    printf("\nConfiguring I2C pins...\n");
-    gpio_set_function(SDA_PIN, GPIO_FUNC_I2C);
-    gpio_set_function(SCL_PIN, GPIO_FUNC_I2C);
-    
-    // Optional: Enable internal pullups if needed
-    // Uncomment these lines if you need internal pullups
-    /*
-    gpio_pull_up(SDA_PIN);
-    gpio_pull_up(SCL_PIN);
-    printf("Internal pullups enabled\n");
-    */
-    
-    sleep_ms(250);  // Allow pins to stabilize
-    
-    // Check initial pin states
-    check_i2c_state();
-    
-    // Initialize I2C peripheral
-    printf("\nInitializing I2C...\n");
-    i2c_init(GPS_I2C, 100000);  // 100kHz standard mode
-    
-    if (!i2c_get_write_available(GPS_I2C)) {
-        printf("ERROR: I2C failed to initialize\n");
-        while(1) {
-            gpio_put(LED_PIN, 1);
-            sleep_ms(100);
-            gpio_put(LED_PIN, 0);
-            sleep_ms(100);
+    // Wait for start of message
+    while(state != 2) {
+        if(i2c_read_blocking(i2c, GNSS_ADDR, &byte, 1, false) != 1) {
+            return false;
+        }
+        
+        if(state == 0 && byte == UBX_SYNC1) {
+            state = 1;
+            buffer[buffer_index++] = byte;
+        }
+        else if(state == 1) {
+            if(byte == UBX_SYNC2) {
+                state = 2;
+                buffer[buffer_index++] = byte;
+            } else {
+                state = 0;
+                buffer_index = 0;
+            }
         }
     }
     
-    printf("I2C initialized successfully\n");
+    // Read message class and ID
+    if(i2c_read_blocking(i2c, GNSS_ADDR, &message->message_class, 1, false) != 1) return false;
+    if(i2c_read_blocking(i2c, GNSS_ADDR, &message->message_id, 1, false) != 1) return false;
+    buffer[buffer_index++] = message->message_class;
+    buffer[buffer_index++] = message->message_id;
     
-    // Test I2C lines
-    test_i2c_pins();
+    // Read payload length
+    uint8_t len_bytes[2];
+    if(i2c_read_blocking(i2c, GNSS_ADDR, len_bytes, 2, false) != 2) return false;
+    message->payload_length = len_bytes[0] | (len_bytes[1] << 8);
+    buffer[buffer_index++] = len_bytes[0];
+    buffer[buffer_index++] = len_bytes[1];
     
-    // Verify device presence
-    if (!verify_i2c_device()) {
-        printf("WARNING: GPS device not responding\n");
+    // Read payload
+    message->payload = malloc(message->payload_length);
+    if(message->payload == NULL) return false;
+    
+    if(i2c_read_blocking(i2c, GNSS_ADDR, message->payload, message->payload_length, false) 
+       != message->payload_length) {
+        free(message->payload);
+        return false;
     }
     
-    printf("\n=== Starting main loop ===\n");
+    // Copy payload to buffer for checksum calculation
+    memcpy(&buffer[buffer_index], message->payload, message->payload_length);
+    buffer_index += message->payload_length;
     
-    while (true) {
-        gpio_put(LED_PIN, 1);
-        read_gps_data();
-        check_i2c_state();
-        sleep_ms(1000);
-        gpio_put(LED_PIN, 0);
-        sleep_ms(1000);
+    // Read checksum
+    if(i2c_read_blocking(i2c, GNSS_ADDR, &message->checksum_a, 1, false) != 1) {
+        free(message->payload);
+        return false;
+    }
+    if(i2c_read_blocking(i2c, GNSS_ADDR, &message->checksum_b, 1, false) != 1) {
+        free(message->payload);
+        return false;
     }
     
-    return 0;
+    // Calculate and verify checksum
+    uint8_t calc_ck_a, calc_ck_b;
+    calculate_ubx_checksum(&buffer[2], buffer_index - 2, &calc_ck_a, &calc_ck_b);
+    
+    if(calc_ck_a != message->checksum_a || calc_ck_b != message->checksum_b) {
+        printf("Checksum mismatch! Calc: %02X %02X, Recv: %02X %02X\n",
+               calc_ck_a, calc_ck_b, message->checksum_a, message->checksum_b);
+        free(message->payload);
+        return false;
+    }
+    
+    return true;
+}
+
+// Function to parse NAV-PVT message
+void parse_nav_pvt(uint8_t *payload, ubx_nav_pvt_t *pvt) {
+    memcpy(pvt, payload, sizeof(ubx_nav_pvt_t));
+}
+
+// Function to request NAV-PVT message
+bool request_nav_pvt(i2c_inst_t *i2c) {
+    uint8_t message[] = {
+        UBX_SYNC1, UBX_SYNC2,     // Sync chars
+        UBX_CLASS_NAV, UBX_NAV_PVT, // Class and ID
+        0x00, 0x00,               // Payload length (0)
+        0x00, 0x00                // Checksum (to be calculated)
+    };
+    
+    // Calculate checksum
+    calculate_ubx_checksum(&message[2], 4, &message[6], &message[7]);
+    
+    // Send message
+    if(i2c_write_blocking(i2c, GNSS_ADDR, message, sizeof(message), false) != sizeof(message)) {
+        return false;
+    }
+    
+    return true;
+}
+
+// Example usage function
+bool get_gnss_data(i2c_inst_t *i2c) {
+    ubx_message_t message;
+    ubx_nav_pvt_t pvt_data;
+    
+    // Request NAV-PVT message
+    if(!request_nav_pvt(i2c)) {
+        printf("Failed to request NAV-PVT\n");
+        return false;
+    }
+    
+    // Wait for response
+    sleep_ms(100);
+    
+    // Read and parse message
+    if(!read_ubx_message(i2c, &message)) {
+        printf("Failed to read UBX message\n");
+        return false;
+    }
+    
+    // Verify message type
+    if(message.message_class != UBX_CLASS_NAV || message.message_id != UBX_NAV_PVT) {
+        printf("Unexpected message: Class=%02X, ID=%02X\n", 
+               message.message_class, message.message_id);
+        free(message.payload);
+        return false;
+    }
+    
+    // Parse PVT data
+    parse_nav_pvt(message.payload, &pvt_data);
+    
+    // Print parsed data
+    printf("\nGNSS Data:\n");
+    printf("Fix Type: %d\n", pvt_data.fixType);
+    printf("Satellites: %d\n", pvt_data.numSV);
+    printf("Latitude: %.7f\n", pvt_data.lat * 1e-7);
+    printf("Longitude: %.7f\n", pvt_data.lon * 1e-7);
+    printf("Height (MSL): %.2f m\n", pvt_data.hMSL * 0.001);
+    printf("Ground Speed: %.2f m/s\n", pvt_data.gSpeed * 0.001);
+    printf("Heading: %.5f deg\n", pvt_data.headMot * 1e-5);
+    
+    // Free allocated memory
+    free(message.payload);
+    
+    return true;
 }
