@@ -1,99 +1,37 @@
-bool read_gnss_data(i2c_inst_t *i2c, gnss_data_t *data) {
-    uint8_t buffer[MAX_PAYLOAD_SIZE];
-    uint8_t header[6];
-    uint8_t checksum[2];
+uint8_t buffer[MAX_PAYLOAD_SIZE];
+    uint8_t length = 0;
     
     // Request PVT data
     if (!send_ubx_message(i2c, UBX_CLASS_NAV, UBX_NAV_PVT, NULL, 0)) {
-        printf("Failed to send PVT request\n");
+        printf("Failed to send message\n");
         return false;
     }
     
     // Wait for response
     sleep_ms(100);
     
-    // Read header (6 bytes)
-    if (i2c_read_blocking(i2c, GNSS_ADDR, header, 6, false) != 6) {
-        printf("Failed to read header\n");
+    // Read response and print first byte
+    if (i2c_read_blocking(i2c, GNSS_ADDR, buffer, 1, false) != 1) {
+        printf("Failed to read first byte\n");
         return false;
     }
+    printf("First byte: 0x%02X\n", buffer[0]);
     
-    // Verify sync chars
-    if (header[0] != UBX_SYNC_1 || header[1] != UBX_SYNC_2) {
-        printf("Invalid sync chars\n");
-        return false;
-    }
-    
-    // Get payload length from header
-    uint16_t length = header[4] | (header[5] << 8);
+    length = buffer[0];
+    printf("Reported length: %d\n", length);
     if (length > MAX_PAYLOAD_SIZE) {
-        printf("Payload too large: %d\n", length);
+        printf("Length too large\n");
         return false;
     }
     
-    // Read payload
+    // Read rest of data and print first few bytes
     if (i2c_read_blocking(i2c, GNSS_ADDR, buffer, length, false) != length) {
-        printf("Failed to read payload\n");
+        printf("Failed to read full message\n");
         return false;
     }
     
-    // Read checksum
-    if (i2c_read_blocking(i2c, GNSS_ADDR, checksum, 2, false) != 2) {
-        printf("Failed to read checksum\n");
-        return false;
+    printf("First 10 bytes: ");
+    for(int i = 0; i < 10 && i < length; i++) {
+        printf("0x%02X ", buffer[i]);
     }
-    
-    // Verify checksum
-    uint8_t ck_a, ck_b;
-    calculate_checksum(&header[2], 4 + length, &ck_a, &ck_b);
-    if (ck_a != checksum[0] || ck_b != checksum[1]) {
-        printf("Checksum mismatch\n");
-        return false;
-    }
-    
-    // Parse PVT data according to UBX-NAV-PVT message structure
-    // Offsets based on u-blox M9 interface description
-    data->latitude = ((double)((int32_t)((buffer[27] << 24) | (buffer[26] << 16) | 
-                    (buffer[25] << 8) | buffer[24]))) * 1e-7;
-    data->longitude = ((double)((int32_t)((buffer[31] << 24) | (buffer[30] << 16) | 
-                     (buffer[29] << 8) | buffer[28]))) * 1e-7;
-    data->altitude = ((double)((int32_t)((buffer[35] << 24) | (buffer[34] << 16) | 
-                    (buffer[33] << 8) | buffer[32]))) * 1e-3;
-    data->satellites = buffer[23];
-    data->fix_type = buffer[20];
-    
-    return true;
-}
-
-
-void configure_gnss(i2c_inst_t *i2c) {
-    // Configure update rate to 1 Hz
-    uint8_t cfg_rate[] = {0x00, 0x01, 0x00, 0x00}; // 1000ms measurement period
-    send_ubx_message(i2c, UBX_CLASS_CFG, 0x08, cfg_rate, sizeof(cfg_rate));
-    sleep_ms(100);
-}
-
-
-// In main():
-while(true) {
-    if (read_gnss_data(i2c_default, &gnss_data)) {
-        printf("\nGNSS Data:\n");
-        printf("Latitude: %.6f\n", gnss_data.latitude);
-        printf("Longitude: %.6f\n", gnss_data.longitude);
-        printf("Altitude: %.2f m\n", gnss_data.altitude);
-        printf("Satellites: %d\n", gnss_data.satellites);
-        printf("Fix Type: %d\n", gnss_data.fix_type);
-        
-        // Add fix type interpretation
-        printf("Fix Status: ");
-        switch(gnss_data.fix_type) {
-            case 0: printf("No fix\n"); break;
-            case 1: printf("Dead reckoning only\n"); break;
-            case 2: printf("2D fix\n"); break;
-            case 3: printf("3D fix\n"); break;
-            case 4: printf("GNSS + dead reckoning\n"); break;
-            default: printf("Unknown\n");
-        }
-    }
-    sleep_ms(1000);
-}
+    printf("\n");
