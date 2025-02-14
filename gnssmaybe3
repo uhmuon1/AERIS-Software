@@ -64,3 +64,36 @@ bool read_gnss_data(i2c_inst_t *i2c, gnss_data_t *data) {
     
     return true;
 }
+
+
+void configure_gnss(i2c_inst_t *i2c) {
+    // Configure update rate to 1 Hz
+    uint8_t cfg_rate[] = {0x00, 0x01, 0x00, 0x00}; // 1000ms measurement period
+    send_ubx_message(i2c, UBX_CLASS_CFG, 0x08, cfg_rate, sizeof(cfg_rate));
+    sleep_ms(100);
+}
+
+
+// In main():
+while(true) {
+    if (read_gnss_data(i2c_default, &gnss_data)) {
+        printf("\nGNSS Data:\n");
+        printf("Latitude: %.6f\n", gnss_data.latitude);
+        printf("Longitude: %.6f\n", gnss_data.longitude);
+        printf("Altitude: %.2f m\n", gnss_data.altitude);
+        printf("Satellites: %d\n", gnss_data.satellites);
+        printf("Fix Type: %d\n", gnss_data.fix_type);
+        
+        // Add fix type interpretation
+        printf("Fix Status: ");
+        switch(gnss_data.fix_type) {
+            case 0: printf("No fix\n"); break;
+            case 1: printf("Dead reckoning only\n"); break;
+            case 2: printf("2D fix\n"); break;
+            case 3: printf("3D fix\n"); break;
+            case 4: printf("GNSS + dead reckoning\n"); break;
+            default: printf("Unknown\n");
+        }
+    }
+    sleep_ms(1000);
+}
