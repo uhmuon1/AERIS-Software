@@ -1,0 +1,5 @@
+halt
+loadfile /home/connerparker/ASEN_4013/AERIS-Software/pico-examples/build/usb/device/tinyusb_device_examples/usbtmc/tinyusb_dev_usbtmc.elf
+r
+go
+exit
