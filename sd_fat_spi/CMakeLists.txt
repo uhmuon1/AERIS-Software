@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.13)
 # Initialize pico-sdk from submodule
 # NOTE: This must happen before project()
 include(pico_sdk_import.cmake)
+include(pico_extras_import_optional.cmake)
 
 project(sd_card_test C CXX ASM)
 set(CMAKE_C_STANDARD 11)
