@@ -35,21 +35,21 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
  15 .comment      00000033  00000000  00000000  0000a108  2**0
                   CONTENTS, READONLY
- 16 .debug_info   000311ca  00000000  00000000  0000a13b  2**0
+ 16 .debug_info   0003119d  00000000  00000000  0000a13b  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_abbrev 000083c6  00000000  00000000  0003b305  2**0
+ 17 .debug_abbrev 00008424  00000000  00000000  0003b2d8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_loc    000274d7  00000000  00000000  000436cb  2**0
+ 18 .debug_loc    000274d7  00000000  00000000  000436fc  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_aranges 00001600  00000000  00000000  0006aba8  2**3
+ 19 .debug_aranges 00001600  00000000  00000000  0006abd8  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .debug_ranges 0000c5a0  00000000  00000000  0006c1a8  2**3
+ 20 .debug_ranges 0000c5a0  00000000  00000000  0006c1d8  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line   00022865  00000000  00000000  00078748  2**0
+ 21 .debug_line   00022866  00000000  00000000  00078778  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 22 .debug_str    00008efc  00000000  00000000  0009afad  2**0
+ 22 .debug_str    00008efc  00000000  00000000  0009afde  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 23 .debug_frame  000030d4  00000000  00000000  000a3eac  2**2
+ 23 .debug_frame  000030d4  00000000  00000000  000a3edc  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 /home/jkbernst/Senior_Projects/AERIS-Software/gnss/build/gnss_test.elf:     file format elf32-littlearm
@@ -400,7 +400,7 @@ Disassembly of section .text:
 10000372:	4645      	mov	r5, r8
 10000374:	4657      	mov	r7, sl
 10000376:	b5e0      	push	{r5, r6, r7, lr}
-10000378:	b09f      	sub	sp, #124	; 0x7c
+10000378:	b09d      	sub	sp, #116	; 0x74
 1000037a:	f003 fb27 	bl	100039cc <stdio_init_all>
 1000037e:	4b50      	ldr	r3, [pc, #320]	; (100004c0 <main+0x154>)
 10000380:	4950      	ldr	r1, [pc, #320]	; (100004c4 <main+0x158>)
@@ -453,7 +453,7 @@ Disassembly of section .text:
 100003f4:	d1e6      	bne.n	100003c4 <main+0x58>
 100003f6:	ab02      	add	r3, sp, #8
 100003f8:	7b1d      	ldrb	r5, [r3, #12]
-100003fa:	2d64      	cmp	r5, #100	; 0x64
+100003fa:	2d5c      	cmp	r5, #92	; 0x5c
 100003fc:	d8e2      	bhi.n	100003c4 <main+0x58>
 100003fe:	002b      	movs	r3, r5
 10000400:	2142      	movs	r1, #66	; 0x42
