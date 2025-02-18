@@ -1,0 +1,194 @@
+#include <stdio.h>
+#include <string.h>
+#include "pico/stdlib.h"
+#include "hardware/i2c.h"
+
+// UBX Protocol Constants
+#define GNSS_ADDR 0x42
+#define UBX_SYNC_1 0xB5
+#define UBX_SYNC_2 0x62
+#define UBX_CLASS_NAV 0x01
+#define UBX_NAV_PVT 0x07
+#define PVT_LENGTH 92
+
+typedef struct {
+    // Time
+    uint16_t year;
+    uint8_t month;
+    uint8_t day;
+    uint8_t hour;
+    uint8_t min;
+    uint8_t sec;
+    
+    // Position
+    int32_t longitude;    // Scaled by 1e-7
+    int32_t latitude;     // Scaled by 1e-7
+    int32_t height;       // mm above ellipsoid
+    int32_t msl_height;   // mm above mean sea level
+    
+    // Velocity
+    int32_t vel_north;    // mm/s
+    int32_t vel_east;     // mm/s
+    int32_t vel_down;     // mm/s
+    int32_t ground_speed; // mm/s
+    
+    // Accuracy
+    uint32_t h_acc;       // Horizontal accuracy (mm)
+    uint32_t v_acc;       // Vertical accuracy (mm)
+    
+    // Status
+    uint8_t num_sv;       // Number of satellites used
+    uint8_t fix_type;     // 0=no fix, 1=dead reck, 2=2D, 3=3D, 4=GNSS+dead reck, 5=time only
+    bool valid_fix;
+} ubx_pvt_data_t;
+
+// Calculate Fletcher checksum
+void calculate_checksum(uint8_t *buffer, size_t length, uint8_t *ck_a, uint8_t *ck_b) {
+    *ck_a = 0;
+    *ck_b = 0;
+    
+    for(size_t i = 0; i < length; i++) {
+        *ck_a += buffer[i];
+        *ck_b += *ck_a;
+    }
+}
+
+// Read a specific number of bytes from I2C
+bool read_bytes(i2c_inst_t *i2c, uint8_t *buffer, size_t length) {
+    return (i2c_read_blocking(i2c, GNSS_ADDR, buffer, length, false) == length);
+}
+
+// Parse UBX-NAV-PVT message
+void parse_pvt_message(uint8_t *buffer, ubx_pvt_data_t *data) {
+    // Time
+    data->year = buffer[4] | (buffer[5] << 8);
+    data->month = buffer[6];
+    data->day = buffer[7];
+    data->hour = buffer[8];
+    data->min = buffer[9];
+    data->sec = buffer[10];
+    
+    // Position
+    data->longitude = buffer[24] | (buffer[25] << 8) | (buffer[26] << 16) | (buffer[27] << 24);
+    data->latitude = buffer[28] | (buffer[29] << 8) | (buffer[30] << 16) | (buffer[31] << 24);
+    data->height = buffer[32] | (buffer[33] << 8) | (buffer[34] << 16) | (buffer[35] << 24);
+    data->msl_height = buffer[36] | (buffer[37] << 8) | (buffer[38] << 16) | (buffer[39] << 24);
+    
+    // Velocity
+    data->vel_north = buffer[48] | (buffer[49] << 8) | (buffer[50] << 16) | (buffer[51] << 24);
+    data->vel_east = buffer[52] | (buffer[53] << 8) | (buffer[54] << 16) | (buffer[55] << 24);
+    data->vel_down = buffer[56] | (buffer[57] << 8) | (buffer[58] << 16) | (buffer[59] << 24);
+    data->ground_speed = buffer[60] | (buffer[61] << 8) | (buffer[62] << 16) | (buffer[63] << 24);
+    
+    // Accuracy
+    data->h_acc = buffer[40] | (buffer[41] << 8) | (buffer[42] << 16) | (buffer[43] << 24);
+    data->v_acc = buffer[44] | (buffer[45] << 8) | (buffer[46] << 16) | (buffer[47] << 24);
+    
+    // Status
+    data->fix_type = buffer[20];
+    data->num_sv = buffer[23];
+    data->valid_fix = (buffer[21] & 0x01);  // validFix flag in flags
+}
+
+// Read UBX message
+bool read_ubx_message(i2c_inst_t *i2c, ubx_pvt_data_t *data) {
+    uint8_t buffer[PVT_LENGTH + 8];  // Message + header + checksum
+    uint8_t byte;
+    bool found_header = false;
+    
+    // Look for header
+    while (!found_header) {
+        if (!read_bytes(i2c, &byte, 1)) return false;
+        
+        if (byte == UBX_SYNC_1) {
+            if (!read_bytes(i2c, &byte, 1)) return false;
+            if (byte == UBX_SYNC_2) {
+                found_header = true;
+            }
+        }
+    }
+    
+    // Read message class and ID
+    if (!read_bytes(i2c, buffer, 2)) return false;
+    if (buffer[0] != UBX_CLASS_NAV || buffer[1] != UBX_NAV_PVT) {
+        return false;
+    }
+    
+    // Read length
+    if (!read_bytes(i2c, buffer + 2, 2)) return false;
+    uint16_t length = buffer[2] | (buffer[3] << 8);
+    if (length != PVT_LENGTH) {
+        return false;
+    }
+    
+    // Read payload
+    if (!read_bytes(i2c, buffer + 4, length)) return false;
+    
+    // Read checksum
+    uint8_t checksum[2];
+    if (!read_bytes(i2c, checksum, 2)) return false;
+    
+    // Verify checksum
+    uint8_t ck_a, ck_b;
+    calculate_checksum(buffer, length + 4, &ck_a, &ck_b);
+    if (ck_a != checksum[0] || ck_b != checksum[1]) {
+        return false;
+    }
+    
+    // Parse message
+    parse_pvt_message(buffer, data);
+    return true;
+}
+
+int main() {
+    stdio_init_all();
+    
+    // Initialize I2C
+    i2c_init(i2c_default, 100 * 1000);
+    gpio_set_function(PICO_DEFAULT_I2C_SDA_PIN, GPIO_FUNC_I2C);
+    gpio_set_function(PICO_DEFAULT_I2C_SCL_PIN, GPIO_FUNC_I2C);
+    gpio_pull_up(PICO_DEFAULT_I2C_SDA_PIN);
+    gpio_pull_up(PICO_DEFAULT_I2C_SCL_PIN);
+    
+    ubx_pvt_data_t pvt_data;
+    
+    while (true) {
+        if (read_ubx_message(i2c_default, &pvt_data)) {
+            printf("\nUBX-NAV-PVT Data:\n");
+            printf("Time: %02d:%02d:%02d %02d/%02d/%04d\n", 
+                   pvt_data.hour, pvt_data.min, pvt_data.sec,
+                   pvt_data.day, pvt_data.month, pvt_data.year);
+            
+            printf("Position: %.7f°N, %.7f°E\n",
+                   pvt_data.latitude * 1e-7,
+                   pvt_data.longitude * 1e-7);
+            
+            printf("Height: %.2fm (MSL), %.2fm (Ellipsoid)\n",
+                   pvt_data.msl_height / 1000.0,
+                   pvt_data.height / 1000.0);
+            
+            printf("Velocity: N=%.2f E=%.2f D=%.2f (m/s)\n",
+                   pvt_data.vel_north / 1000.0,
+                   pvt_data.vel_east / 1000.0,
+                   pvt_data.vel_down / 1000.0);
+            
+            printf("Ground Speed: %.2f m/s\n",
+                   pvt_data.ground_speed / 1000.0);
+            
+            printf("Accuracy: H=%.2fm V=%.2fm\n",
+                   pvt_data.h_acc / 1000.0,
+                   pvt_data.v_acc / 1000.0);
+            
+            printf("Fix: %s (Type=%d, Satellites=%d)\n",
+                   pvt_data.valid_fix ? "VALID" : "INVALID",
+                   pvt_data.fix_type,
+                   pvt_data.num_sv);
+        } else {
+            printf("Failed to read UBX message\n");
+        }
+        
+        sleep_ms(1000);
+    }
+    
+    return 0;
+}
