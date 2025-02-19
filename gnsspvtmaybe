@@ -1,111 +1,15 @@
 #include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
 #include "pico/stdlib.h"
 #include "hardware/i2c.h"
 
 #define GNSS_ADDR 0x42
-#define UBX_SYNC1 0xB5
-#define UBX_SYNC2 0x62
-#define NAV_CLASS 0x01
-#define NAV_PVT_ID 0x07
-#define MAX_UBX_LENGTH 100
-
-typedef struct {
-    int32_t lon;    // Scaled by 10^-7
-    int32_t lat;    // Scaled by 10^-7
-    int32_t height; // Height above ellipsoid in mm
-    int32_t velN;   // North velocity in mm/s
-    int32_t velE;   // East velocity in mm/s
-    int32_t velD;   // Down velocity in mm/s
-    uint8_t numSV;  // Number of satellites
-    uint8_t fixType;// Fix type
-} ubx_data_t;
-
-bool read_ubx_message(i2c_inst_t *i2c, uint8_t *buffer, size_t buffer_size) {
-    size_t index = 0;
-    uint8_t byte;
-    bool found_sync1 = false;
-    
-    // Keep reading until we get a complete message or buffer is full
-    while (index < buffer_size - 1) {
-        // Read one byte
-        if (i2c_read_blocking(i2c, GNSS_ADDR, &byte, 1, false) != 1) {
-            printf("Failed to read byte\n");
-            return false;
-        }
-        
-        // Print each byte we read for debugging
-        printf("%02X ", byte);
-        
-        // Look for first sync char
-        if (byte == UBX_SYNC1 && !found_sync1) {
-            found_sync1 = true;
-            buffer[0] = byte;
-            index = 1;
-            continue;
-        }
-        
-        // If we found first sync char, check for second
-        if (found_sync1 && index == 1) {
-            if (byte == UBX_SYNC2) {
-                buffer[index++] = byte;
-                printf("\nFound UBX sync pattern!\n");
-            } else {
-                found_sync1 = false;
-                index = 0;
-            }
-            continue;
-        }
-        
-        // If we're past sync chars, keep reading message
-        if (index >= 2) {
-            buffer[index++] = byte;
-            
-            // After reading header (6 bytes total: 2 sync + 2 class/id + 2 length)
-            if (index == 6) {
-                uint16_t length = buffer[4] | (buffer[5] << 8);
-                printf("\nMessage length: %d\n", length);
-                
-                // Read the rest of the message including checksum
-                for (uint16_t i = 0; i < length + 2 && index < buffer_size; i++) {
-                    if (i2c_read_blocking(i2c, GNSS_ADDR, &buffer[index++], 1, false) != 1) {
-                        printf("Failed to read message body\n");
-                        return false;
-                    }
-                }
-                return true;
-            }
-        }
-    }
-    
-    return false;
-}
-
-void parse_ubx_data(uint8_t *buffer, size_t length, ubx_data_t *data) {
-    // Check if this is a NAV-PVT message
-    if (buffer[2] == NAV_CLASS && buffer[3] == NAV_PVT_ID) {
-        uint16_t msg_length = buffer[4] | (buffer[5] << 8);
-        uint8_t *payload = &buffer[6];
-        
-        // Extract the data (using offsets from UBX protocol spec)
-        data->lon = payload[24] | (payload[25] << 8) | (payload[26] << 16) | (payload[27] << 24);
-        data->lat = payload[28] | (payload[29] << 8) | (payload[30] << 16) | (payload[31] << 24);
-        data->height = payload[32] | (payload[33] << 8) | (payload[34] << 16) | (payload[35] << 24);
-        data->velN = payload[48] | (payload[49] << 8) | (payload[50] << 16) | (payload[51] << 24);
-        data->velE = payload[52] | (payload[53] << 8) | (payload[54] << 16) | (payload[55] << 24);
-        data->velD = payload[56] | (payload[57] << 8) | (payload[58] << 16) | (payload[59] << 24);
-        data->numSV = payload[23];
-        data->fixType = payload[20];
-    }
-}
 
 int main() {
     stdio_init_all();
     sleep_ms(2000);
     
-    printf("\nStarting UBX Message Reader\n");
-    printf("-------------------------\n");
+    printf("\nI2C Test Program\n");
+    printf("--------------\n");
     
     // Initialize I2C
     i2c_init(i2c_default, 100 * 1000);
@@ -116,34 +20,13 @@ int main() {
     
     printf("I2C Initialized\n\n");
     
-    uint8_t buffer[MAX_UBX_LENGTH];
-    ubx_data_t ubx_data;
+    // Test reading one byte
+    uint8_t byte;
     
-    while (true) {
-        printf("\nWaiting for UBX message...\n");
-        
-        if (read_ubx_message(i2c_default, buffer, MAX_UBX_LENGTH)) {
-            printf("\nReceived complete message. First 10 bytes: ");
-            for(int i = 0; i < 10; i++) {
-                printf("%02X ", buffer[i]);
-            }
-            printf("\n");
-            
-            parse_ubx_data(buffer, MAX_UBX_LENGTH, &ubx_data);
-            
-            if (buffer[2] == NAV_CLASS && buffer[3] == NAV_PVT_ID) {
-                printf("\nPVT Data:\n");
-                printf("Position: %.7f°N, %.7f°E\n", 
-                       ubx_data.lat * 1e-7, ubx_data.lon * 1e-7);
-                printf("Height: %.2f m\n", ubx_data.height / 1000.0);
-                printf("Velocity N/E/D: %.2f/%.2f/%.2f m/s\n",
-                       ubx_data.velN / 1000.0, ubx_data.velE / 1000.0, ubx_data.velD / 1000.0);
-                printf("Satellites: %d\n", ubx_data.numSV);
-                printf("Fix Type: %d\n", ubx_data.fixType);
-            }
-        }
-        
-        sleep_ms(100);
+    while(1) {
+        int result = i2c_read_blocking(i2c_default, GNSS_ADDR, &byte, 1, false);
+        printf("Read result: %d, Byte: 0x%02X\n", result, byte);
+        sleep_ms(1000);
     }
     
     return 0;
