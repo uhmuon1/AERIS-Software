@@ -4,12 +4,27 @@
 
 #define GNSS_ADDR 0x42
 
+// UBX-NAV-PVT Poll Request message
+const uint8_t ubx_nav_pvt_poll[] = {
+    0xB5, 0x62,     // Sync chars
+    0x01, 0x07,     // Class (NAV) + ID (PVT)
+    0x00, 0x00,     // Length (0 for poll request)
+    0x08, 0x19      // Checksum
+};
+
+bool send_poll_request(i2c_inst_t *i2c) {
+    printf("Sending poll request...\n");
+    int result = i2c_write_blocking(i2c, GNSS_ADDR, ubx_nav_pvt_poll, sizeof(ubx_nav_pvt_poll), false);
+    printf("Write result: %d\n", result);
+    return (result == sizeof(ubx_nav_pvt_poll));
+}
+
 int main() {
     stdio_init_all();
     sleep_ms(2000);
     
-    printf("\nI2C Test Program\n");
-    printf("--------------\n");
+    printf("\nUBX Poll Request Test\n");
+    printf("-------------------\n");
     
     // Initialize I2C
     i2c_init(i2c_default, 100 * 1000);
@@ -20,12 +35,32 @@ int main() {
     
     printf("I2C Initialized\n\n");
     
-    // Test reading one byte
     uint8_t byte;
+    int bytes_read = 0;
     
     while(1) {
-        int result = i2c_read_blocking(i2c_default, GNSS_ADDR, &byte, 1, false);
-        printf("Read result: %d, Byte: 0x%02X\n", result, byte);
+        // Send poll request
+        if (send_poll_request(i2c_default)) {
+            printf("\nPoll request sent. Reading response...\n");
+            
+            // Read response for a short time
+            for(int i = 0; i < 100; i++) {
+                int result = i2c_read_blocking(i2c_default, GNSS_ADDR, &byte, 1, false);
+                if (result == 1) {
+                    printf("%02X ", byte);
+                    bytes_read++;
+                    if (bytes_read % 16 == 0) printf("\n");
+                } else {
+                    printf(".");
+                }
+                sleep_ms(1);
+            }
+            printf("\nRead %d bytes\n", bytes_read);
+            bytes_read = 0;
+        } else {
+            printf("Failed to send poll request\n");
+        }
+        
         sleep_ms(1000);
     }
     
