@@ -12,7 +12,6 @@ set(CMAKE_CXX_STANDARD 17)
 # Initialize the SDK
 pico_sdk_init()
 
-
 add_executable(i2c_scan
     bus_scan.c
     )
