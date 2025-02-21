@@ -21,21 +21,8 @@ static FIL data_file;
 
 // Timing and logging control
 #define LOG_INTERVAL_MS 40  // 25Hz = 40ms between samples
-#define MAX_LOG_DURATION_HOURS 24
+#define STATUS_INTERVAL_MS 1000  // Status update every second
 #define LOG_BUFFER_SIZE 256
-
-// Logging status
-typedef enum {
-    LOG_OK,
-    LOG_ERROR_OPEN,
-    LOG_ERROR_WRITE,
-    LOG_ERROR_SYNC
-} log_status_t;
-
-// Debug counters
-uint32_t total_reads = 0;
-uint32_t successful_reads = 0;
-uint32_t failed_writes = 0;
 
 // UBX-NAV-PVT Poll Request message
 const uint8_t ubx_nav_pvt_poll[] = {
@@ -60,7 +47,7 @@ typedef struct {
     int32_t height; // Height above ellipsoid in mm
     int32_t hMSL;   // Height above mean sea level in mm
     
-    // Velocity data (all in cm/s)
+    // Velocity data (all in mm/s)
     int32_t velN;   // North velocity
     int32_t velE;   // East velocity
     int32_t velD;   // Down velocity
@@ -71,15 +58,12 @@ typedef struct {
     uint8_t fixType;// Fix type
 } ubx_pvt_data_t;
 
-// Function prototypes
-bool send_poll_request(i2c_inst_t *i2c);
-bool read_byte(i2c_inst_t *i2c, uint8_t *byte);
-bool wait_for_sync(i2c_inst_t *i2c);
-bool read_ubx_message(i2c_inst_t *i2c, ubx_pvt_data_t *data);
-const char* get_fix_type_str(uint8_t fix_type);
-log_status_t init_logging(void);
-log_status_t log_pvt_data(const ubx_pvt_data_t *data);
-void close_logging(void);
+// Statistics counters
+uint32_t total_reads = 0;
+uint32_t successful_reads = 0;
+uint32_t successful_writes = 0;
+uint32_t failed_reads = 0;
+uint32_t failed_writes = 0;
 
 bool send_poll_request(i2c_inst_t *i2c) {
     int result = i2c_write_blocking(i2c, GNSS_ADDR, ubx_nav_pvt_poll, sizeof(ubx_nav_pvt_poll), false);
@@ -110,7 +94,7 @@ bool read_ubx_message(i2c_inst_t *i2c, ubx_pvt_data_t *data) {
     
     // First send poll request
     if (!send_poll_request(i2c)) {
-        printf("Failed to send poll request\n");
+        failed_reads++;
         return false;
     }
     
@@ -122,31 +106,37 @@ bool read_ubx_message(i2c_inst_t *i2c, ubx_pvt_data_t *data) {
     
     // Wait for sync characters
     if (!wait_for_sync(i2c)) {
+        failed_reads++;
         return false;
     }
     
     // Read message class and ID
     if (i2c_read_blocking(i2c, GNSS_ADDR, header, 4, false) != 4) {
+        failed_reads++;
         return false;
     }
     
     // Verify this is a NAV-PVT message
     if (header[0] != NAV_CLASS || header[1] != NAV_PVT_ID) {
+        failed_reads++;
         return false;
     }
     
     uint16_t length = header[2] | (header[3] << 8);
     if (length != 92) {
+        failed_reads++;
         return false;
     }
     
     // Read PVT data
     if (i2c_read_blocking(i2c, GNSS_ADDR, pvt_data, length, false) != length) {
+        failed_reads++;
         return false;
     }
     
     // Read checksum
     if (i2c_read_blocking(i2c, GNSS_ADDR, checksum, 2, false) != 2) {
+        failed_reads++;
         return false;
     }
     
@@ -178,258 +168,166 @@ bool read_ubx_message(i2c_inst_t *i2c, ubx_pvt_data_t *data) {
 const char* get_fix_type_str(uint8_t fix_type) {
     switch(fix_type) {
         case 0: return "No fix";
-        case 1: return "Dead reckoning";
-        case 2: return "2D fix";
-        case 3: return "3D fix";
-        case 4: return "GNSS + Dead reckoning";
-        default: return "Unknown";
+        case 1: return "DR";
+        case 2: return "2D";
+        case 3: return "3D";
+        case 4: return "DR+GNSS";
+        default: return "?";
     }
 }
 
-log_status_t init_logging(void) {
-    FRESULT fr;
-    
-    // Mount file system
-    fr = f_mount(&fs, "0:", 1);
+bool init_sd_card() {
+    printf("Initializing SD card...\n");
+    FRESULT fr = f_mount(&fs, "0:", 1);
     if (fr != FR_OK) {
         printf("Failed to mount SD card: %d\n", fr);
-        return LOG_ERROR_OPEN;
+        return false;
     }
-    
-    // Create filename with current timestamp if GNSS has a valid fix
-    // Otherwise use a default name
+    printf("SD card mounted\n");
+    return true;
+}
+
+bool create_data_file() {
     char filename[32];
-    ubx_pvt_data_t init_data;
+    // Create a filename based on timestamp from boot
+    uint32_t timestamp = to_ms_since_boot(get_absolute_time());
+    sprintf(filename, "0:/gnss_%lu.csv", timestamp);
     
-    if (read_ubx_message(i2c_default, &init_data) && init_data.fixType >= 2) {
-        snprintf(filename, sizeof(filename), "0:/gnss_%04d%02d%02d_%02d%02d%02d.csv", 
-                 init_data.year, init_data.month, init_data.day,
-                 init_data.hour, init_data.min, init_data.sec);
-    } else {
-        snprintf(filename, sizeof(filename), "0:/gnss_data.csv");
-    }
-    
-    // Open file for writing
-    fr = f_open(&data_file, filename, FA_WRITE | FA_CREATE_ALWAYS);
+    FRESULT fr = f_open(&data_file, filename, FA_WRITE | FA_CREATE_ALWAYS);
     if (fr != FR_OK) {
-        printf("Failed to open data file: %d\n", fr);
-        return LOG_ERROR_OPEN;
+        printf("Failed to create file: %d\n", fr);
+        return false;
     }
     
     // Write CSV header
     UINT bw;
-    const char *header = "timestamp,date,time,lat,lon,height,altitude,vel_n,vel_e,vel_d,ground_speed,fix_type,satellites\n";
+    const char *header = "time,lat,lon,alt,vel_n,vel_e,vel_d,gspeed,fix,sats\n";
     fr = f_write(&data_file, header, strlen(header), &bw);
     if (fr != FR_OK || bw != strlen(header)) {
-        printf("Failed to write CSV header: %d\n", fr);
+        printf("Failed to write header: %d\n", fr);
         f_close(&data_file);
-        return LOG_ERROR_WRITE;
+        return false;
     }
     
-    // Force data to be written to the file
-    fr = f_sync(&data_file);
-    if (fr != FR_OK) {
-        printf("Failed to sync file: %d\n", fr);
-        f_close(&data_file);
-        return LOG_ERROR_SYNC;
-    }
-    
-    printf("Logging initialized to: %s\n", filename);
-    return LOG_OK;
+    printf("Created file: %s\n", filename);
+    return true;
 }
 
-log_status_t log_pvt_data(const ubx_pvt_data_t *data) {
+bool write_data_to_sd(const ubx_pvt_data_t *data) {
     char buffer[LOG_BUFFER_SIZE];
-    UINT bw;
-    FRESULT fr;
     
-    // Generate timestamp (seconds since 2000-01-01)
-    // This is a simplified calculation and not accurate for all time periods
-    uint32_t days_in_month[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-    uint32_t timestamp = data->sec;
-    timestamp += data->min * 60;
-    timestamp += data->hour * 3600;
-    
-    // Days since 2000-01-01
-    uint32_t days = data->day - 1;  // Days in current month
-    
-    // Add days from previous months this year
-    for (int m = 1; m < data->month; m++) {
-        days += days_in_month[m];
-        // Adjust February for leap years
-        if (m == 2 && (data->year % 4 == 0) && 
-            (data->year % 100 != 0 || data->year % 400 == 0)) {
-            days += 1;
-        }
-    }
-    
-    // Add days from previous years since 2000
-    for (int y = 2000; y < data->year; y++) {
-        days += 365;
-        if ((y % 4 == 0) && (y % 100 != 0 || y % 400 == 0)) {
-            days += 1;
-        }
-    }
-    
-    timestamp += days * 86400;
-    
-    // Format data as CSV line
+    // Format the data as CSV
     int len = snprintf(buffer, LOG_BUFFER_SIZE,
-        "%u,%04d-%02d-%02d,%02d:%02d:%02d,%.7f,%.7f,%.3f,%.3f,%.3f,%.3f,%.3f,%.3f,%d,%d\n",
-        timestamp,
-        data->year, data->month, data->day,
+        "%02d:%02d:%02d,%.7f,%.7f,%.2f,%.2f,%.2f,%.2f,%.2f,%s,%d\n",
         data->hour, data->min, data->sec,
-        data->lat * 1e-7,        // Convert to degrees
-        data->lon * 1e-7,        // Convert to degrees
-        data->height / 1000.0,   // Convert to meters
-        data->hMSL / 1000.0,     // Convert to meters
-        data->velN / 1000.0,     // Convert to m/s
-        data->velE / 1000.0,     // Convert to m/s
-        data->velD / 1000.0,     // Convert to m/s
-        data->gSpeed / 1000.0,   // Convert to m/s
-        data->fixType,
+        data->lat * 1e-7, data->lon * 1e-7,
+        data->hMSL / 1000.0,
+        data->velN / 1000.0, data->velE / 1000.0, data->velD / 1000.0,
+        data->gSpeed / 1000.0,
+        get_fix_type_str(data->fixType),
         data->numSV);
     
-    if (len >= LOG_BUFFER_SIZE) {
-        printf("Warning: Log buffer too small\n");
-    }
+    UINT bw;
+    FRESULT fr = f_write(&data_file, buffer, len, &bw);
     
-    // Write to file
-    fr = f_write(&data_file, buffer, len, &bw);
     if (fr != FR_OK || bw != len) {
-        printf("Failed to write to log file: %d\n", fr);
         failed_writes++;
-        return LOG_ERROR_WRITE;
+        return false;
     }
     
-    // Sync periodically (every 10 successful writes)
-    if (successful_reads % 10 == 0) {
+    // Sync every 25 samples (about once per second)
+    if (successful_writes % 25 == 0) {
         fr = f_sync(&data_file);
         if (fr != FR_OK) {
-            printf("Failed to sync file: %d\n", fr);
-            return LOG_ERROR_SYNC;
+            return false;
         }
     }
     
-    return LOG_OK;
+    successful_writes++;
+    return true;
 }
 
-void close_logging(void) {
-    f_close(&data_file);
-    f_unmount("0:");
-    printf("Logging complete. SD card unmounted.\n");
+void print_status_line(const ubx_pvt_data_t *data) {
+    // Use simple, single-line status updates instead of clearing the screen
+    printf("Time: %02d:%02d:%02d | Pos: %.5f, %.5f | Fix: %s | Sats: %d | Log: %lu/%lu\r",
+        data->hour, data->min, data->sec,
+        data->lat * 1e-7, data->lon * 1e-7,
+        get_fix_type_str(data->fixType),
+        data->numSV,
+        successful_writes, total_reads);
+    
+    // Very important: don't use fflush() excessively as it can cause issues with some
+    // serial terminals. Let the terminal handle buffering.
 }
 
 int main() {
     stdio_init_all();
-    sleep_ms(2000);  // Wait for peripherals to initialize
     
-    printf("\nGNSS Data Logger with SD Card Storage\n");
-    printf("-------------------------------------\n");
+    // Important: Give enough time for UART to initialize
+    // This is critical for Putty connection
+    sleep_ms(20000);
     
-    // Initialize I2C for GNSS communication
+    printf("\nGNSS Data Logger - 25Hz\n");
+    printf("Starting in 2 seconds...\n");
+    sleep_ms(2000);
+    
+    // Initialize I2C for GNSS module
     i2c_init(i2c_default, 100 * 1000);
     gpio_set_function(PICO_DEFAULT_I2C_SDA_PIN, GPIO_FUNC_I2C);
     gpio_set_function(PICO_DEFAULT_I2C_SCL_PIN, GPIO_FUNC_I2C);
     gpio_pull_up(PICO_DEFAULT_I2C_SDA_PIN);
     gpio_pull_up(PICO_DEFAULT_I2C_SCL_PIN);
     
-    printf("I2C Initialized for GNSS communication\n");
+    printf("I2C Initialized\n");
     
-    // Initialize logging
-    log_status_t log_status = init_logging();
-    if (log_status != LOG_OK) {
-        printf("Failed to initialize logging. Error code: %d\n", log_status);
-        return -1;
+    // Initialize SD card
+    if (!init_sd_card()) {
+        printf("SD card failed\n");
+        while (1) tight_loop_contents();
     }
     
-    printf("Starting GNSS data logging at 25Hz...\n");
+    // Create data file
+    if (!create_data_file()) {
+        printf("File creation failed\n");
+        while (1) tight_loop_contents();
+    }
     
-    // Main loop
-    uint32_t last_status_time = 0;
-    uint32_t start_time = to_ms_since_boot(get_absolute_time());
-    uint32_t max_runtime_ms = MAX_LOG_DURATION_HOURS * 3600 * 1000;
+    // Variables for timing
     ubx_pvt_data_t pvt_data;
+    uint32_t next_sample_time = 0;
+    uint32_t next_status_time = 0;
     
-    while (to_ms_since_boot(get_absolute_time()) - start_time < max_runtime_ms) {
-        uint32_t loop_start = to_ms_since_boot(get_absolute_time());
+    printf("Logging started\n");
+    
+    while (true) {
+        uint32_t current_time = to_ms_since_boot(get_absolute_time());
         
-        if (read_ubx_message(i2c_default, &pvt_data)) {
-            // Only log data if we have a valid fix (2D or better)
-            if (pvt_data.fixType >= 2) {
-                log_status = log_pvt_data(&pvt_data);
-                if (log_status != LOG_OK) {
-                    printf("Logging error: %d\n", log_status);
+        // Time to collect a sample
+        if (current_time >= next_sample_time) {
+            // Set next sample time
+            next_sample_time = current_time + LOG_INTERVAL_MS;
+            
+            if (read_ubx_message(i2c_default, &pvt_data)) {
+                // Only log if we have a valid position
+                if (pvt_data.fixType >= 2) {
+                    write_data_to_sd(&pvt_data);
+                }
+                
+                // Display status update (throttled to reduce serial traffic)
+                if (current_time >= next_status_time) {
+                    print_status_line(&pvt_data);
+                    next_status_time = current_time + STATUS_INTERVAL_MS;
                 }
             }
-            
-            // Display status every second
-            uint32_t current_time = to_ms_since_boot(get_absolute_time());
-            if (current_time - last_status_time > 1000) {
-                last_status_time = current_time;
-                
-                printf("\033[2J\033[H");  // Clear screen
-                
-                // Display current position and status
-                printf("Time: %02d:%02d:%02d %02d/%02d/%04d\n", 
-                       pvt_data.hour, pvt_data.min, pvt_data.sec,
-                       pvt_data.day, pvt_data.month, pvt_data.year);
-                
-                printf("\nPosition:\n");
-                printf("  Latitude:  %.7f degrees\n", pvt_data.lat * 1e-7);
-                printf("  Longitude: %.7f degrees\n", pvt_data.lon * 1e-7);
-                printf("  Altitude:  %.2f m (above sea level)\n", pvt_data.hMSL / 1000.0);
-                
-                printf("\nVelocity:\n");
-                printf("  North:     %.2f m/s\n", pvt_data.velN / 1000.0);
-                printf("  East:      %.2f m/s\n", pvt_data.velE / 1000.0);
-                printf("  Down:      %.2f m/s\n", pvt_data.velD / 1000.0);
-                printf("  Ground:    %.2f m/s\n", pvt_data.gSpeed / 1000.0);
-                
-                printf("\nStatus:\n");
-                printf("  Fix type:  %s\n", get_fix_type_str(pvt_data.fixType));
-                printf("  Satellites: %d\n", pvt_data.numSV);
-                
-                // Display logging statistics
-                printf("\nLogging Statistics:\n");
-                printf("  Total reads:      %lu\n", total_reads);
-                printf("  Successful reads: %lu (%.1f%%)\n", 
-                       successful_reads, 
-                       (total_reads > 0) ? (successful_reads * 100.0f / total_reads) : 0.0f);
-                printf("  Failed writes:    %lu\n", failed_writes);
-                printf("  Runtime:          %.1f minutes\n", 
-                       (current_time - start_time) / 60000.0f);
-            }
         } else {
-            // If reading fails, print a dot to show activity
-            printf(".");
-            fflush(stdout);
-        }
-        
-        // Calculate time spent in this loop iteration
-        uint32_t loop_duration = to_ms_since_boot(get_absolute_time()) - loop_start;
-        
-        // Wait for the remainder of the logging interval
-        if (loop_duration < LOG_INTERVAL_MS) {
-            sleep_ms(LOG_INTERVAL_MS - loop_duration);
-        } else {
-            // Log a warning if we're not keeping up with the desired rate
-            printf("Warning: Processing time (%lu ms) exceeds logging interval (%d ms)\n", 
-                   loop_duration, LOG_INTERVAL_MS);
+            // Small sleep to prevent tight loop when waiting for next sample time
+            // This helps with power consumption and heat
+            sleep_us(500);
         }
     }
     
-    // Close logging and exit
-    close_logging();
-    
-    printf("\nData logging complete after %d hours\n", MAX_LOG_DURATION_HOURS);
-    printf("Total samples: %lu, Successful: %lu (%.1f%%)\n", 
-           total_reads, successful_reads, 
-           (total_reads > 0) ? (successful_reads * 100.0f / total_reads) : 0.0f);
-    
-    while(1) {
-        sleep_ms(10000);  // Keep the program running
-    }
-    
+    // Never reached, but good practice
+    f_close(&data_file);
+    f_unmount("0:");
     return 0;
 }
