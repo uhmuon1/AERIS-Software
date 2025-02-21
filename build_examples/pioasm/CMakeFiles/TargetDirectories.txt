@@ -1,0 +1,7 @@
+/home/connerparker/ASEN_4013/AERIS-Software/pico-examples/build/pioasm/CMakeFiles/pioasm.dir
+/home/connerparker/ASEN_4013/AERIS-Software/pico-examples/build/pioasm/CMakeFiles/edit_cache.dir
+/home/connerparker/ASEN_4013/AERIS-Software/pico-examples/build/pioasm/CMakeFiles/rebuild_cache.dir
+/home/connerparker/ASEN_4013/AERIS-Software/pico-examples/build/pioasm/CMakeFiles/list_install_components.dir
+/home/connerparker/ASEN_4013/AERIS-Software/pico-examples/build/pioasm/CMakeFiles/install.dir
+/home/connerparker/ASEN_4013/AERIS-Software/pico-examples/build/pioasm/CMakeFiles/install/local.dir
+/home/connerparker/ASEN_4013/AERIS-Software/pico-examples/build/pioasm/CMakeFiles/install/strip.dir

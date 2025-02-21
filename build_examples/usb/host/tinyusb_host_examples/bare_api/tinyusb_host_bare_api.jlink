@@ -1,0 +1,5 @@
+halt
+loadfile /home/connerparker/ASEN_4013/AERIS-Software/pico-examples/build/usb/host/tinyusb_host_examples/bare_api/tinyusb_host_bare_api.elf
+r
+go
+exit
