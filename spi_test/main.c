@@ -5,6 +5,22 @@
 
 #define BUF_LEN 0x100
 
+#ifndef SPARKFUN_THING_PLUS_SPI_SCK_PIN
+#define SPARKFUN_THING_PLUS_SPI_SCK_PIN 18
+#endif
+
+#ifndef SPARKFUN_THING_PLUS_SPI_MOSI_PIN
+#define SPARKFUN_THING_PLUS_SPI_MOSI_PIN 19
+#endif
+
+#ifndef SPARKFUN_THING_PLUS_SPI_MISO_PIN
+#define SPARKFUN_THING_PLUS_SPI_MISO_PIN 16
+#endif
+
+#ifndef SPARKFUN_THING_PLUS_SPI_CS_PIN
+#define SPARKFUN_THING_PLUS_SPI_CS_PIN 17
+#endif
+
 void printbuf(uint8_t buf[], size_t len) {
     size_t i;
     for (i = 0; i < len; ++i) {
@@ -48,21 +64,21 @@ int main() {
     // Enable UART so we can print
     stdio_init_all();
     pico_led_init();
-#if !defined(spi_default) || !defined(PICO_DEFAULT_SPI_SCK_PIN) || !defined(PICO_DEFAULT_SPI_TX_PIN) || !defined(PICO_DEFAULT_SPI_RX_PIN) || !defined(PICO_DEFAULT_SPI_CSN_PIN)
+    //TODO Need to change to the sparkfun thing plus board things
+#if !defined(spi_default) || !defined(SPARKFUN_THING_PLUS_SPI_SCK_PIN) || !defined(SPARKFUN_THING_PLUS_SPI_MOSI_PIN) || !defined(SPARKFUN_THING_PLUS_SPI_MISO_PIN) || !defined(SPARKFUN_THING_PLUS_SPI_CS_PIN)
 #warning spi/spi_master example requires a board with SPI pins
     puts("Default SPI pins were not defined");
 #else
-
+    pico_set_led(true);
     printf("SPI master example\n");
-
     // Enable SPI 0 at 1 MHz and connect to GPIOs
     spi_init(spi_default, 1000 * 1000);
-    gpio_set_function(PICO_DEFAULT_SPI_RX_PIN, GPIO_FUNC_SPI);
-    gpio_set_function(PICO_DEFAULT_SPI_SCK_PIN, GPIO_FUNC_SPI);
-    gpio_set_function(PICO_DEFAULT_SPI_TX_PIN, GPIO_FUNC_SPI);
-    gpio_set_function(PICO_DEFAULT_SPI_CSN_PIN, GPIO_FUNC_SPI);
+    gpio_set_function(SPARKFUN_THING_PLUS_SPI_MISO_PIN, GPIO_FUNC_SPI);
+    gpio_set_function(SPARKFUN_THING_PLUS_SPI_SCK_PIN, GPIO_FUNC_SPI);
+    gpio_set_function(SPARKFUN_THING_PLUS_SPI_MOSI_PIN, GPIO_FUNC_SPI);
+    gpio_set_function(SPARKFUN_THING_PLUS_SPI_CS_PIN, GPIO_FUNC_SPI);
     // Make the SPI pins available to picotool
-    bi_decl(bi_4pins_with_func(PICO_DEFAULT_SPI_RX_PIN, PICO_DEFAULT_SPI_TX_PIN, PICO_DEFAULT_SPI_SCK_PIN, PICO_DEFAULT_SPI_CSN_PIN, GPIO_FUNC_SPI));
+    bi_decl(bi_4pins_with_func(SPARKFUN_THING_PLUS_SPI_MISO_PIN, SPARKFUN_THING_PLUS_SPI_MOSI_PIN, SPARKFUN_THING_PLUS_SPI_SCK_PIN, SPARKFUN_THING_PLUS_SPI_CS_PIN, GPIO_FUNC_SPI));
 
     uint8_t out_buf[BUF_LEN], in_buf[BUF_LEN];
 
@@ -70,7 +86,6 @@ int main() {
     for (size_t i = 0; i < BUF_LEN; ++i) {
         out_buf[i] = i;
     }
-    pico_set_led(true);
     while(true){
         printf("SPI master says: The following buffer will be written to MOSI endlessly:\n");
         printbuf(out_buf, BUF_LEN);
