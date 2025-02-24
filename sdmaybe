@@ -23,6 +23,7 @@ static FIL data_file;
 #define LOG_INTERVAL_MS 40  // 25Hz = 40ms between samples
 #define STATUS_INTERVAL_MS 1000  // Status update every second
 #define LOG_BUFFER_SIZE 256
+#define SYNC_INTERVAL 25   // Sync to SD card every 25 samples
 
 // UBX-NAV-PVT Poll Request message
 const uint8_t ubx_nav_pvt_poll[] = {
@@ -98,7 +99,7 @@ bool read_ubx_message(i2c_inst_t *i2c, ubx_pvt_data_t *data) {
         return false;
     }
     
-    sleep_ms(5); // Short delay for device to process request
+    sleep_ms(2); // Reduced delay for device to process request
     
     uint8_t header[4];
     uint8_t checksum[2];
@@ -236,7 +237,7 @@ bool write_data_to_sd(const ubx_pvt_data_t *data) {
     }
     
     // Sync every 25 samples (about once per second)
-    if (successful_writes % 25 == 0) {
+    if (successful_writes % SYNC_INTERVAL == 0) {
         fr = f_sync(&data_file);
         if (fr != FR_OK) {
             return false;
@@ -265,20 +266,20 @@ int main() {
     
     // Important: Give enough time for UART to initialize
     // This is critical for Putty connection
-    sleep_ms(20000);
+    sleep_ms(2000);  // Reduced from 20000 to 2000ms - only need this long for debug console
     
     printf("\nGNSS Data Logger - 25Hz\n");
     printf("Starting in 2 seconds...\n");
     sleep_ms(2000);
     
-    // Initialize I2C for GNSS module
-    i2c_init(i2c_default, 100 * 1000);
+    // Initialize I2C for GNSS module at higher speed
+    i2c_init(i2c_default, 400 * 1000);  // Increased from 100kHz to 400kHz
     gpio_set_function(PICO_DEFAULT_I2C_SDA_PIN, GPIO_FUNC_I2C);
     gpio_set_function(PICO_DEFAULT_I2C_SCL_PIN, GPIO_FUNC_I2C);
     gpio_pull_up(PICO_DEFAULT_I2C_SDA_PIN);
     gpio_pull_up(PICO_DEFAULT_I2C_SCL_PIN);
     
-    printf("I2C Initialized\n");
+    printf("I2C Initialized at 400kHz\n");
     
     // Initialize SD card
     if (!init_sd_card()) {
@@ -296,28 +297,51 @@ int main() {
     ubx_pvt_data_t pvt_data;
     uint32_t next_sample_time = 0;
     uint32_t next_status_time = 0;
+    uint32_t sample_count = 0;
+    uint32_t loop_start_time = 0;
+    uint32_t processing_time = 0;
     
-    printf("Logging started\n");
+    printf("Logging started at 25Hz (40ms intervals)\n");
+    
+    // Configure GNSS module for higher output rate if needed
+    // This is placeholder - you may need specific UBX commands for your module
+    // to set it to output PVT at 25Hz
     
     while (true) {
-        uint32_t current_time = to_ms_since_boot(get_absolute_time());
+        loop_start_time = to_ms_since_boot(get_absolute_time());
+        uint32_t current_time = loop_start_time;
         
         // Time to collect a sample
         if (current_time >= next_sample_time) {
-            // Set next sample time
+            // Set next sample time - note this is based on the absolute timing, not relative
+            // to how long processing takes
             next_sample_time = current_time + LOG_INTERVAL_MS;
             
             if (read_ubx_message(i2c_default, &pvt_data)) {
-                // Only log if we have a valid position
-                if (pvt_data.fixType >= 2) {
-                    write_data_to_sd(&pvt_data);
-                }
+                // Log regardless of fix type to ensure 25Hz logging
+                // You may want to include the fix type in analysis later
+                write_data_to_sd(&pvt_data);
+                sample_count++;
                 
                 // Display status update (throttled to reduce serial traffic)
                 if (current_time >= next_status_time) {
+                    // Additional timing diagnostics
+                    processing_time = to_ms_since_boot(get_absolute_time()) - loop_start_time;
+                    
                     print_status_line(&pvt_data);
+                    printf("| Process time: %ldms | Rate: %.1fHz\n", 
+                           processing_time,
+                           (float)sample_count * 1000.0f / (current_time + 1)); // avoid div by 0
+                    
                     next_status_time = current_time + STATUS_INTERVAL_MS;
                 }
+            }
+            
+            // Check if we're falling behind schedule
+            current_time = to_ms_since_boot(get_absolute_time());
+            if (current_time > next_sample_time) {
+                printf("WARNING: Can't keep up with 25Hz! Behind by %ldms\n", 
+                       current_time - next_sample_time);
             }
         } else {
             // Small sleep to prevent tight loop when waiting for next sample time
