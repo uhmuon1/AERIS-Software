@@ -36,10 +36,34 @@ uint8_t lora_read_reg(uint8_t reg);
 void lora_init();
 void lora_send_packet(const uint8_t *data, uint8_t len);
 
+int pico_led_init(void) {
+#if defined(PICO_DEFAULT_LED_PIN)
+    // A device like Pico that uses a GPIO for the LED will define PICO_DEFAULT_LED_PIN
+    // so we can use normal GPIO functionality to turn the led on and off
+    gpio_init(PICO_DEFAULT_LED_PIN);
+    gpio_set_dir(PICO_DEFAULT_LED_PIN, GPIO_OUT);
+    return PICO_OK;
+#elif defined(CYW43_WL_GPIO_LED_PIN)
+    // For Pico W devices we need to initialise the driver etc
+    return cyw43_arch_init();
+#endif
+}
+
+// Turn the led on or off
+void pico_set_led(bool led_on) {
+#if defined(PICO_DEFAULT_LED_PIN)
+    // Just set the GPIO on or off
+    gpio_put(PICO_DEFAULT_LED_PIN, led_on);
+#elif defined(CYW43_WL_GPIO_LED_PIN)
+    // Ask the wifi "driver" to set the GPIO on or off
+    cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, led_on);
+#endif
+}
+
 // Initialize LoRa module
 void lora_init() {
     // Initialize SPI
-    spi_init(SPI_PORT, 1000000);  // 1MHz clock rate
+    spi_init(SPI_PORT, 1e6);  // 1MHz clock rate
     gpio_set_function(PIN_MISO, GPIO_FUNC_SPI);
     gpio_set_function(PIN_SCK, GPIO_FUNC_SPI);
     gpio_set_function(PIN_MOSI, GPIO_FUNC_SPI);
@@ -132,6 +156,7 @@ void lora_send_packet(const uint8_t *data, uint8_t len) {
 
 int main() {
     stdio_init_all();
+    pico_led_init();
     
     // Initialize LoRa
     lora_init();
@@ -140,6 +165,7 @@ int main() {
     uint8_t message[] = "Hello from RP2040 LoRa!";
     
     while (1) {
+        pico_set_led(true);
         printf("Sending packet...\n");
         lora_send_packet(message, sizeof(message) - 1);
         printf("Packet sent!\n");

@@ -12,12 +12,11 @@ set(CMAKE_CXX_STANDARD 17)
 # Initialize the SDK
 pico_sdk_init()
 
-
 add_executable(lora_breakout
     main.c
     )
 
-target_link_libraries(lora_breakout pico_stdlib hardware_i2c)
+target_link_libraries(lora_breakout pico_stdlib hardware_spi)
 
 pico_enable_stdio_usb(lora_breakout 1)
 pico_enable_stdio_uart(lora_breakout 0)
