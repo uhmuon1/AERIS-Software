@@ -202,7 +202,7 @@ bool create_data_file() {
     
     // Write CSV header
     UINT bw;
-    const char *header = "time,lat,lon,alt,vel_n,vel_e,vel_d,gspeed,fix,sats\n";
+    const char *header = "sys_time,gnss_time,lat,lon,alt,vel_n,vel_e,vel_d,gspeed,fix,sats\n";
     fr = f_write(&data_file, header, strlen(header), &bw);
     if (fr != FR_OK || bw != strlen(header)) {
         printf("Failed to write header: %d\n", fr);
@@ -214,13 +214,24 @@ bool create_data_file() {
     return true;
 }
 
-bool write_data_to_sd(const ubx_pvt_data_t *data) {
+bool write_data_to_sd(const ubx_pvt_data_t *data, uint32_t system_timestamp_ms) {
     char buffer[LOG_BUFFER_SIZE];
+    uint32_t sys_seconds = system_timestamp_ms / 1000;
+    uint32_t sys_ms = system_timestamp_ms % 1000;
+    //uint16_t gnss_ms = (data->nano /1000000) % 1000;
     
-    // Format the data as CSV
+    // Calculate milliseconds (if you have a nanosecond timestamp, do something like this)
+    // uint32_t milliseconds = (data->nano / 1000000) % 1000; // For example, if you had a nano field
+    
+    // Or if your data doesn't include nanoseconds, we can simply use the current timestamp
+    uint32_t current_time_ms = to_ms_since_boot(get_absolute_time());
+    uint16_t milliseconds = current_time_ms % 1000; // Extract milliseconds
+    
+    // Format the data as CSV with milliseconds included
     int len = snprintf(buffer, LOG_BUFFER_SIZE,
-        "%02d:%02d:%02d,%.7f,%.7f,%.2f,%.2f,%.2f,%.2f,%.2f,%s,%d\n",
-        data->hour, data->min, data->sec,
+        "%02d:%02d,%02d:%02d:%02d:%03d,%.7f,%.7f,%.2f,%.2f,%.2f,%.2f,%.2f,%s,%d\n",
+        sys_seconds, sys_ms,
+        data->hour, data->min, data->sec, milliseconds, // Include milliseconds here
         data->lat * 1e-7, data->lon * 1e-7,
         data->hMSL / 1000.0,
         data->velN / 1000.0, data->velE / 1000.0, data->velD / 1000.0,
@@ -237,12 +248,12 @@ bool write_data_to_sd(const ubx_pvt_data_t *data) {
     }
     
     // Sync every 25 samples (about once per second)
-    //if (successful_writes % 25 == 0) {
-    fr = f_sync(&data_file);
-    if (fr != FR_OK) {
-        return false;
+    if (successful_writes % 25 == 0) {
+        fr = f_sync(&data_file);
+        if (fr != FR_OK) {
+            return false;
+        }
     }
-    //}
     
     successful_writes++;
     return true;
@@ -311,7 +322,7 @@ int main() {
             if (read_ubx_message(i2c_default, &pvt_data)) {
                 // Only log if we have a valid position
                 if (pvt_data.fixType >= 2) {
-                    write_data_to_sd(&pvt_data);
+                    write_data_to_sd(&pvt_data, current_time);
                 }
                 
                 // Display status update (throttled to reduce serial traffic)
@@ -332,3 +343,361 @@ int main() {
     f_unmount("0:");
     return 0;
 }
+
+// #include <stdio.h>
+// #include <string.h>
+// #include <stdlib.h>
+// #include "pico/stdlib.h"
+// #include "hardware/i2c.h"
+// #include "ff.h"
+// #include "f_util.h"
+// #include "hw_config.h"
+
+// // GNSS Definitions
+// #define GNSS_ADDR 0x42
+// #define UBX_SYNC1 0xB5
+// #define UBX_SYNC2 0x62
+// #define NAV_CLASS 0x01
+// #define NAV_PVT_ID 0x07
+// #define MAX_UBX_LENGTH 100
+
+// // File system objects
+// static FATFS fs;
+// static FIL data_file;
+
+// // Timing and logging control
+// #define LOG_INTERVAL_MS 40  // 25Hz = 40ms between samples
+// #define STATUS_INTERVAL_MS 1000  // Status update every second
+// #define LOG_BUFFER_SIZE 256
+// #define SYNC_INTERVAL 25   // Sync to SD card every 25 samples
+
+// // UBX-NAV-PVT Poll Request message
+// const uint8_t ubx_nav_pvt_poll[] = {
+//     0xB5, 0x62,     // Sync chars
+//     0x01, 0x07,     // Class (NAV) + ID (PVT)
+//     0x00, 0x00,     // Length (0 for poll request)
+//     0x08, 0x19      // Checksum
+// };
+
+// typedef struct {
+//     // Time data
+//     uint16_t year;
+//     uint8_t month;
+//     uint8_t day;
+//     uint8_t hour;
+//     uint8_t min;
+//     uint8_t sec;
+    
+//     // Position data (all in cm)
+//     int32_t lon;    // Scaled by 10^-7
+//     int32_t lat;    // Scaled by 10^-7
+//     int32_t height; // Height above ellipsoid in mm
+//     int32_t hMSL;   // Height above mean sea level in mm
+    
+//     // Velocity data (all in mm/s)
+//     int32_t velN;   // North velocity
+//     int32_t velE;   // East velocity
+//     int32_t velD;   // Down velocity
+//     uint32_t gSpeed; // Ground speed
+    
+//     // Status data
+//     uint8_t numSV;  // Number of satellites used
+//     uint8_t fixType;// Fix type
+// } ubx_pvt_data_t;
+
+// // Statistics counters
+// uint32_t total_reads = 0;
+// uint32_t successful_reads = 0;
+// uint32_t successful_writes = 0;
+// uint32_t failed_reads = 0;
+// uint32_t failed_writes = 0;
+
+// bool send_poll_request(i2c_inst_t *i2c) {
+//     int result = i2c_write_blocking(i2c, GNSS_ADDR, ubx_nav_pvt_poll, sizeof(ubx_nav_pvt_poll), false);
+//     return (result == sizeof(ubx_nav_pvt_poll));
+// }
+
+// bool read_byte(i2c_inst_t *i2c, uint8_t *byte) {
+//     return (i2c_read_blocking(i2c, GNSS_ADDR, byte, 1, false) == 1);
+// }
+
+// bool wait_for_sync(i2c_inst_t *i2c) {
+//     uint8_t byte;
+//     int attempts = 0;
+    
+//     while (attempts < 100) {
+//         if (!read_byte(i2c, &byte)) return false;
+//         if (byte == UBX_SYNC1) {
+//             if (!read_byte(i2c, &byte)) return false;
+//             if (byte == UBX_SYNC2) return true;
+//         }
+//         attempts++;
+//     }
+//     return false;
+// }
+
+// bool read_ubx_message(i2c_inst_t *i2c, ubx_pvt_data_t *data) {
+//     total_reads++;
+    
+//     // First send poll request
+//     if (!send_poll_request(i2c)) {
+//         failed_reads++;
+//         return false;
+//     }
+    
+//     sleep_ms(2); // Reduced delay for device to process request
+    
+//     uint8_t header[4];
+//     uint8_t checksum[2];
+//     uint8_t pvt_data[92];  // NAV-PVT message is 92 bytes
+    
+//     // Wait for sync characters
+//     if (!wait_for_sync(i2c)) {
+//         failed_reads++;
+//         return false;
+//     }
+    
+//     // Read message class and ID
+//     if (i2c_read_blocking(i2c, GNSS_ADDR, header, 4, false) != 4) {
+//         failed_reads++;
+//         return false;
+//     }
+    
+//     // Verify this is a NAV-PVT message
+//     if (header[0] != NAV_CLASS || header[1] != NAV_PVT_ID) {
+//         failed_reads++;
+//         return false;
+//     }
+    
+//     uint16_t length = header[2] | (header[3] << 8);
+//     if (length != 92) {
+//         failed_reads++;
+//         return false;
+//     }
+    
+//     // Read PVT data
+//     if (i2c_read_blocking(i2c, GNSS_ADDR, pvt_data, length, false) != length) {
+//         failed_reads++;
+//         return false;
+//     }
+    
+//     // Read checksum
+//     if (i2c_read_blocking(i2c, GNSS_ADDR, checksum, 2, false) != 2) {
+//         failed_reads++;
+//         return false;
+//     }
+    
+//     // Parse PVT data
+//     data->year = pvt_data[4] | (pvt_data[5] << 8);
+//     data->month = pvt_data[6];
+//     data->day = pvt_data[7];
+//     data->hour = pvt_data[8];
+//     data->min = pvt_data[9];
+//     data->sec = pvt_data[10];
+    
+//     data->fixType = pvt_data[20];
+//     data->numSV = pvt_data[23];
+    
+//     data->lon = pvt_data[24] | (pvt_data[25] << 8) | (pvt_data[26] << 16) | (pvt_data[27] << 24);
+//     data->lat = pvt_data[28] | (pvt_data[29] << 8) | (pvt_data[30] << 16) | (pvt_data[31] << 24);
+//     data->height = pvt_data[32] | (pvt_data[33] << 8) | (pvt_data[34] << 16) | (pvt_data[35] << 24);
+//     data->hMSL = pvt_data[36] | (pvt_data[37] << 8) | (pvt_data[38] << 16) | (pvt_data[39] << 24);
+    
+//     data->velN = pvt_data[48] | (pvt_data[49] << 8) | (pvt_data[50] << 16) | (pvt_data[51] << 24);
+//     data->velE = pvt_data[52] | (pvt_data[53] << 8) | (pvt_data[54] << 16) | (pvt_data[55] << 24);
+//     data->velD = pvt_data[56] | (pvt_data[57] << 8) | (pvt_data[58] << 16) | (pvt_data[59] << 24);
+//     data->gSpeed = pvt_data[60] | (pvt_data[61] << 8) | (pvt_data[62] << 16) | (pvt_data[63] << 24);
+    
+//     successful_reads++;
+//     return true;
+// }
+
+// const char* get_fix_type_str(uint8_t fix_type) {
+//     switch(fix_type) {
+//         case 0: return "No fix";
+//         case 1: return "DR";
+//         case 2: return "2D";
+//         case 3: return "3D";
+//         case 4: return "DR+GNSS";
+//         default: return "?";
+//     }
+// }
+
+// bool init_sd_card() {
+//     printf("Initializing SD card...\n");
+//     FRESULT fr = f_mount(&fs, "0:", 1);
+//     if (fr != FR_OK) {
+//         printf("Failed to mount SD card: %d\n", fr);
+//         return false;
+//     }
+//     printf("SD card mounted\n");
+//     return true;
+// }
+
+// bool create_data_file() {
+//     char filename[32];
+//     // Create a filename based on timestamp from boot
+//     uint32_t timestamp = to_ms_since_boot(get_absolute_time());
+//     sprintf(filename, "0:/gnss_%lu.csv", timestamp);
+    
+//     FRESULT fr = f_open(&data_file, filename, FA_WRITE | FA_CREATE_ALWAYS);
+//     if (fr != FR_OK) {
+//         printf("Failed to create file: %d\n", fr);
+//         return false;
+//     }
+    
+//     // Write CSV header
+//     UINT bw;
+//     const char *header = "time,lat,lon,alt,vel_n,vel_e,vel_d,gspeed,fix,sats\n";
+//     fr = f_write(&data_file, header, strlen(header), &bw);
+//     if (fr != FR_OK || bw != strlen(header)) {
+//         printf("Failed to write header: %d\n", fr);
+//         f_close(&data_file);
+//         return false;
+//     }
+    
+//     printf("Created file: %s\n", filename);
+//     return true;
+// }
+
+// bool write_data_to_sd(const ubx_pvt_data_t *data) {
+//     char buffer[LOG_BUFFER_SIZE];
+    
+//     // Format the data as CSV
+//     int len = snprintf(buffer, LOG_BUFFER_SIZE,
+//         "%02d:%02d:%02d,%.7f,%.7f,%.2f,%.2f,%.2f,%.2f,%.2f,%s,%d\n",
+//         data->hour, data->min, data->sec,
+//         data->lat * 1e-7, data->lon * 1e-7,
+//         data->hMSL / 1000.0,
+//         data->velN / 1000.0, data->velE / 1000.0, data->velD / 1000.0,
+//         data->gSpeed / 1000.0,
+//         get_fix_type_str(data->fixType),
+//         data->numSV);
+    
+//     UINT bw;
+//     FRESULT fr = f_write(&data_file, buffer, len, &bw);
+    
+//     if (fr != FR_OK || bw != len) {
+//         failed_writes++;
+//         return false;
+//     }
+    
+//     // Sync every 25 samples (about once per second)
+//     if (successful_writes % SYNC_INTERVAL == 0) {
+//         fr = f_sync(&data_file);
+//         if (fr != FR_OK) {
+//             return false;
+//         }
+//     }
+    
+//     successful_writes++;
+//     return true;
+// }
+
+// void print_status_line(const ubx_pvt_data_t *data) {
+//     // Use simple, single-line status updates instead of clearing the screen
+//     printf("Time: %02d:%02d:%02d | Pos: %.5f, %.5f | Fix: %s | Sats: %d | Log: %lu/%lu\r",
+//         data->hour, data->min, data->sec,
+//         data->lat * 1e-7, data->lon * 1e-7,
+//         get_fix_type_str(data->fixType),
+//         data->numSV,
+//         successful_writes, total_reads);
+    
+//     // Very important: don't use fflush() excessively as it can cause issues with some
+//     // serial terminals. Let the terminal handle buffering.
+// }
+
+// int main() {
+//     stdio_init_all();
+    
+//     // Important: Give enough time for UART to initialize
+//     // This is critical for Putty connection
+//     sleep_ms(2000);  // Reduced from 20000 to 2000ms - only need this long for debug console
+    
+//     printf("\nGNSS Data Logger - 25Hz\n");
+//     printf("Starting in 2 seconds...\n");
+//     sleep_ms(2000);
+    
+//     // Initialize I2C for GNSS module at higher speed
+//     i2c_init(i2c_default, 400 * 1000);  // Increased from 100kHz to 400kHz
+//     gpio_set_function(PICO_DEFAULT_I2C_SDA_PIN, GPIO_FUNC_I2C);
+//     gpio_set_function(PICO_DEFAULT_I2C_SCL_PIN, GPIO_FUNC_I2C);
+//     gpio_pull_up(PICO_DEFAULT_I2C_SDA_PIN);
+//     gpio_pull_up(PICO_DEFAULT_I2C_SCL_PIN);
+    
+//     printf("I2C Initialized at 400kHz\n");
+    
+//     // Initialize SD card
+//     if (!init_sd_card()) {
+//         printf("SD card failed\n");
+//         while (1) tight_loop_contents();
+//     }
+    
+//     // Create data file
+//     if (!create_data_file()) {
+//         printf("File creation failed\n");
+//         while (1) tight_loop_contents();
+//     }
+    
+//     // Variables for timing
+//     ubx_pvt_data_t pvt_data;
+//     uint32_t next_sample_time = 0;
+//     uint32_t next_status_time = 0;
+//     uint32_t sample_count = 0;
+//     uint32_t loop_start_time = 0;
+//     uint32_t processing_time = 0;
+    
+//     printf("Logging started at 25Hz (40ms intervals)\n");
+    
+//     // Configure GNSS module for higher output rate if needed
+//     // This is placeholder - you may need specific UBX commands for your module
+//     // to set it to output PVT at 25Hz
+    
+//     while (true) {
+//         loop_start_time = to_ms_since_boot(get_absolute_time());
+//         uint32_t current_time = loop_start_time;
+        
+//         // Time to collect a sample
+//         if (current_time >= next_sample_time) {
+//             // Set next sample time - note this is based on the absolute timing, not relative
+//             // to how long processing takes
+//             next_sample_time = current_time + LOG_INTERVAL_MS;
+            
+//             if (read_ubx_message(i2c_default, &pvt_data)) {
+//                 // Log regardless of fix type to ensure 25Hz logging
+//                 // You may want to include the fix type in analysis later
+//                 write_data_to_sd(&pvt_data);
+//                 sample_count++;
+                
+//                 // Display status update (throttled to reduce serial traffic)
+//                 if (current_time >= next_status_time) {
+//                     // Additional timing diagnostics
+//                     processing_time = to_ms_since_boot(get_absolute_time()) - loop_start_time;
+                    
+//                     print_status_line(&pvt_data);
+//                     printf("| Process time: %ldms | Rate: %.1fHz\n", 
+//                            processing_time,
+//                            (float)sample_count * 1000.0f / (current_time + 1)); // avoid div by 0
+                    
+//                     next_status_time = current_time + STATUS_INTERVAL_MS;
+//                 }
+//             }
+            
+//             // Check if we're falling behind schedule
+//             current_time = to_ms_since_boot(get_absolute_time());
+//             if (current_time > next_sample_time) {
+//                 printf("WARNING: Can't keep up with 25Hz! Behind by %ldms\n", 
+//                        current_time - next_sample_time);
+//             }
+//         } else {
+//             // Small sleep to prevent tight loop when waiting for next sample time
+//             // This helps with power consumption and heat
+//             sleep_us(500);
+//         }
+//     }
+    
+//     // Never reached, but good practice
+//     f_close(&data_file);
+//     f_unmount("0:");
+//     return 0;
+// }
