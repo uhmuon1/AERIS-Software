@@ -20,6 +20,7 @@
 #define REG_MODEM_CONFIG_2     0x1E
 #define REG_PAYLOAD_LENGTH     0x22
 #define REG_IRQ_FLAGS_MASK     0x11
+#define REG_SYNC_WORD          0x39  // Added Sync Word register
 
 // SPI Pins for Thing Plus RP2040
 #define PIN_MISO 16
@@ -37,79 +38,99 @@ void lora_init();
 void lora_send_packet(const uint8_t *data, uint8_t len);
 
 int pico_led_init(void) {
+    printf("Initializing LED...\n");
 #if defined(PICO_DEFAULT_LED_PIN)
-    // A device like Pico that uses a GPIO for the LED will define PICO_DEFAULT_LED_PIN
-    // so we can use normal GPIO functionality to turn the led on and off
     gpio_init(PICO_DEFAULT_LED_PIN);
     gpio_set_dir(PICO_DEFAULT_LED_PIN, GPIO_OUT);
+    printf("LED initialized using GPIO pin %d\n", PICO_DEFAULT_LED_PIN);
     return PICO_OK;
 #elif defined(CYW43_WL_GPIO_LED_PIN)
-    // For Pico W devices we need to initialise the driver etc
-    return cyw43_arch_init();
+    int result = cyw43_arch_init();
+    printf("LED initialization result: %d\n", result);
+    return result;
 #endif
+    printf("No LED initialization method found\n");
+    return -1;
 }
 
-// Turn the led on or off
 void pico_set_led(bool led_on) {
+    printf("Setting LED %s\n", led_on ? "ON" : "OFF");
 #if defined(PICO_DEFAULT_LED_PIN)
-    // Just set the GPIO on or off
     gpio_put(PICO_DEFAULT_LED_PIN, led_on);
 #elif defined(CYW43_WL_GPIO_LED_PIN)
-    // Ask the wifi "driver" to set the GPIO on or off
     cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, led_on);
 #endif
 }
 
-// Initialize LoRa module
 void lora_init() {
+    printf("Starting LoRa Initialization...\n");
+    
     // Initialize SPI
+    printf("Initializing SPI at 1MHz\n");
     spi_init(SPI_PORT, 1e6);  // 1MHz clock rate
     gpio_set_function(PIN_MISO, GPIO_FUNC_SPI);
     gpio_set_function(PIN_SCK, GPIO_FUNC_SPI);
     gpio_set_function(PIN_MOSI, GPIO_FUNC_SPI);
     
     // Chip select as output
+    printf("Configuring Chip Select pin\n");
     gpio_init(PIN_CS);
     gpio_set_dir(PIN_CS, GPIO_OUT);
     gpio_put(PIN_CS, 1);
     
     // Reset pin
+    printf("Configuring Reset pin\n");
     gpio_init(PIN_RST);
     gpio_set_dir(PIN_RST, GPIO_OUT);
     
     // Reset the LoRa module
+    printf("Resetting LoRa module\n");
     lora_reset();
     
     // Set sleep mode
+    printf("Setting sleep mode\n");
     lora_write_reg(REG_OP_MODE, 0x80);  // Sleep mode, LoRa mode
     sleep_ms(10);
     
-    // Set frequency to 915MHz
-    uint32_t frf = ((uint32_t)915000000) / 61.035;
+    // Set frequency to 433 MHz
+    printf("Setting frequency to 433 MHz\n");
+    uint32_t frf = ((uint32_t)433000000) / 61.035;
     lora_write_reg(REG_FR_MSB, (frf >> 16) & 0xFF);
     lora_write_reg(REG_FR_MID, (frf >> 8) & 0xFF);
     lora_write_reg(REG_FR_LSB, frf & 0xFF);
     
     // PA BOOST
+    printf("Configuring PA BOOST\n");
     lora_write_reg(REG_PA_CONFIG, 0x8F);  // PA BOOST enabled, output power = 15dBm
     lora_write_reg(REG_PA_DAC, 0x87);     // PA DAC enabled
     
     // Set modem config
+    printf("Configuring Modem Settings\n");
     lora_write_reg(REG_MODEM_CONFIG_1, 0x72);  // BW=125kHz, CR=4/5, explicit header
     lora_write_reg(REG_MODEM_CONFIG_2, 0x70);  // SF=7, normal mode
     
+    // Set Sync Word (added for debugging)
+    printf("Setting Sync Word\n");
+    lora_write_reg(REG_SYNC_WORD, 0x12);  // Example sync word
+    
     // Set to standby
+    printf("Setting to Standby mode\n");
     lora_write_reg(REG_OP_MODE, 0x81);  // Standby mode
+    
+    printf("LoRa Initialization Complete\n");
 }
 
 void lora_reset() {
+    printf("Performing LoRa module hardware reset\n");
     gpio_put(PIN_RST, 0);
     sleep_ms(10);
     gpio_put(PIN_RST, 1);
     sleep_ms(10);
+    printf("LoRa module reset complete\n");
 }
 
 void lora_write_reg(uint8_t reg, uint8_t data) {
+    printf("Writing to register 0x%02X: value 0x%02X\n", reg, data);
     gpio_put(PIN_CS, 0);
     uint8_t buf[2] = {reg | 0x80, data};  // Set MSB for write
     spi_write_blocking(SPI_PORT, buf, 2);
@@ -122,17 +143,24 @@ uint8_t lora_read_reg(uint8_t reg) {
     spi_write_blocking(SPI_PORT, &buf[0], 1);
     spi_read_blocking(SPI_PORT, 0, &buf[1], 1);
     gpio_put(PIN_CS, 1);
+    
+    printf("Reading from register 0x%02X: value 0x%02X\n", reg, buf[1]);
     return buf[1];
 }
 
 void lora_send_packet(const uint8_t *data, uint8_t len) {
+    printf("Preparing to send packet of length %d\n", len);
+
     // Set to standby
+    printf("Setting to Standby mode before transmission\n");
     lora_write_reg(REG_OP_MODE, 0x81);
     
     // Reset FIFO pointer
+    printf("Resetting FIFO pointer\n");
     lora_write_reg(REG_FIFO_ADDR_PTR, 0x00);
     
     // Write data to FIFO
+    printf("Writing data to FIFO\n");
     gpio_put(PIN_CS, 0);
     uint8_t reg = REG_FIFO | 0x80;
     spi_write_blocking(SPI_PORT, &reg, 1);
@@ -140,36 +168,59 @@ void lora_send_packet(const uint8_t *data, uint8_t len) {
     gpio_put(PIN_CS, 1);
     
     // Set payload length
+    printf("Setting payload length to %d\n", len);
     lora_write_reg(REG_PAYLOAD_LENGTH, len);
     
     // Start transmission
+    printf("Entering TX mode\n");
     lora_write_reg(REG_OP_MODE, 0x83);  // TX mode
     
     // Wait for TX done
+    printf("Waiting for transmission to complete\n");
     while((lora_read_reg(REG_IRQ_FLAGS) & 0x08) == 0) {
         sleep_ms(1);
     }
     
     // Clear IRQ flags
+    printf("Clearing IRQ flags\n");
     lora_write_reg(REG_IRQ_FLAGS, 0xFF);
+    
+    printf("Packet transmission complete\n");
 }
 
 int main() {
+    printf("Starting LoRa TX Test\n");
     stdio_init_all();
-    pico_led_init();
+    
+    // Initialize LED
+    int led_init_result = pico_led_init();
+    printf("LED Initialization Result: %d\n", led_init_result);
     
     // Initialize LoRa
+    printf("Initializing LoRa Module\n");
     lora_init();
     
     // Test message
     uint8_t message[] = "Hello from RP2040 LoRa!";
     
+    printf("Starting TX Loop\n");
+
     while (1) {
         pico_set_led(true);
         printf("Sending packet...\n");
+        
+        // Print out the message contents
+        printf("Message contents: ");
+        for (int i = 0; i < sizeof(message) - 1; i++) {
+            printf("%c", message[i]);
+        }
+        printf("\n");
+        
         lora_send_packet(message, sizeof(message) - 1);
-        printf("Packet sent!\n");
-        sleep_ms(5000);  // Wait 5 seconds between transmissions
+        printf("Packet sent successfully!\n");
+        
+        // Uncomment the sleep if you want to control transmission rate
+        // sleep_ms(5000);  // Wait 5 seconds between transmissions
     }
     
     return 0;
