@@ -177,6 +177,7 @@ void lora_receive_packet(uint8_t *buffer, uint8_t *len) {
 }
 
 int main() {
+    sleep_ms(10000);
     printf("Starting LoRa RX Test\n");
     stdio_init_all();
 
