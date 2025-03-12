@@ -46,6 +46,7 @@ target_link_libraries(gnss_logging
     hardware_clocks
     hardware_gpio
     pico_binary_info
+    pico_multicore
 )
 
 pico_enable_stdio_usb(gnss_logging 1)

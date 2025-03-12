@@ -7,6 +7,7 @@
 #include "ff.h"
 #include "f_util.h"
 #include "hw_config.h"
+#include "pico/multicore.h"
 
 // GNSS Definitions
 #define GNSS_ADDR 0x42
@@ -24,6 +25,8 @@ static FIL data_file;
 #define LOG_INTERVAL_MS 40  // 25Hz = 40ms between samples
 #define STATUS_INTERVAL_MS 1000  // Status update every second
 #define LOG_BUFFER_SIZE 256
+
+void blink_core1_entry();
 
 // UBX-NAV-PVT Poll Request message
 const uint8_t ubx_nav_pvt_poll[] = {
@@ -188,11 +191,13 @@ bool init_sd_card() {
     return true;
 }
 
-bool create_data_file() {
+bool create_data_file(const ubx_pvt_data_t *pvt_data) {
     char filename[32];
     // Create a filename based on timestamp from boot
     uint32_t timestamp = to_ms_since_boot(get_absolute_time());
-    sprintf(filename, "0:/gnss_%lu.csv", timestamp);
+    snprintf(filename, sizeof(filename), "0:/gnss_%04d-%02d-%02d_%02d%02d%02d.csv", 
+             pvt_data->year, pvt_data->month, pvt_data->day, 
+             pvt_data->hour, pvt_data->min, pvt_data->sec);
     
     FRESULT fr = f_open(&data_file, filename, FA_WRITE | FA_CREATE_ALWAYS);
     if (fr != FR_OK) {
@@ -272,11 +277,45 @@ void print_status_line(const ubx_pvt_data_t *data) {
     // serial terminals. Let the terminal handle buffering.
 }
 
+
+int pico_led_init(void) {
+#if defined(PICO_DEFAULT_LED_PIN)
+    // A device like Pico that uses a GPIO for the LED will define PICO_DEFAULT_LED_PIN
+    // so we can use normal GPIO functionality to turn the led on and off
+    gpio_init(PICO_DEFAULT_LED_PIN);
+    gpio_set_dir(PICO_DEFAULT_LED_PIN, GPIO_OUT);
+    return PICO_OK;
+#elif defined(CYW43_WL_GPIO_LED_PIN)
+    // For Pico W devices we need to initialise the driver etc
+    return cyw43_arch_init();
+#endif
+}
+
+// Turn the led on or off
+void pico_set_led(bool led_on) {
+#if defined(PICO_DEFAULT_LED_PIN)
+    // Just set the GPIO on or off
+    gpio_put(PICO_DEFAULT_LED_PIN, led_on);
+#elif defined(CYW43_WL_GPIO_LED_PIN)
+    // Ask the wifi "driver" to set the GPIO on or off
+    cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, led_on);
+#endif
+}
+
+void blink_task(int *freq, bool *on) {
+    while (*on) {
+        pico_set_led(true);
+        sleep_ms(*freq);
+        pico_set_led(false);
+        sleep_ms(*freq);
+    }
+    pico_set_led(false);
+}
+
 int main() {
     stdio_init_all();
     
     // Important: Give enough time for UART to initialize
-    // This is critical for Putty connection
     sleep_ms(20000);
     
     printf("\nGNSS Data Logger - 25Hz\n");
@@ -291,16 +330,28 @@ int main() {
     gpio_pull_up(PICO_DEFAULT_I2C_SCL_PIN);
     
     printf("I2C Initialized\n");
+
+    pico_led_init();
+
+    // int i2cfreq = 50;
+    int waitfreq = 1000;
+    int fixedfreq = 25;
+    int logfreq = 1000;
+    int donefreq = 1000;
+
+    int blink_freq = 1000; 
+    bool blinking = true;
     
+    // Create a second core task for blinking
+    multicore_launch_core1(blink_core1_entry);
+    
+    // Pass the frequency and on/off variables to core 1
+    multicore_fifo_push_blocking((uint32_t)&blink_freq);
+    multicore_fifo_push_blocking((uint32_t)&blinking);
+
     // Initialize SD card
     if (!init_sd_card()) {
         printf("SD card failed\n");
-        while (1) tight_loop_contents();
-    }
-    
-    // Create data file
-    if (!create_data_file()) {
-        printf("File creation failed\n");
         while (1) tight_loop_contents();
     }
     
@@ -309,19 +360,36 @@ int main() {
     uint32_t next_sample_time = 0;
     uint32_t next_status_time = 0;
     
+    // Set the recording time limit (80 seconds)
+    uint32_t start_time = 0;
+    uint32_t time_limit = 80 * 1000;  // 80 seconds in milliseconds
+    bool time_limit_started = false;  // Flag to indicate if the 3D fix has been obtained
+
     printf("Logging started\n");
     
     while (true) {
         uint32_t current_time = to_ms_since_boot(get_absolute_time());
         
-        // Time to collect a sample
+        // Collect a sample
         if (current_time >= next_sample_time) {
-            // Set next sample time
             next_sample_time = current_time + LOG_INTERVAL_MS;
-            
+            // blink_freq = 1000;
             if (read_ubx_message(i2c_default, &pvt_data)) {
                 // Only log if we have a valid position
-                if (pvt_data.fixType >= 2) {
+                if (pvt_data.fixType >= 3) {  // 3D fix is fixType 3 or higher
+                    if (!time_limit_started) {
+                        // Start the timer once we get the first 3D fix
+                        
+                        time_limit_started = true;
+                        start_time = current_time;  // Start counting time from here
+                        blink_freq = 50;
+                        // Create the file with a date-time based filename
+                        if (!create_data_file(&pvt_data)) {
+                            printf("File creation failed\n");
+                            while (1) tight_loop_contents();
+                        }
+                    }
+                    // blink_freq = fixedfreq;
                     write_data_to_sd(&pvt_data, current_time);
                 }
                 
@@ -331,15 +399,30 @@ int main() {
                     next_status_time = current_time + STATUS_INTERVAL_MS;
                 }
             }
-        } else {
-            // Small sleep to prevent tight loop when waiting for next sample time
-            // This helps with power consumption and heat
-            sleep_us(500);
         }
+        
+        // Check if we've exceeded the time limit after the first 3D fix
+        if (time_limit_started && current_time - start_time >= time_limit) {
+            blink_freq = 3000;
+            printf("Time limit reached, stopping logging...\n");
+            break;  // Exit the loop after 80 seconds
+        }
+
+        // Small sleep to prevent tight loop when waiting for next sample time
+        sleep_us(500);
     }
     
-    // Never reached, but good practice
+    // Close the data file and unmount the SD card
     f_close(&data_file);
     f_unmount("0:");
     return 0;
+}
+
+void blink_core1_entry() {
+    // Get the parameters from core 0
+    int *freq = (int*)multicore_fifo_pop_blocking();
+    bool *on = (bool*)multicore_fifo_pop_blocking();
+    
+    // Run the blink task
+    blink_task(freq, on);
 }
