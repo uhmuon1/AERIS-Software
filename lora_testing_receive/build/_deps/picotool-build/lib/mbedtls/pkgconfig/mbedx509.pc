@@ -1,0 +1,11 @@
+prefix=/home/jkbernst/Senior_Projects/AERIS-Software/lora_testing_receive/build/_deps
+includedir=${prefix}/include
+libdir=${prefix}/lib
+
+Name: Mbed TLS
+Description: Mbed TLS is a C library that implements cryptographic primitives, X.509 certificate manipulation and the SSL/TLS and DTLS protocols. Its small code footprint makes it suitable for embedded systems.
+URL: https://www.trustedfirmware.org/projects/mbed-tls/
+Version: 2.28.8
+Requires.private: mbedcrypto
+Cflags: -I"${includedir}"
+Libs: -L"${libdir}" -lmbedx509
