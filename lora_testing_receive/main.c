@@ -11,15 +11,19 @@
 #define REG_FR_LSB              0x08
 #define REG_PA_CONFIG           0x09
 #define REG_PA_DAC              0x4D
+#define REG_OCP                 0x0B
 #define REG_LNA                 0x0C
 #define REG_FIFO_ADDR_PTR      0x0D
+#define REG_FIFO_TX_BASE_ADDR  0x0E
 #define REG_FIFO_RX_BASE_ADDR  0x0F
+#define REG_IRQ_FLAGS_MASK     0x11
 #define REG_IRQ_FLAGS          0x12
 #define REG_TX_POWER           0x09
 #define REG_MODEM_CONFIG_1     0x1D
 #define REG_MODEM_CONFIG_2     0x1E
+#define REG_PREAMBLE_MSB       0x20
+#define REG_PREAMBLE_LSB       0x21
 #define REG_PAYLOAD_LENGTH     0x22
-#define REG_IRQ_FLAGS_MASK     0x11
 #define REG_SYNC_WORD          0x39
 
 // SPI Pins for Thing Plus RP2040
@@ -28,6 +32,8 @@
 #define PIN_SCK  18
 #define PIN_MOSI 19
 #define PIN_RST  20  // Reset pin
+#define PIN_TX   
+#define PIN_RX   
 #define SPI_PORT spi0
 
 // Function declarations
