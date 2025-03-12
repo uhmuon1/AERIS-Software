@@ -11,16 +11,24 @@
 #define REG_FR_LSB              0x08
 #define REG_PA_CONFIG           0x09
 #define REG_PA_DAC              0x4D
+#define REG_OCP                 0x0B
 #define REG_LNA                 0x0C
 #define REG_FIFO_ADDR_PTR      0x0D
 #define REG_FIFO_TX_BASE_ADDR  0x0E
+#define REG_FIFO_RX_BASE_ADDR  0x0F
+#define REG_IRQ_FLAGS_MASK     0x11
 #define REG_IRQ_FLAGS          0x12
 #define REG_TX_POWER           0x09
 #define REG_MODEM_CONFIG_1     0x1D
 #define REG_MODEM_CONFIG_2     0x1E
+#define REG_PREAMBLE_MSB       0x20
+#define REG_PREAMBLE_LSB       0x21
 #define REG_PAYLOAD_LENGTH     0x22
-#define REG_IRQ_FLAGS_MASK     0x11
-#define REG_SYNC_WORD          0x39  // Added Sync Word register
+#define REG_SYNC_WORD          0x39
+
+#define SLEEP_MODE             0x80
+#define STDBY_MODE             0x81
+#define TX_MODE                0x83 // b1000 0011
 
 // SPI Pins for Thing Plus RP2040
 #define PIN_MISO 16
@@ -28,6 +36,8 @@
 #define PIN_SCK  18
 #define PIN_MOSI 19
 #define PIN_RST  20  // Reset pin
+#define PIN_TX   21  // TXEN pin
+#define PIN_RX   22  // RXEN pin
 #define SPI_PORT spi0
 
 // Function declarations
@@ -44,10 +54,6 @@ int pico_led_init(void) {
     gpio_set_dir(PICO_DEFAULT_LED_PIN, GPIO_OUT);
     printf("LED initialized using GPIO pin %d\n", PICO_DEFAULT_LED_PIN);
     return PICO_OK;
-#elif defined(CYW43_WL_GPIO_LED_PIN)
-    int result = cyw43_arch_init();
-    printf("LED initialization result: %d\n", result);
-    return result;
 #endif
     printf("No LED initialization method found\n");
     return -1;
@@ -57,8 +63,6 @@ void pico_set_led(bool led_on) {
     printf("Setting LED %s\n", led_on ? "ON" : "OFF");
 #if defined(PICO_DEFAULT_LED_PIN)
     gpio_put(PICO_DEFAULT_LED_PIN, led_on);
-#elif defined(CYW43_WL_GPIO_LED_PIN)
-    cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, led_on);
 #endif
 }
 
@@ -82,14 +86,25 @@ void lora_init() {
     printf("Configuring Reset pin\n");
     gpio_init(PIN_RST);
     gpio_set_dir(PIN_RST, GPIO_OUT);
+
+    // TXEN Pin set
+    printf("Configuring TXEN pin\n");
+    gpio_init(PIN_TX);
+    gpio_set_dir(PIN_TX, GPIO_OUT);
     
+    // RXEN Pin set
+    printf("Configuring RXEN pin\n");
+    gpio_init(PIN_RX);
+    gpio_set_dir(PIN_RX, GPIO_OUT);
+    gpio_put(PIN_RX, 0); // RXEN to low
+
     // Reset the LoRa module
     printf("Resetting LoRa module\n");
     lora_reset();
     
     // Set sleep mode
     printf("Setting sleep mode\n");
-    lora_write_reg(REG_OP_MODE, 0x80);  // Sleep mode, LoRa mode
+    lora_write_reg(REG_OP_MODE, SLEEP_MODE);  // Sleep mode, LoRa mode
     sleep_ms(10);
     
     // Set frequency to 433 MHz
@@ -101,21 +116,33 @@ void lora_init() {
     
     // PA BOOST
     printf("Configuring PA BOOST\n");
-    lora_write_reg(REG_PA_CONFIG, 0x8F);  // PA BOOST enabled, output power = 15dBm
+    lora_write_reg(REG_PA_CONFIG, 0xFF);  // PA BOOST enabled, output power = 15dBm
     lora_write_reg(REG_PA_DAC, 0x87);     // PA DAC enabled
+    // Setting over current protection
+    lora_write_reg(REG_OCP, 0x3F); // 
+
+    // Setting low noise amplifier
+    lora_write_reg(REG_LNA, 0b00100000); // Min gain
+
+    lora_write_reg(REG_FIFO_ADDR_PTR,0x00);
+    lora_write_reg(REG_FIFO_TX_BASE_ADDR,0x00);
+    lora_write_reg(REG_FIFO_RX_BASE_ADDR,0x00);
     
     // Set modem config
     printf("Configuring Modem Settings\n");
-    lora_write_reg(REG_MODEM_CONFIG_1, 0x72);  // BW=125kHz, CR=4/5, explicit header
-    lora_write_reg(REG_MODEM_CONFIG_2, 0x70);  // SF=7, normal mode
-    
-    // Set Sync Word (added for debugging)
+    lora_write_reg(REG_MODEM_CONFIG_1, 0x63);  // BW=62.5kHz, CR=4/5, explicit header
+    lora_write_reg(REG_MODEM_CONFIG_2, 0x74);  // SF=7, normal mode
+
+    // Setting preamble to 8
+    lora_write_reg(REG_PREAMBLE_MSB, 0x00);
+    lora_write_reg(REG_PREAMBLE_LSB, 0x08);
+
     printf("Setting Sync Word\n");
-    lora_write_reg(REG_SYNC_WORD, 0x12);  // Example sync word
+    lora_write_reg(REG_SYNC_WORD, 0x00);
     
     // Set to standby
     printf("Setting to Standby mode\n");
-    lora_write_reg(REG_OP_MODE, 0x81);  // Standby mode
+    lora_write_reg(REG_OP_MODE, STDBY_MODE);  // Standby mode
     
     printf("LoRa Initialization Complete\n");
 }
@@ -153,7 +180,7 @@ void lora_send_packet(const uint8_t *data, uint8_t len) {
 
     // Set to standby
     printf("Setting to Standby mode before transmission\n");
-    lora_write_reg(REG_OP_MODE, 0x81);
+    lora_write_reg(REG_OP_MODE, STDBY_MODE);
     
     // Reset FIFO pointer
     printf("Resetting FIFO pointer\n");
@@ -161,11 +188,12 @@ void lora_send_packet(const uint8_t *data, uint8_t len) {
     
     // Write data to FIFO
     printf("Writing data to FIFO\n");
-    gpio_put(PIN_CS, 0);
+    // gpio_put(PIN_CS, 0);
     uint8_t reg = REG_FIFO | 0x80;
     spi_write_blocking(SPI_PORT, &reg, 1);
     spi_write_blocking(SPI_PORT, data, len);
-    gpio_put(PIN_CS, 1);
+    // TODO see what this does
+    // gpio_put(PIN_CS, 1);
     
     // Set payload length
     printf("Setting payload length to %d\n", len);
@@ -173,13 +201,17 @@ void lora_send_packet(const uint8_t *data, uint8_t len) {
     
     // Start transmission
     printf("Entering TX mode\n");
-    lora_write_reg(REG_OP_MODE, 0x83);  // TX mode
+    gpio_put(PIN_TX, 1); // Set TXEN Pin to high
+    // TODO set TXEN to logic high
+    lora_write_reg(REG_OP_MODE, TX_MODE);  // TX mode
     
     // Wait for TX done
     printf("Waiting for transmission to complete\n");
     while((lora_read_reg(REG_IRQ_FLAGS) & 0x08) == 0) {
         sleep_ms(1);
     }
+
+    gpio_put(PIN_TX, 0); // Set TXEN Pin to low
     
     // Clear IRQ flags
     printf("Clearing IRQ flags\n");
@@ -189,6 +221,7 @@ void lora_send_packet(const uint8_t *data, uint8_t len) {
 }
 
 int main() {
+    sleep_ms(5000); // Give time to pull up serial bus
     printf("Starting LoRa TX Test\n");
     stdio_init_all();
     
