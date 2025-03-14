@@ -26,6 +26,7 @@
 #define REG_PAYLOAD_LENGTH     0x22
 #define REG_SYNC_WORD          0x39
 
+// Modes
 #define SLEEP_MODE             0x80
 #define STDBY_MODE             0x81
 #define TX_MODE                0x83 // b1000 0011
@@ -116,13 +117,13 @@ void lora_init() {
     
     // PA BOOST
     printf("Configuring PA BOOST\n");
-    lora_write_reg(REG_PA_CONFIG, 0xFF);  // PA BOOST enabled, output power = 15dBm
+    lora_write_reg(REG_PA_CONFIG, 0b01001000);  // PA BOOST enabled, output power = 15dBm (0xFF)
     lora_write_reg(REG_PA_DAC, 0x87);     // PA DAC enabled
     // Setting over current protection
     lora_write_reg(REG_OCP, 0x3F); // 
 
     // Setting low noise amplifier
-    lora_write_reg(REG_LNA, 0b00100000); // Min gain
+    lora_write_reg(REG_LNA, 0x20); // Min gain
 
     lora_write_reg(REG_FIFO_ADDR_PTR,0x00);
     lora_write_reg(REG_FIFO_TX_BASE_ADDR,0x00);
@@ -171,7 +172,7 @@ uint8_t lora_read_reg(uint8_t reg) {
     spi_read_blocking(SPI_PORT, 0, &buf[1], 1);
     gpio_put(PIN_CS, 1);
     
-    printf("Reading from register 0x%02X: value 0x%02X\n", reg, buf[1]);
+    // printf("Reading from register 0x%02X: value 0x%02X\n", reg, buf[1]);
     return buf[1];
 }
 
