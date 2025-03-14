@@ -1,5 +1,0 @@
-/home/jkbernst/Senior_Projects/AERIS-Software/lora_testing_receive/build/_deps/picotool/picotool
-/home/jkbernst/Senior_Projects/AERIS-Software/lora_testing_receive/build/_deps/picotool/picotoolTargets.cmake
-/home/jkbernst/Senior_Projects/AERIS-Software/lora_testing_receive/build/_deps/picotool/picotoolTargets-release.cmake
-/home/jkbernst/Senior_Projects/AERIS-Software/lora_testing_receive/build/_deps/picotool/picotoolConfig.cmake
-/home/jkbernst/Senior_Projects/AERIS-Software/lora_testing_receive/build/_deps/picotool/picotoolConfigVersion.cmake

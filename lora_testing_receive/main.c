@@ -26,14 +26,16 @@
 #define REG_PAYLOAD_LENGTH     0x22
 #define REG_SYNC_WORD          0x39
 
+#define REG_TIMEOUT_LSB        0x15
+
 // SPI Pins for Thing Plus RP2040
 #define PIN_MISO 16
 #define PIN_CS   17
 #define PIN_SCK  18
 #define PIN_MOSI 19
 #define PIN_RST  20  // Reset pin
-#define PIN_TX   
-#define PIN_RX   
+#define PIN_TX   21
+#define PIN_RX   22
 #define SPI_PORT spi0
 
 // Function declarations
@@ -89,6 +91,17 @@ void lora_init() {
     gpio_init(PIN_RST);
     gpio_set_dir(PIN_RST, GPIO_OUT);
 
+    // TXEN Pin set
+    printf("Configuring TXEN pin\n");
+    gpio_init(PIN_TX);
+    gpio_set_dir(PIN_TX, GPIO_OUT);
+    gpio_put(PIN_TX, 0);
+    
+    // RXEN Pin set
+    printf("Configuring RXEN pin\n");
+    gpio_init(PIN_RX);
+    gpio_set_dir(PIN_RX, GPIO_OUT);
+
     // Reset the LoRa module
     printf("Resetting LoRa module\n");
     lora_reset();
@@ -107,21 +120,34 @@ void lora_init() {
 
     // PA BOOST
     printf("Configuring PA BOOST\n");
-    lora_write_reg(REG_PA_CONFIG, 0x8F);  // PA BOOST enabled, output power = 15dBm
+    lora_write_reg(REG_PA_CONFIG, 0xFF);  // PA BOOST enabled, output power = 15dBm
     lora_write_reg(REG_PA_DAC, 0x87);     // PA DAC enabled
+    lora_write_reg(REG_OCP, 0x3F);
+
+    // low noise amplifier
+    lora_write_reg(REG_LNA, 0x20);
+
+    lora_write_reg(REG_FIFO_ADDR_PTR,0x00);
+    lora_write_reg(REG_FIFO_TX_BASE_ADDR,0x00);
+    lora_write_reg(REG_FIFO_RX_BASE_ADDR,0x00);
 
     // Set modem config
     printf("Configuring Modem Settings\n");
-    lora_write_reg(REG_MODEM_CONFIG_1, 0x72);  // BW=125kHz, CR=4/5, explicit header
-    lora_write_reg(REG_MODEM_CONFIG_2, 0x70);  // SF=7, normal mode
+    lora_write_reg(REG_MODEM_CONFIG_1, 0x63);  // BW=125kHz, CR=4/5, explicit header
+    lora_write_reg(REG_MODEM_CONFIG_2, 0x77);  // SF=7, normal mode
+    lora_write_reg(REG_TIMEOUT_LSB, 0x00);
+
+    lora_write_reg(REG_PREAMBLE_MSB,0x00);
+    lora_write_reg(REG_PREAMBLE_LSB,0x08);
 
     // Set Sync Word (added for debugging)
     printf("Setting Sync Word\n");
-    lora_write_reg(REG_SYNC_WORD, 0x12);  // Example sync word
+    lora_write_reg(REG_SYNC_WORD, 0x00);  // Example sync word
 
     // Set to standby
     printf("Setting to Standby mode\n");
     lora_write_reg(REG_OP_MODE, 0x81);  // Standby mode
+    lora_write_reg(REG_OP_MODE, 0x85);
 
     printf("LoRa Initialization Complete\n");
 }
@@ -150,14 +176,18 @@ uint8_t lora_read_reg(uint8_t reg) {
     spi_read_blocking(SPI_PORT, 0, &buf[1], 1);
     gpio_put(PIN_CS, 1);
 
-    printf("Reading from register 0x%02X: value 0x%02X\n", reg, buf[1]);
+    //printf("Reading from register 0x%02X: value 0x%02X\n", reg, buf[1]);
     return buf[1];
 }
 
 void lora_receive_packet(uint8_t *buffer, uint8_t *len) {
+    
+    
+    lora_write_reg(REG_FIFO_ADDR_PTR,0x00);
+
     // Set to RX mode
     printf("Entering RX mode\n");
-    lora_write_reg(REG_OP_MODE, 0x85);  // RX mode
+    gpio_put(PIN_RX,1);
 
     // Wait for RX done
     printf("Waiting for received packet\n");
@@ -165,12 +195,20 @@ void lora_receive_packet(uint8_t *buffer, uint8_t *len) {
         sleep_ms(1);
     }
 
+    if ((lora_read_reg(REG_IRQ_FLAGS) & 0x20) > 0) {
+        printf("CRC Error\n"); 
+        sleep_ms(1);
+    }
+
+    gpio_put(PIN_RX,0);
+
     // Clear IRQ flags
     printf("Clearing IRQ flags\n");
     lora_write_reg(REG_IRQ_FLAGS, 0xFF);
 
     // Read payload length
-    *len = lora_read_reg(REG_PAYLOAD_LENGTH);
+    // *len = lora_read_reg(23);
+    len = 23;
     printf("Payload length: %d\n", *len);
 
     // Read data from FIFO
