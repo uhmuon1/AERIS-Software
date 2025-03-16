@@ -4,15 +4,15 @@
 #include "hardware/gpio.h"
 
 // LoRa module registers
-#define REG_FIFO                 0x00
-#define REG_OP_MODE             0x01
-#define REG_FR_MSB              0x06
-#define REG_FR_MID              0x07
-#define REG_FR_LSB              0x08
-#define REG_PA_CONFIG           0x09
-#define REG_PA_DAC              0x4D
-#define REG_OCP                 0x0B
-#define REG_LNA                 0x0C
+#define REG_FIFO               0x00
+#define REG_OP_MODE            0x01
+#define REG_FR_MSB             0x06
+#define REG_FR_MID             0x07
+#define REG_FR_LSB             0x08
+#define REG_PA_CONFIG          0x09
+#define REG_PA_DAC             0x4D
+#define REG_OCP                0x0B
+#define REG_LNA                0x0C
 #define REG_FIFO_ADDR_PTR      0x0D
 #define REG_FIFO_TX_BASE_ADDR  0x0E
 #define REG_FIFO_RX_BASE_ADDR  0x0F
@@ -21,12 +21,19 @@
 #define REG_TX_POWER           0x09
 #define REG_MODEM_CONFIG_1     0x1D
 #define REG_MODEM_CONFIG_2     0x1E
+#define REG_MODEM_CONFIG_3     0x26
 #define REG_PREAMBLE_MSB       0x20
 #define REG_PREAMBLE_LSB       0x21
 #define REG_PAYLOAD_LENGTH     0x22
 #define REG_SYNC_WORD          0x39
 
 #define REG_TIMEOUT_LSB        0x15
+
+// Modes
+#define SLEEP_MODE             0x80 // b1000 0000
+#define STDBY_MODE             0x81 // b1000 0001
+#define TX_MODE                0x83 // b1000 0011
+#define RXCONT_MODE            0x85 // b1000 0101
 
 // SPI Pins for Thing Plus RP2040
 #define PIN_MISO 16
@@ -37,6 +44,9 @@
 #define PIN_TX   21
 #define PIN_RX   22
 #define SPI_PORT spi0
+
+// Configuration
+#define FREQUENCY 433000000
 
 // Function declarations
 void lora_reset();
@@ -113,7 +123,7 @@ void lora_init() {
 
     // Set frequency to 433 MHz
     printf("Setting frequency to 433 MHz\n");
-    uint32_t frf = ((uint32_t)433000000) / 61.035;
+    uint32_t frf = ((uint32_t)FREQUENCY) / 61.035;
     lora_write_reg(REG_FR_MSB, (frf >> 16) & 0xFF);
     lora_write_reg(REG_FR_MID, (frf >> 8) & 0xFF);
     lora_write_reg(REG_FR_LSB, frf & 0xFF);
@@ -125,7 +135,7 @@ void lora_init() {
     lora_write_reg(REG_OCP, 0x3F);
 
     // low noise amplifier
-    lora_write_reg(REG_LNA, 0x20);
+    lora_write_reg(REG_LNA, 0xB0);
 
     lora_write_reg(REG_FIFO_ADDR_PTR,0x00);
     lora_write_reg(REG_FIFO_TX_BASE_ADDR,0x00);
@@ -135,7 +145,8 @@ void lora_init() {
     printf("Configuring Modem Settings\n");
     lora_write_reg(REG_MODEM_CONFIG_1, 0x63);  // BW=125kHz, CR=4/5, explicit header
     lora_write_reg(REG_MODEM_CONFIG_2, 0x77);  // SF=7, normal mode
-    lora_write_reg(REG_TIMEOUT_LSB, 0x00);
+    lora_write_reg(REG_MODEM_CONFIG_3, 0x04);  // LNA gain set by the internal AGC loop
+    lora_write_reg(REG_TIMEOUT_LSB, 0xF0);   // Set timeout to max
 
     lora_write_reg(REG_PREAMBLE_MSB,0x00);
     lora_write_reg(REG_PREAMBLE_LSB,0x08);
@@ -145,9 +156,8 @@ void lora_init() {
     lora_write_reg(REG_SYNC_WORD, 0x00);  // Example sync word
 
     // Set to standby
-    printf("Setting to Standby mode\n");
-    lora_write_reg(REG_OP_MODE, 0x81);  // Standby mode
-    lora_write_reg(REG_OP_MODE, 0x85);
+    printf("Setting to RX Continuous mode\n");
+    lora_write_reg(REG_OP_MODE, RXCONT_MODE);
 
     printf("LoRa Initialization Complete\n");
 }
@@ -195,7 +205,7 @@ void lora_receive_packet(uint8_t *buffer, uint8_t *len) {
         sleep_ms(1);
     }
 
-    if ((lora_read_reg(REG_IRQ_FLAGS) & 0x20) > 0) {
+    if (lora_read_reg(REG_IRQ_FLAGS) & 0x20) {
         printf("CRC Error\n"); 
         sleep_ms(1);
     }
@@ -207,9 +217,8 @@ void lora_receive_packet(uint8_t *buffer, uint8_t *len) {
     lora_write_reg(REG_IRQ_FLAGS, 0xFF);
 
     // Read payload length
-    // *len = lora_read_reg(23);
-    len = 23;
-    printf("Payload length: %d\n", *len);
+    *len = lora_read_reg(REG_PAYLOAD_LENGTH);
+    printf("Payload length: %d\n", len);
 
     // Read data from FIFO
     printf("Reading data from FIFO\n");
@@ -221,13 +230,12 @@ void lora_receive_packet(uint8_t *buffer, uint8_t *len) {
 }
 
 int main() {
-    sleep_ms(10000);
+    sleep_ms(5000);
     printf("Starting LoRa RX Test\n");
     stdio_init_all();
 
     // Initialize LED
-    int led_init_result = pico_led_init();
-    printf("LED Initialization Result: %d\n", led_init_result);
+    printf("LED Initialization Result: %d\n", pico_led_init());
 
     // Initialize LoRa
     printf("Initializing LoRa Module\n");

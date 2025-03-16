@@ -41,6 +41,9 @@
 #define PIN_RX   22  // RXEN pin
 #define SPI_PORT spi0
 
+// Configuration
+#define FREQUENCY 433000000
+
 // Function declarations
 void lora_reset();
 void lora_write_reg(uint8_t reg, uint8_t data);
@@ -110,14 +113,14 @@ void lora_init() {
     
     // Set frequency to 433 MHz
     printf("Setting frequency to 433 MHz\n");
-    uint32_t frf = ((uint32_t)433000000) / 61.035;
+    uint32_t frf = ((uint32_t)FREQUENCY) / 61.035;
     lora_write_reg(REG_FR_MSB, (frf >> 16) & 0xFF);
     lora_write_reg(REG_FR_MID, (frf >> 8) & 0xFF);
     lora_write_reg(REG_FR_LSB, frf & 0xFF);
     
     // PA BOOST
     printf("Configuring PA BOOST\n");
-    lora_write_reg(REG_PA_CONFIG, 0b01001000);  // PA BOOST enabled, output power = 15dBm (0xFF)
+    lora_write_reg(REG_PA_CONFIG, 0b00110011);  // 0-011-0011 PA BOOST enabled, output power = 15dBm
     lora_write_reg(REG_PA_DAC, 0x87);     // PA DAC enabled
     // Setting over current protection
     lora_write_reg(REG_OCP, 0x3F); // 
