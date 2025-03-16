@@ -120,10 +120,10 @@ void lora_init() {
     
     // PA BOOST
     printf("Configuring PA BOOST\n");
-    lora_write_reg(REG_PA_CONFIG, 0b00110011);  // 0-011-0011 PA BOOST enabled, output power = 15dBm
-    lora_write_reg(REG_PA_DAC, 0x87);     // PA DAC enabled
+    lora_write_reg(REG_PA_CONFIG, 0b00111111);  // 0-011-1111 PA BOOST enabled, output power = 15dBm
+    lora_write_reg(REG_PA_DAC, 0x84);     // PA_HF/LF or +17dBm
     // Setting over current protection
-    lora_write_reg(REG_OCP, 0x3F); // 
+    lora_write_reg(REG_OCP, 0b00111111); // 00-1-11111
 
     // Setting low noise amplifier
     lora_write_reg(REG_LNA, 0x20); // Min gain
@@ -134,8 +134,8 @@ void lora_init() {
     
     // Set modem config
     printf("Configuring Modem Settings\n");
-    lora_write_reg(REG_MODEM_CONFIG_1, 0x63);  // BW=62.5kHz, CR=4/5, explicit header
-    lora_write_reg(REG_MODEM_CONFIG_2, 0x74);  // SF=7, normal mode
+    lora_write_reg(REG_MODEM_CONFIG_1, 0x63);  // 0110-001-1 BW=62.5kHz, CR=4/5, explicit header
+    lora_write_reg(REG_MODEM_CONFIG_2, 0x74);  // 0111-0-1-00 SF=7, normal mode
 
     // Setting preamble to 8
     lora_write_reg(REG_PREAMBLE_MSB, 0x00);
@@ -225,9 +225,10 @@ void lora_send_packet(const uint8_t *data, uint8_t len) {
 }
 
 int main() {
+    stdio_init_all();
+
     sleep_ms(5000); // Give time to pull up serial bus
     printf("Starting LoRa TX Test\n");
-    stdio_init_all();
     
     // Initialize LED
     int led_init_result = pico_led_init();
