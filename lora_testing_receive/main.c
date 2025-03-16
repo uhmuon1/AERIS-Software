@@ -136,7 +136,7 @@ void lora_init() {
     lora_write_reg(REG_OCP, 0x3F);
 
     // low noise amplifier
-    lora_write_reg(REG_LNA, 0b00100000); // 001-00-0-00  max gain
+    lora_write_reg(REG_LNA, 0b10100000); // 101-00-0-00  smth gain
 
     // Reset FIFO buffer pointer
     lora_write_reg(REG_FIFO_ADDR_PTR,0x00);
@@ -253,7 +253,7 @@ void lora_receive_packet(uint8_t *buffer, uint8_t *len) {
         printf("  IRQ Flags: 0x%02x \n", lora_read_reg(REG_IRQ_FLAGS));
         sleep_ms(1);
     }
-    printf("  IRQ Flags: 0x%02x \n", lora_read_reg(REG_IRQ_FLAGS));
+    read_signal_quality();
     if (lora_read_reg(REG_IRQ_FLAGS) & 0x20) {
         printf("CRC Error\n"); 
         sleep_ms(1);
