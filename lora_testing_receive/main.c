@@ -143,8 +143,8 @@ void lora_init() {
 
     // Set modem config
     printf("Configuring Modem Settings\n");
-    lora_write_reg(REG_MODEM_CONFIG_1, 0x63);  // BW=125kHz, CR=4/5, explicit header
-    lora_write_reg(REG_MODEM_CONFIG_2, 0x77);  // SF=7, normal mode
+    lora_write_reg(REG_MODEM_CONFIG_1, 0x63);  // 0110-001-1 BW=62.5kHz, CR=4/5, explicit header
+    lora_write_reg(REG_MODEM_CONFIG_2, 0x77);  // 0111-0-1-11 SF=7, 
     lora_write_reg(REG_MODEM_CONFIG_3, 0x04);  // LNA gain set by the internal AGC loop
     lora_write_reg(REG_TIMEOUT_LSB, 0xF0);   // Set timeout to max
 
@@ -230,12 +230,13 @@ void lora_receive_packet(uint8_t *buffer, uint8_t *len) {
 }
 
 int main() {
-    sleep_ms(5000);
-    printf("Starting LoRa RX Test\n");
     stdio_init_all();
 
     // Initialize LED
-    printf("LED Initialization Result: %d\n", pico_led_init());
+    pico_led_init();
+
+    sleep_ms(5000);
+    printf("Starting LoRa RX Test\n");
 
     // Initialize LoRa
     printf("Initializing LoRa Module\n");
