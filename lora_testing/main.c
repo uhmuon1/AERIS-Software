@@ -163,7 +163,7 @@ void debug_tx_parameters() {
     
     printf("TX Parameters:\n");
     printf("  Spreading Factor: SF%d\n", spreading);
-    printf("  Bandwidth: %s\n", bandwidth == 7 ? "125kHz" : bandwidth == 8 ? "250kHz" : "500kHz");
+    printf("  Bandwidth: 0x%02x\n", bandwidth);
     printf("  Coding Rate: 4/%d\n", coding_rate + 4);
     printf("  Output Power: %d\n", power);
 }

@@ -30,7 +30,6 @@
 #define REG_PKT_SNR_VALUE      0x19
 #define REG_PKT_RSSI_VALUE     0x1B
 #define REG_DETECTION_THRESHOLD 0x37
-
 #define REG_TIMEOUT_LSB        0x15
 
 // Modes
@@ -132,14 +131,12 @@ void lora_init() {
     lora_write_reg(REG_FR_MID, (frf >> 8) & 0xFF);
     lora_write_reg(REG_FR_LSB, frf & 0xFF);
 
-    // PA BOOST
-    printf("Configuring PA BOOST\n");
-    // lora_write_reg(REG_PA_CONFIG, 0xFF);  // PA BOOST enabled, output power = 15dBm
-    // lora_write_reg(REG_PA_DAC, 0x87);     // PA DAC enabled
+    // Set OCP
+    printf("Configuring Over Currnet Protection\n");
     lora_write_reg(REG_OCP, 0x3F);
 
     // low noise amplifier
-    lora_write_reg(REG_LNA, 0xB0);
+    lora_write_reg(REG_LNA, 0b10100000); // 101-00-0-00  smth gain
 
     // Reset FIFO buffer pointer
     lora_write_reg(REG_FIFO_ADDR_PTR,0x00);
@@ -180,11 +177,14 @@ void read_signal_quality() {
     // Read packet RSSI (from last packet)
     int8_t pkt_rssi_value = lora_read_reg(REG_PKT_RSSI_VALUE);
     float pkt_rssi = -157 + pkt_rssi_value;  // Adjust formula based on frequency band
+
+    int8_t detect_thres_value = lora_read_reg(REG_DETECTION_THRESHOLD);
     
     printf("Signal Quality:\n");
     printf("  Current RSSI: %.1f dBm\n", rssi);
     printf("  Last Packet RSSI: %.1f dBm\n", pkt_rssi);
     printf("  Last Packet SNR: %.1f dB\n", snr);
+    printf("  Detection Threshold: 0x%02x \n", detect_thres_value);
     
     // Signal strength assessment
     if (pkt_rssi > -80) {
@@ -248,11 +248,12 @@ void lora_receive_packet(uint8_t *buffer, uint8_t *len) {
 
     // Wait for RX done
     printf("Waiting for received packet\n");
-    while ((lora_read_reg(REG_IRQ_FLAGS) & 0x40) == 0 || (lora_read_reg(REG_IRQ_FLAGS) & 0x80) == 0) {  // RX done flag or timeout
+    while ((lora_read_reg(REG_IRQ_FLAGS) & 0x40) == 0) {  // RX done flag or timeout
         read_signal_quality();
+        printf("  IRQ Flags: 0x%02x \n", lora_read_reg(REG_IRQ_FLAGS));
         sleep_ms(1);
     }
-
+    read_signal_quality();
     if (lora_read_reg(REG_IRQ_FLAGS) & 0x20) {
         printf("CRC Error\n"); 
         sleep_ms(1);
