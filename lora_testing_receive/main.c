@@ -26,6 +26,10 @@
 #define REG_PREAMBLE_LSB       0x21
 #define REG_PAYLOAD_LENGTH     0x22
 #define REG_SYNC_WORD          0x39
+#define REG_RSSI_VALUE         0x1A
+#define REG_PKT_SNR_VALUE      0x19
+#define REG_PKT_RSSI_VALUE     0x1B
+#define REG_DETECTION_THRESHOLD 0x37
 
 #define REG_TIMEOUT_LSB        0x15
 
@@ -118,7 +122,7 @@ void lora_init() {
 
     // Set sleep mode
     printf("Setting sleep mode\n");
-    lora_write_reg(REG_OP_MODE, 0x80);  // Sleep mode, LoRa mode
+    lora_write_reg(REG_OP_MODE, SLEEP_MODE);  // Sleep mode, LoRa mode
     sleep_ms(10);
 
     // Set frequency to 433 MHz
@@ -130,13 +134,14 @@ void lora_init() {
 
     // PA BOOST
     printf("Configuring PA BOOST\n");
-    lora_write_reg(REG_PA_CONFIG, 0xFF);  // PA BOOST enabled, output power = 15dBm
-    lora_write_reg(REG_PA_DAC, 0x87);     // PA DAC enabled
+    // lora_write_reg(REG_PA_CONFIG, 0xFF);  // PA BOOST enabled, output power = 15dBm
+    // lora_write_reg(REG_PA_DAC, 0x87);     // PA DAC enabled
     lora_write_reg(REG_OCP, 0x3F);
 
     // low noise amplifier
     lora_write_reg(REG_LNA, 0xB0);
 
+    // Reset FIFO buffer pointer
     lora_write_reg(REG_FIFO_ADDR_PTR,0x00);
     lora_write_reg(REG_FIFO_TX_BASE_ADDR,0x00);
     lora_write_reg(REG_FIFO_RX_BASE_ADDR,0x00);
@@ -144,8 +149,8 @@ void lora_init() {
     // Set modem config
     printf("Configuring Modem Settings\n");
     lora_write_reg(REG_MODEM_CONFIG_1, 0x63);  // 0110-001-1 BW=62.5kHz, CR=4/5, explicit header
-    lora_write_reg(REG_MODEM_CONFIG_2, 0x77);  // 0111-0-1-11 SF=7, 
-    lora_write_reg(REG_MODEM_CONFIG_3, 0x04);  // LNA gain set by the internal AGC loop
+    lora_write_reg(REG_MODEM_CONFIG_2, 0x77);  // 0111-0-1-11 SF=7, normal mode
+    lora_write_reg(REG_MODEM_CONFIG_3, 0x04);  // 0000-0-1-00 LNA gain set by the internal AGC loop
     lora_write_reg(REG_TIMEOUT_LSB, 0xF0);   // Set timeout to max
 
     lora_write_reg(REG_PREAMBLE_MSB,0x00);
@@ -160,6 +165,48 @@ void lora_init() {
     lora_write_reg(REG_OP_MODE, RXCONT_MODE);
 
     printf("LoRa Initialization Complete\n");
+}
+
+// Function to read and display signal quality
+void read_signal_quality() {
+    // Read RSSI (current)
+    int8_t rssi_value = lora_read_reg(REG_RSSI_VALUE);
+    float rssi = -157 + rssi_value;  // Adjust formula based on frequency band
+    
+    // Read SNR (from last packet)
+    int8_t snr_raw = lora_read_reg(REG_PKT_SNR_VALUE);
+    float snr = snr_raw * 0.25;
+    
+    // Read packet RSSI (from last packet)
+    int8_t pkt_rssi_value = lora_read_reg(REG_PKT_RSSI_VALUE);
+    float pkt_rssi = -157 + pkt_rssi_value;  // Adjust formula based on frequency band
+    
+    printf("Signal Quality:\n");
+    printf("  Current RSSI: %.1f dBm\n", rssi);
+    printf("  Last Packet RSSI: %.1f dBm\n", pkt_rssi);
+    printf("  Last Packet SNR: %.1f dB\n", snr);
+    
+    // Signal strength assessment
+    if (pkt_rssi > -80) {
+        printf("  Signal strength: EXCELLENT\n");
+    } else if (pkt_rssi > -100) {
+        printf("  Signal strength: GOOD\n");
+    } else if (pkt_rssi > -120) {
+        printf("  Signal strength: FAIR\n");
+    } else {
+        printf("  Signal strength: POOR\n");
+    }
+    
+    // SNR assessment
+    if (snr > 5) {
+        printf("  Signal quality: EXCELLENT\n");
+    } else if (snr > 0) {
+        printf("  Signal quality: GOOD\n");
+    } else if (snr > -5) {
+        printf("  Signal quality: FAIR\n");
+    } else {
+        printf("  Signal quality: POOR\n");
+    }
 }
 
 void lora_reset() {
@@ -201,7 +248,8 @@ void lora_receive_packet(uint8_t *buffer, uint8_t *len) {
 
     // Wait for RX done
     printf("Waiting for received packet\n");
-    while ((lora_read_reg(REG_IRQ_FLAGS) & 0x40) == 0) {  // RX done flag
+    while ((lora_read_reg(REG_IRQ_FLAGS) & 0x40) == 0 || (lora_read_reg(REG_IRQ_FLAGS) & 0x80) == 0) {  // RX done flag or timeout
+        read_signal_quality();
         sleep_ms(1);
     }
 

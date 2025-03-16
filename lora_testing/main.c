@@ -149,6 +149,23 @@ void lora_init() {
     lora_write_reg(REG_OP_MODE, STDBY_MODE);  // Standby mode
     
     printf("LoRa Initialization Complete\n");
+
+    debug_tx_parameters();
+}
+
+void debug_tx_parameters() {
+    uint8_t sf_cr = lora_read_reg(REG_MODEM_CONFIG_2);
+    uint8_t spreading = (sf_cr >> 4) & 0x0F;
+    uint8_t bw_cr = lora_read_reg(REG_MODEM_CONFIG_1);
+    uint8_t bandwidth = (bw_cr >> 4) & 0x0F;
+    uint8_t coding_rate = (bw_cr >> 1) & 0x07;
+    uint8_t power = lora_read_reg(REG_PA_CONFIG) & 0x0F;
+    
+    printf("TX Parameters:\n");
+    printf("  Spreading Factor: SF%d\n", spreading);
+    printf("  Bandwidth: %s\n", bandwidth == 7 ? "125kHz" : bandwidth == 8 ? "250kHz" : "500kHz");
+    printf("  Coding Rate: 4/%d\n", coding_rate + 4);
+    printf("  Output Power: %d\n", power);
 }
 
 void lora_reset() {
