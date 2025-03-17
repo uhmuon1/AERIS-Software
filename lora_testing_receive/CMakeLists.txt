@@ -56,7 +56,7 @@ set(CMAKE_CXX_STANDARD 17)
 pico_sdk_init()
 
 add_executable(lora_rx
-    main.c
+    lora_rx_single.c
     )
 
 target_link_libraries(lora_rx pico_stdlib hardware_spi)

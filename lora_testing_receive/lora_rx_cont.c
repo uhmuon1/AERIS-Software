@@ -2,6 +2,7 @@
 #include "pico/stdlib.h"
 #include "hardware/spi.h"
 #include "hardware/gpio.h"
+#include "pico/time.h"  // Include for timing functions
 
 // LoRa module registers
 #define REG_FIFO               0x00
@@ -75,13 +76,38 @@ int pico_led_init(void) {
 }
 
 void pico_set_led(bool led_on) {
-    printf("Setting LED %s\n", led_on ? "ON" : "OFF");
+    // printf("Setting LED %s\n", led_on ? "ON" : "OFF");
 #if defined(PICO_DEFAULT_LED_PIN)
     gpio_put(PICO_DEFAULT_LED_PIN, led_on);
 #elif defined(CYW43_WL_GPIO_LED_PIN)
     cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, led_on);
 #endif
 }
+
+
+// Timing variables
+absolute_time_t start_time;
+absolute_time_t checkpoint_time;
+
+// Function to start timing
+void start_timer() {
+    start_time = get_absolute_time();
+    checkpoint_time = start_time;
+    printf("Timer started\n");
+}
+
+// Function to print elapsed time since last checkpoint
+void checkpoint_timer(const char* checkpoint_name) {
+    absolute_time_t current_time = get_absolute_time();
+    uint32_t elapsed_since_last = absolute_time_diff_us(checkpoint_time, current_time) / 1000;
+    uint32_t elapsed_since_start = absolute_time_diff_us(start_time, current_time) / 1000;
+    
+    printf("TIMING: %s - %lu ms since last checkpoint, %lu ms since start\n", 
+           checkpoint_name, elapsed_since_last, elapsed_since_start);
+    
+    checkpoint_time = current_time;  // Update checkpoint time
+}
+
 
 void lora_init() {
     printf("Starting LoRa Initialization...\n");
@@ -136,20 +162,23 @@ void lora_init() {
     lora_write_reg(REG_OCP, 0x3F);
 
     // low noise amplifier
-    lora_write_reg(REG_LNA, 0b10100000); // 101-00-0-00  smth gain
+    printf("Setting Low Noise Amplifier\n");
+    lora_write_reg(REG_LNA, 0b10100000); // 101-00-0-00  G5 gain
 
     // Reset FIFO buffer pointer
+    printf("Reset FIFO\n");
     lora_write_reg(REG_FIFO_ADDR_PTR,0x00);
     lora_write_reg(REG_FIFO_TX_BASE_ADDR,0x00);
     lora_write_reg(REG_FIFO_RX_BASE_ADDR,0x00);
 
     // Set modem config
     printf("Configuring Modem Settings\n");
-    lora_write_reg(REG_MODEM_CONFIG_1, 0x63);  // 0110-001-1 BW=62.5kHz, CR=4/5, explicit header
-    lora_write_reg(REG_MODEM_CONFIG_2, 0x77);  // 0111-0-1-11 SF=7, normal mode
-    lora_write_reg(REG_MODEM_CONFIG_3, 0x04);  // 0000-0-1-00 LNA gain set by the internal AGC loop
+    lora_write_reg(REG_MODEM_CONFIG_1, 0b01100011);  // 0110-001-1 BW=62.5kHz, CR=4/5, implicit header
+    lora_write_reg(REG_MODEM_CONFIG_2, 0b01110111);  // 0111-0-1-11 SF=7, rx crc on, timeout msb
+    lora_write_reg(REG_MODEM_CONFIG_3, 0x00);  // 0000-0-0-00 LNA gain set by the internal AGC loop
     lora_write_reg(REG_TIMEOUT_LSB, 0xF0);   // Set timeout to max
 
+    printf("Configuring Preamble\n");
     lora_write_reg(REG_PREAMBLE_MSB,0x00);
     lora_write_reg(REG_PREAMBLE_LSB,0x08);
 
@@ -160,6 +189,7 @@ void lora_init() {
     // Set to standby
     printf("Setting to RX Continuous mode\n");
     lora_write_reg(REG_OP_MODE, RXCONT_MODE);
+    gpio_put(PIN_RX,1);
 
     printf("LoRa Initialization Complete\n");
 }
@@ -219,7 +249,7 @@ void lora_reset() {
 }
 
 void lora_write_reg(uint8_t reg, uint8_t data) {
-    printf("Writing to register 0x%02X: value 0x%02X\n", reg, data);
+    // printf("Writing to register 0x%02X: value 0x%02X\n", reg, data);
     gpio_put(PIN_CS, 0);
     uint8_t buf[2] = {reg | 0x80, data};  // Set MSB for write
     spi_write_blocking(SPI_PORT, buf, 2);
@@ -238,26 +268,23 @@ uint8_t lora_read_reg(uint8_t reg) {
 }
 
 void lora_receive_packet(uint8_t *buffer, uint8_t *len) {
-    
-    
-    lora_write_reg(REG_FIFO_ADDR_PTR,0x00);
-
-    // Set to RX mode
-    printf("Entering RX mode\n");
-    gpio_put(PIN_RX,1);
-
     // Wait for RX done
     printf("Waiting for received packet\n");
+
+    printf("Clearing IRQ Flags\n");
+    lora_write_reg(REG_IRQ_FLAGS, 0xFF);
+    printf("IRQ Flags: 0x%02x \n", lora_read_reg(REG_IRQ_FLAGS));
+
     while ((lora_read_reg(REG_IRQ_FLAGS) & 0x40) == 0) {  // RX done flag or timeout
-        read_signal_quality();
-        printf("  IRQ Flags: 0x%02x \n", lora_read_reg(REG_IRQ_FLAGS));
-        sleep_ms(1);
+        sleep_ms(100);
     }
     read_signal_quality();
+    printf("  IRQ Flags: 0x%02x \n", lora_read_reg(REG_IRQ_FLAGS));
     if (lora_read_reg(REG_IRQ_FLAGS) & 0x20) {
         printf("CRC Error\n"); 
         sleep_ms(1);
     }
+    checkpoint_timer("Packet Received\n");
 
     gpio_put(PIN_RX,0);
 
@@ -276,6 +303,18 @@ void lora_receive_packet(uint8_t *buffer, uint8_t *len) {
     spi_write_blocking(SPI_PORT, &reg, 1);
     spi_read_blocking(SPI_PORT, 0, buffer, *len);
     gpio_put(PIN_CS, 1);
+
+    printf("Reset FIFO\n");
+    lora_write_reg(REG_FIFO_ADDR_PTR,0x00);
+    lora_write_reg(REG_FIFO_TX_BASE_ADDR,0x00);
+    lora_write_reg(REG_FIFO_RX_BASE_ADDR,0x00);
+}
+
+uint8_t flip_endian(uint8_t byte) {
+    byte = (byte >> 4) | (byte << 4); // Swap nibbles
+    byte = ((byte & 0xCC) >> 2) | ((byte & 0x33) << 2); // Swap pairs
+    byte = ((byte & 0xAA) >> 1) | ((byte & 0x55) << 1); // Swap individual bits
+    return byte;
 }
 
 int main() {
@@ -287,6 +326,8 @@ int main() {
     sleep_ms(5000);
     printf("Starting LoRa RX Test\n");
 
+    start_timer();
+
     // Initialize LoRa
     printf("Initializing LoRa Module\n");
     lora_init();
@@ -295,6 +336,7 @@ int main() {
     uint8_t received_len = 0;
 
     printf("Starting RX Loop\n");
+    checkpoint_timer("RX Loop\n");
 
     while (1) {
         pico_set_led(true);
@@ -308,9 +350,9 @@ int main() {
         // Print out the received message contents
         printf("Received message: ");
         for (int i = 0; i < received_len; i++) {
-            printf("%c", received_data[i]);
+            printf("%c", flip_endian(received_data[i]));
         }
-        printf("\n");
+        printf("\n\n\n");
 
         pico_set_led(false);
     }
