@@ -120,13 +120,13 @@ void lora_init() {
     
     // PA BOOST
     printf("Configuring PA BOOST\n");
-    lora_write_reg(REG_PA_CONFIG, 0b00111111);  // 0-011-1111 PA BOOST enabled, output power = 15dBm
+    lora_write_reg(REG_PA_CONFIG, 0b11110011);  // 0-011-1111 PA BOOST enabled, output power = 15dBm
     lora_write_reg(REG_PA_DAC, 0x84);     // PA_HF/LF or +17dBm
     // Setting over current protection
     lora_write_reg(REG_OCP, 0b00111111); // 00-1-11111
 
     // Setting low noise amplifier
-    lora_write_reg(REG_LNA, 0x20); // Min gain
+    lora_write_reg(REG_LNA, 0x20); // Max gain
 
     lora_write_reg(REG_FIFO_ADDR_PTR,0x00);
     lora_write_reg(REG_FIFO_TX_BASE_ADDR,0x00);
@@ -274,6 +274,7 @@ int main() {
         lora_send_packet(message, sizeof(message) - 1);
         printf("Packet sent successfully!\n");
         
+        sleep_ms(1000);
         // Uncomment the sleep if you want to control transmission rate
         // sleep_ms(5000);  // Wait 5 seconds between transmissions
     }
