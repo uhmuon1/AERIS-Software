@@ -19,19 +19,18 @@
 #define REG_FIFO_RX_BASE_ADDR  0x0F
 #define REG_IRQ_FLAGS_MASK     0x11
 #define REG_IRQ_FLAGS          0x12
-#define REG_TX_POWER           0x09
+#define REG_RSSI_VALUE         0x1A
 #define REG_MODEM_CONFIG_1     0x1D
 #define REG_MODEM_CONFIG_2     0x1E
-#define REG_MODEM_CONFIG_3     0x26
+#define REG_TIMEOUT_LSB        0x1F
 #define REG_PREAMBLE_MSB       0x20
 #define REG_PREAMBLE_LSB       0x21
 #define REG_PAYLOAD_LENGTH     0x22
+#define REG_MODEM_CONFIG_3     0x26
 #define REG_SYNC_WORD          0x39
-#define REG_RSSI_VALUE         0x1A
 #define REG_PKT_SNR_VALUE      0x19
 #define REG_PKT_RSSI_VALUE     0x1B
 #define REG_DETECTION_THRESHOLD 0x37
-#define REG_TIMEOUT_LSB        0x15
 
 // Modes
 #define SLEEP_MODE             0x80 // b1000 0000
@@ -128,36 +127,36 @@ void lora_init() {
     printf("Starting LoRa Initialization...\n");
 
     // Initialize SPI
-    printf("Initializing SPI at 1MHz\n");
+    // printf("Initializing SPI at 1MHz\n");
     spi_init(SPI_PORT, 1e6);  // 1MHz clock rate
-    gpio_set_function(PIN_MISO, GPIO_FUNC_SPI);
-    gpio_set_function(PIN_SCK, GPIO_FUNC_SPI);
-    gpio_set_function(PIN_MOSI, GPIO_FUNC_SPI);
+    spi_set_format(SPI_PORT, 64, SPI_CPOL_0, SPI_CPHA_0, SPI_MSB_FIRST);
 
-    // Chip select as output
-    printf("Configuring Chip Select pin\n");
-    gpio_init(PIN_CS);
-    gpio_set_dir(PIN_CS, GPIO_OUT);
-    gpio_put(PIN_CS, 1);
+    gpio_set_function(PIN_MISO, GPIO_FUNC_SPI);
+    gpio_set_function(PIN_MOSI, GPIO_FUNC_SPI);
+    gpio_set_function(PIN_SCK, GPIO_FUNC_SPI);
+    gpio_set_function(PIN_CS, GPIO_FUNC_SPI);
+    
+    bi_decl(bi_4pins_with_func(PIN_MISO, PIN_MOSI, PIN_SCK, PIN_CS, GPIO_FUNC_SPI));
+
 
     // Reset pin
-    printf("Configuring Reset pin\n");
+    // printf("Configuring Reset pin\n");
     gpio_init(PIN_RST);
     gpio_set_dir(PIN_RST, GPIO_OUT);
 
     // TXEN Pin set
-    printf("Configuring TXEN pin\n");
+    // printf("Configuring TXEN pin\n");
     gpio_init(PIN_TX);
     gpio_set_dir(PIN_TX, GPIO_OUT);
     gpio_put(PIN_TX, 0);
     
     // RXEN Pin set
-    printf("Configuring RXEN pin\n");
+    // printf("Configuring RXEN pin\n");
     gpio_init(PIN_RX);
     gpio_set_dir(PIN_RX, GPIO_OUT);
 
     // Reset the LoRa module
-    printf("Resetting LoRa module\n");
+    // printf("Resetting LoRa module\n");
     lora_reset();
 
     // Allow for reset
@@ -167,48 +166,51 @@ void lora_init() {
     check_lora_connection();
 
     // Set sleep mode
-    printf("Setting sleep mode\n");
+    // printf("Setting sleep mode\n");
     lora_write_reg(REG_OP_MODE, SLEEP_MODE);  // Sleep mode, LoRa mode
     sleep_ms(10);
 
     // Set frequency to 433 MHz
-    printf("Setting frequency to 433 MHz\n");
+    // printf("Setting frequency to 433 MHz\n");
     uint32_t frf = ((uint32_t)FREQUENCY) / 61.035;
     lora_write_reg(REG_FR_MSB, (frf >> 16) & 0xFF);
     lora_write_reg(REG_FR_MID, (frf >> 8) & 0xFF);
     lora_write_reg(REG_FR_LSB, frf & 0xFF);
 
     // Set OCP
-    printf("Configuring Over Currnet Protection\n");
+    // printf("Configuring Over Currnet Protection\n");
     lora_write_reg(REG_OCP, 0x3F);
 
     // low noise amplifier
-    printf("Setting Low Noise Amplifier\n");
-    lora_write_reg(REG_LNA, 0b10100000); // 101-00-0-00  G5 gain
+    // printf("Setting Low Noise Amplifier\n");
+    // lora_write_reg(REG_LNA, 0b10100000); // 101-00-0-00  G5 gain
 
     // Reset FIFO buffer pointer
-    printf("Reset FIFO\n");
+    // printf("Reset FIFO\n");
     lora_write_reg(REG_FIFO_ADDR_PTR,0x00);
     lora_write_reg(REG_FIFO_TX_BASE_ADDR,0x00);
     lora_write_reg(REG_FIFO_RX_BASE_ADDR,0x00);
 
-    // Set modem config
-    printf("Configuring Modem Settings\n");
-    lora_write_reg(REG_MODEM_CONFIG_1, 0b01100011);  // 0110-001-1 BW=62.5kHz, CR=4/5, implicit header
-    lora_write_reg(REG_MODEM_CONFIG_2, 0b01110111);  // 0111-0-1-11 SF=7, rx crc on, timeout msb
-    lora_write_reg(REG_MODEM_CONFIG_3, 0x00);  // 0000-0-0-00 LNA gain set by the internal AGC loop
-    lora_write_reg(REG_TIMEOUT_LSB, 0xF0);   // Set timeout to max
+    // printf("Setting IRQ Mask\n");
+    lora_write_reg(REG_IRQ_FLAGS_MASK,0b01000000); // 01000000
 
-    printf("Configuring Preamble\n");
+    // Set modem config
+    // printf("Configuring Modem Settings\n");
+    lora_write_reg(REG_MODEM_CONFIG_1, 0b01100011);  // 0110-001-1 BW=62.5kHz, CR=4/5, implicit header
+    lora_write_reg(REG_MODEM_CONFIG_2, 0b01110011);  // 0111-0-0-11 SF=7, rx crc off, timeout msb
+    lora_write_reg(REG_MODEM_CONFIG_3, 0b00000100);  // 0000-0-1-00 LNA gain set by the internal AGC loop
+    lora_write_reg(REG_TIMEOUT_LSB, 0xFF);   // Set timeout to max
+
+    // printf("Configuring Preamble\n");
     lora_write_reg(REG_PREAMBLE_MSB,0x00);
     lora_write_reg(REG_PREAMBLE_LSB,0x08);
 
     // Set Sync Word (added for debugging)
-    printf("Setting Sync Word\n");
+    // printf("Setting Sync Word\n");
     lora_write_reg(REG_SYNC_WORD, 0x00);  // Example sync word
 
     // Set to standby
-    printf("Setting to RX Continuous mode\n");
+    // printf("Setting to RX Single mode\n");
     lora_write_reg(REG_OP_MODE, RXSINGLE_MODE);
     gpio_put(PIN_RX,1);
 
@@ -261,28 +263,42 @@ void read_signal_quality() {
 }
 
 void lora_reset() {
-    printf("Performing LoRa module hardware reset\n");
+    // printf("Performing LoRa module hardware reset\n");
     gpio_put(PIN_RST, 0);
     sleep_ms(10);
     gpio_put(PIN_RST, 1);
     sleep_ms(10);
-    printf("LoRa module reset complete\n");
+    // printf("LoRa module reset complete\n");
+}
+
+void print_binary(uint8_t num) {
+    for (int i = 7; i >= 0; i--) {
+        printf("%c", (num & (1 << i)) ? '1' : '0');
+    }
 }
 
 void lora_write_reg(uint8_t reg, uint8_t data) {
     // printf("Writing to register 0x%02X: value 0x%02X\n", reg, data);
-    gpio_put(PIN_CS, 0);
+    
+    printf("Pre-Write REG 0x%x: 0b", reg);
+    print_binary(lora_read_reg(reg));
+    printf("\n");
+
+    // gpio_put(PIN_CS, 0);
     uint8_t buf[2] = {reg | 0x80, data};  // Set MSB for write
     spi_write_blocking(SPI_PORT, buf, 2);
-    gpio_put(PIN_CS, 1);
+    // gpio_put(PIN_CS, 1);
+    printf("Post-Write REG 0x%x: 0b", reg);
+    print_binary(lora_read_reg(reg));
+    printf("\n\n");
 }
 
 uint8_t lora_read_reg(uint8_t reg) {
-    gpio_put(PIN_CS, 0);
+    // gpio_put(PIN_CS, 0);
     uint8_t buf[2] = {reg & 0x7F, 0x00};  // Clear MSB for read
     spi_write_blocking(SPI_PORT, &buf[0], 1);
     spi_read_blocking(SPI_PORT, 0, &buf[1], 1);
-    gpio_put(PIN_CS, 1);
+    // gpio_put(PIN_CS, 1);
 
     //printf("Reading from register 0x%02X: value 0x%02X\n", reg, buf[1]);
     return buf[1];
@@ -318,11 +334,7 @@ void lora_receive_packet(uint8_t *buffer, uint8_t *len) {
     // Only read signal quality after receiving or timeout
     read_signal_quality();
     
-    // Check for CRC error
-    if (lora_read_reg(REG_IRQ_FLAGS) & 0x20) {
-        printf("CRC Error\n");
-        *len = 0;  // Indicate no valid data
-    } else if (!timeout) {
+    if (!timeout) {
         // Read payload length
         *len = lora_read_reg(REG_PAYLOAD_LENGTH);
         printf("Payload length: %d\n", *len);
@@ -331,11 +343,11 @@ void lora_receive_packet(uint8_t *buffer, uint8_t *len) {
         if (*len > 0 && *len < 256) {
             // Read data from FIFO
             printf("Reading data from FIFO\n");
-            gpio_put(PIN_CS, 0);
+            // gpio_put(PIN_CS, 0);
             uint8_t reg = REG_FIFO & 0x7F;  // Read mode
             spi_write_blocking(SPI_PORT, &reg, 1);
             spi_read_blocking(SPI_PORT, 0, buffer, *len);
-            gpio_put(PIN_CS, 1);
+            // gpio_put(PIN_CS, 1);
         } else {
             printf("Invalid payload length: %d\n", *len);
             *len = 0;
@@ -348,7 +360,7 @@ void lora_receive_packet(uint8_t *buffer, uint8_t *len) {
     gpio_put(PIN_RX, 0);
     
     // Clear IRQ flags
-    lora_write_reg(REG_IRQ_FLAGS, 0xFF);
+    lora_write_reg(REG_IRQ_FLAGS, 0b01000000); // 01000000
     
     // Reset FIFO pointer
     lora_write_reg(REG_FIFO_ADDR_PTR, 0x00);
