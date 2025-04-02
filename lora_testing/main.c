@@ -76,6 +76,10 @@ void lora_init() {
     // Initialize SPI
     printf("Initializing SPI at 1MHz\n");
     spi_init(SPI_PORT, 1e6);  // 1MHz clock rate
+    // Set SPI format (CPOL=0, CPHA=0)
+    spi_set_format(SPI_PORT, 8, SPI_CPOL_0, SPI_CPHA_0, SPI_MSB_FIRST);
+    
+    // Initialize SPI pins (without hardware CS)
     gpio_set_function(PIN_MISO, GPIO_FUNC_SPI);
     gpio_set_function(PIN_SCK, GPIO_FUNC_SPI);
     gpio_set_function(PIN_MOSI, GPIO_FUNC_SPI);
@@ -103,8 +107,8 @@ void lora_init() {
     gpio_put(PIN_RX, 0); // RXEN to low
 
     // Reset the LoRa module
-    printf("Resetting LoRa module\n");
-    lora_reset();
+    // printf("Resetting LoRa module\n");
+    // lora_reset();
     
     // Set sleep mode
     printf("Setting sleep mode\n");
@@ -179,21 +183,23 @@ void lora_reset() {
 
 void lora_write_reg(uint8_t reg, uint8_t data) {
     printf("Writing to register 0x%02X: value 0x%02X\n", reg, data);
-    gpio_put(PIN_CS, 0);
     uint8_t buf[2] = {reg | 0x80, data};  // Set MSB for write
+    gpio_put(PIN_CS, 0);
     spi_write_blocking(SPI_PORT, buf, 2);
     gpio_put(PIN_CS, 1);
 }
 
 uint8_t lora_read_reg(uint8_t reg) {
+
+    uint8_t TX_buf[2] = {reg & 0x7F, 0x00};  // Clear MSB for read
+    uint8_t RX_buf[2];
+
     gpio_put(PIN_CS, 0);
-    uint8_t buf[2] = {reg & 0x7F, 0x00};  // Clear MSB for read
-    spi_write_blocking(SPI_PORT, &buf[0], 1);
-    spi_read_blocking(SPI_PORT, 0, &buf[1], 1);
+    spi_write_read_blocking(SPI_PORT, TX_buf, RX_buf, 2);
     gpio_put(PIN_CS, 1);
     
     // printf("Reading from register 0x%02X: value 0x%02X\n", reg, buf[1]);
-    return buf[1];
+    return RX_buf[1];
 }
 
 void lora_send_packet(const uint8_t *data, uint8_t len) {
@@ -237,7 +243,7 @@ void lora_send_packet(const uint8_t *data, uint8_t len) {
     // Clear IRQ flags
     printf("Clearing IRQ flags\n");
     lora_write_reg(REG_IRQ_FLAGS, 0xFF);
-    
+    sleep_ms(10);
     printf("Packet transmission complete\n");
 }
 
