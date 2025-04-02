@@ -288,7 +288,7 @@ void print_binary(uint8_t num) {
 }
 
 void lora_write_reg(uint8_t reg, uint8_t data) {
-    printf("Writing to register 0x%02X: value 0x%02X\n", reg, data);
+    // printf("Writing to register 0x%02X: value 0x%02X\n", reg, data);
     
     uint8_t buf[2] = {reg | 0x80, data};  // Set MSB for write
     gpio_put(PIN_CS, 0);
@@ -298,7 +298,7 @@ void lora_write_reg(uint8_t reg, uint8_t data) {
 
 uint8_t lora_read_reg(uint8_t reg) {
 
-    printf("Reading from register 0x%02X ", reg);
+    // printf("Reading from register 0x%02X ", reg);
 
     uint8_t TX_buf[2] = {reg & 0x7F, 0x00};  // Clear MSB for read
     uint8_t RX_buf[2];
@@ -307,7 +307,7 @@ uint8_t lora_read_reg(uint8_t reg) {
     spi_write_read_blocking(SPI_PORT, TX_buf, RX_buf, 2);
     gpio_put(PIN_CS, 1);
 
-    printf("value: 0x%02X 0x%02X\n", RX_buf[0], RX_buf[1]);
+    // printf("value: 0x%02X 0x%02X\n", RX_buf[0], RX_buf[1]);
 
     return RX_buf[1];
 }
