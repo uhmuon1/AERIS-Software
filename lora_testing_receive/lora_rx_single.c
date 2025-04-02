@@ -133,7 +133,7 @@ void lora_init() {
 
     // Initialize SPI port at 1 MHz
     printf("Initializing SPI at 1MHz\n");// Set SPI format (CPOL=0, CPHA=0)
-    spi_init(SPI_PORT, 1000 * 1000);
+    spi_init(SPI_PORT, 1e6);
     
     // Set SPI format (CPOL=0, CPHA=0)
     spi_set_format(SPI_PORT, 8, SPI_CPOL_0, SPI_CPHA_0, SPI_MSB_FIRST);
@@ -341,6 +341,8 @@ void lora_receive_packet(uint8_t *buffer, uint8_t *len) {
     
     // Only read signal quality after receiving or timeout
     read_signal_quality();
+
+    printf("IRQ Flags: 0x%02X\n", lora_read_reg(REG_IRQ_FLAGS));
     
     if (!timeout) {
         // Read payload length
