@@ -159,9 +159,9 @@ void lora_init() {
     
     // Set modem config
     printf("Configuring Modem Settings\n");
-    lora_write_reg(REG_MODEM_CONFIG_1, 0x63);  // 0110-001-1 BW=62.5kHz, CR=4/5, explicit header
-    lora_write_reg(REG_MODEM_CONFIG_2, 0x74);  // 0111-0-1-00 SF=7, normal mode
-
+    lora_write_reg(REG_MODEM_CONFIG_1, 0b01100011);  // 0110-001-1 BW=62.5kHz, CR=4/5, implicit header
+    lora_write_reg(REG_MODEM_CONFIG_2, 0b01111100);  // 0111-1-1-00 SF=7, TX CONT, crc on
+    
     // Setting preamble to 8
     lora_write_reg(REG_PREAMBLE_MSB, 0x00);
     lora_write_reg(REG_PREAMBLE_LSB, 0x08);

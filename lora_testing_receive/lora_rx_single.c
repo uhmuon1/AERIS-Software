@@ -207,7 +207,7 @@ void lora_init() {
     // Set modem config
     printf("Configuring Modem Settings\n");
     lora_write_reg(REG_MODEM_CONFIG_1, 0b01100011);  // 0110-001-1 BW=62.5kHz, CR=4/5, implicit header
-    lora_write_reg(REG_MODEM_CONFIG_2, 0b01110011);  // 0111-0-0-11 SF=7, rx crc off, timeout msb
+    lora_write_reg(REG_MODEM_CONFIG_2, 0b01110111);  // 0111-0-1-11 SF=7, crc rx on, 
     lora_write_reg(REG_MODEM_CONFIG_3, 0b00000100);  // 0000-0-1-00 LNA gain set by the internal AGC loop
     lora_write_reg(REG_TIMEOUT_LSB, 0xFF);   // Set timeout to max
 
