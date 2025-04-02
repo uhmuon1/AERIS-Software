@@ -224,6 +224,23 @@ uint8_t lora_read_reg(uint8_t reg) {
     return RX_buf[1];
 }
 
+void unshift(uint8_t newElement, uint8_t arr[], int *size, int capacity) {
+    if (*size >= capacity) {
+        printf("Array is full, cannot unshift.\n");
+        return;
+    }
+
+    // Shift elements to the right
+    for (int i = *size; i > 0; i--) {
+        arr[i] = arr[i - 1];
+    }
+
+    // Insert new element at index 0
+    arr[0] = newElement;
+    (*size)++;
+}
+
+
 void lora_send_packet(const uint8_t *data, uint8_t len) {
     printf("Preparing to send packet of length %d\n", len);
 
@@ -238,7 +255,13 @@ void lora_send_packet(const uint8_t *data, uint8_t len) {
     // Write data to FIFO
     printf("Writing data to FIFO\n");
 
-    uint8_t msg[] = {REG_FIFO | 0x80, data};
+    uint8_t msg[len+1];
+    msg[0] = REG_FIFO | 0x80;
+    for(int i = 1; i<=len; i++){
+        msg[i] = data[i-1];
+        printf("%c", msg[i]);
+    }
+
     gpio_put(PIN_CS, 0);
     spi_write_blocking(SPI_PORT, msg, 1);
     gpio_put(PIN_CS, 1);

@@ -202,7 +202,7 @@ void lora_init() {
     lora_write_reg(REG_FIFO_RX_BASE_ADDR,0x00);
 
     // printf("Setting IRQ Mask\n");
-    lora_write_reg(REG_IRQ_FLAGS_MASK,0b01000000); // 01000000
+    // lora_write_reg(REG_IRQ_FLAGS_MASK,0b01000000); // 01000000
 
     // Set modem config
     printf("Configuring Modem Settings\n");
@@ -217,7 +217,7 @@ void lora_init() {
 
     // Set Sync Word (added for debugging)
     printf("Setting Sync Word\n");
-    lora_write_reg(REG_SYNC_WORD, 0x00);  // Example sync word
+    lora_write_reg(REG_SYNC_WORD, 0x12);  // Example sync word
 
     // Set to standby
     printf("Setting to RX Single mode\n");
@@ -336,7 +336,7 @@ void lora_receive_packet(uint8_t *buffer, uint8_t *len) {
             break;
         }
         // Check less frequently to reduce console spam
-        sleep_ms(100);
+        sleep_ms(1);
     }
     
     // Only read signal quality after receiving or timeout
@@ -353,11 +353,11 @@ void lora_receive_packet(uint8_t *buffer, uint8_t *len) {
         if (*len > 0 && *len < 256) {
             // Read data from FIFO
             printf("Reading data from FIFO\n");
-            // gpio_put(PIN_CS, 0);
+            gpio_put(PIN_CS, 0);
             uint8_t reg = REG_FIFO & 0x7F;  // Read mode
             spi_write_blocking(SPI_PORT, &reg, 1);
             spi_read_blocking(SPI_PORT, 0, buffer, *len);
-            // gpio_put(PIN_CS, 1);
+            gpio_put(PIN_CS, 1);
         } else {
             printf("Invalid payload length: %d\n", *len);
             *len = 0;
@@ -370,7 +370,7 @@ void lora_receive_packet(uint8_t *buffer, uint8_t *len) {
     gpio_put(PIN_RX, 0);
     
     // Clear IRQ flags
-    lora_write_reg(REG_IRQ_FLAGS, 0b01000000); // 01000000
+    lora_write_reg(REG_IRQ_FLAGS, 0xFF);
     
     // Reset FIFO pointer
     lora_write_reg(REG_FIFO_ADDR_PTR, 0x00);
