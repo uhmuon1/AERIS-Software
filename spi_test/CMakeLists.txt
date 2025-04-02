@@ -13,7 +13,7 @@ set(CMAKE_CXX_STANDARD 17)
 pico_sdk_init()
 
 add_executable(spi_test
-    main.c
+    test_spi.c
     )
 
 target_link_libraries(spi_test pico_stdlib hardware_spi)
