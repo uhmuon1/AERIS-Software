@@ -70,6 +70,20 @@ void pico_set_led(bool led_on) {
 #endif
 }
 
+bool check_lora_connection() {
+    uint8_t version = lora_read_reg(0x42); // Version register
+    printf("LoRa chip version: 0x%02X\n", version);
+    
+    // Most SX127x chips return 0x12
+    if (version == 0x12) {
+        printf("SX127x chip detected\n");
+        return true;
+    } else {
+        printf("WARNING: Unknown or disconnected LoRa chip!\n");
+        return false;
+    }
+}
+
 void lora_init() {
     printf("Starting LoRa Initialization...\n");
     
@@ -110,6 +124,8 @@ void lora_init() {
     // printf("Resetting LoRa module\n");
     // lora_reset();
     
+    check_lora_connection();
+
     // Set sleep mode
     printf("Setting sleep mode\n");
     lora_write_reg(REG_OP_MODE, SLEEP_MODE);  // Sleep mode, LoRa mode
@@ -184,6 +200,7 @@ void lora_reset() {
 void lora_write_reg(uint8_t reg, uint8_t data) {
     printf("Writing to register 0x%02X: value 0x%02X\n", reg, data);
     uint8_t buf[2] = {reg | 0x80, data};  // Set MSB for write
+    
     gpio_put(PIN_CS, 0);
     spi_write_blocking(SPI_PORT, buf, 2);
     gpio_put(PIN_CS, 1);
@@ -215,12 +232,15 @@ void lora_send_packet(const uint8_t *data, uint8_t len) {
     
     // Write data to FIFO
     printf("Writing data to FIFO\n");
-    // gpio_put(PIN_CS, 0);
+
     uint8_t reg = REG_FIFO | 0x80;
+    gpio_put(PIN_CS, 0);
     spi_write_blocking(SPI_PORT, &reg, 1);
+    gpio_put(PIN_CS, 1);
+
+    gpio_put(PIN_CS, 0);
     spi_write_blocking(SPI_PORT, data, len);
-    // TODO see what this does
-    // gpio_put(PIN_CS, 1);
+    gpio_put(PIN_CS, 1);
     
     // Set payload length
     printf("Setting payload length to %d\n", len);
