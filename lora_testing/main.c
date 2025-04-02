@@ -167,7 +167,7 @@ void lora_init() {
     lora_write_reg(REG_PREAMBLE_LSB, 0x08);
 
     printf("Setting Sync Word\n");
-    lora_write_reg(REG_SYNC_WORD, 0x00);
+    lora_write_reg(REG_SYNC_WORD, 0x12);
     
     // Set to standby
     printf("Setting to Standby mode\n");
@@ -238,13 +238,9 @@ void lora_send_packet(const uint8_t *data, uint8_t len) {
     // Write data to FIFO
     printf("Writing data to FIFO\n");
 
-    uint8_t reg = REG_FIFO | 0x80;
+    uint8_t msg[] = {REG_FIFO | 0x80, data};
     gpio_put(PIN_CS, 0);
-    spi_write_blocking(SPI_PORT, &reg, 1);
-    gpio_put(PIN_CS, 1);
-
-    gpio_put(PIN_CS, 0);
-    spi_write_blocking(SPI_PORT, data, len);
+    spi_write_blocking(SPI_PORT, msg, 1);
     gpio_put(PIN_CS, 1);
     
     // Set payload length
@@ -287,7 +283,8 @@ int main() {
     lora_init();
     
     // Test message
-    uint8_t message[] = "Hello from RP2040 LoRa!";
+    //uint8_t message[] = "Hello from RP2040 LoRa!";
+    uint8_t message[] = {0x41,0x42,0x43,0x44};
     
     printf("Starting TX Loop\n");
 
