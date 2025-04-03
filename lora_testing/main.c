@@ -160,8 +160,8 @@ void lora_init() {
     
     // Set modem config
     printf("Configuring Modem Settings\n");
-    lora_write_reg(REG_MODEM_CONFIG_1, 0b01100011);  // 0110-001-1 BW=62.5kHz, CR=4/5, implicit header
-    lora_write_reg(REG_MODEM_CONFIG_2, 0b01111100);  // 0111-1-1-00 SF=7, TX CONT, crc on
+    lora_write_reg(REG_MODEM_CONFIG_1, 0b10000011);  // 0110-001-1 BW=250 kHz, CR=4/5, implicit header
+    lora_write_reg(REG_MODEM_CONFIG_2, 0b01110100);  // 0111-1-1-00 SF=7, TX single, crc on
     
     // Setting preamble to 8
     lora_write_reg(REG_PREAMBLE_MSB, 0x00);
@@ -299,7 +299,7 @@ int main() {
     lora_init();
     
     // Test message
-    //uint8_t message[] = "Hello from RP2040 LoRa!";
+    // uint8_t message[] = "Hello from RP2040 LoRa!";
     uint8_t message[] = {0x42, 0x43};
     
     printf("Starting TX Loop\n");
@@ -310,7 +310,7 @@ int main() {
         
         // Print out the message contents
         printf("Message contents: ");
-        for (int i = 0; i < sizeof(message) - 1; i++) {
+        for (int i = 0; i < sizeof(message); i++) {
             printf("%c", message[i]);
         }
         printf("\n");
@@ -318,7 +318,7 @@ int main() {
         lora_send_packet(message, sizeof(message));
         printf("Packet sent successfully!\n");
         
-        sleep_ms(1000);
+        sleep_ms(200);
         // Uncomment the sleep if you want to control transmission rate
         // sleep_ms(5000);  // Wait 5 seconds between transmissions
     }
