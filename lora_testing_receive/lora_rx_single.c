@@ -204,9 +204,11 @@ void lora_init() {
     // printf("Setting IRQ Mask\n");
     // lora_write_reg(REG_IRQ_FLAGS_MASK,0b01000000); // 01000000
 
+    //lora_write_reg(REG_PAYLOAD_LENGTH,1);
+
     // Set modem config
     printf("Configuring Modem Settings\n");
-    lora_write_reg(REG_MODEM_CONFIG_1, 0b01100011);  // 0110-001-1 BW=62.5kHz, CR=4/5, implicit header
+    lora_write_reg(REG_MODEM_CONFIG_1, 0b10000011);  // 0110-001-1 BW=62.5kHz, CR=4/5, implicit header
     lora_write_reg(REG_MODEM_CONFIG_2, 0b01110111);  // 0111-0-1-11 SF=7, crc rx on, 
     lora_write_reg(REG_MODEM_CONFIG_3, 0b00000100);  // 0000-0-1-00 LNA gain set by the internal AGC loop
     lora_write_reg(REG_TIMEOUT_LSB, 0xFF);   // Set timeout to max
