@@ -153,9 +153,10 @@ void lora_init() {
     // Setting low noise amplifier
     lora_write_reg(REG_LNA, 0x20); // Max gain
 
-    lora_write_reg(REG_FIFO_ADDR_PTR,0x00);
-    lora_write_reg(REG_FIFO_TX_BASE_ADDR,0x00);
-    lora_write_reg(REG_FIFO_RX_BASE_ADDR,0x00);
+    // ** Not setting base addresses
+    // lora_write_reg(REG_FIFO_ADDR_PTR,0x00);
+    // lora_write_reg(REG_FIFO_TX_BASE_ADDR,0x00);
+    // lora_write_reg(REG_FIFO_RX_BASE_ADDR,0x00);
     
     // Set modem config
     printf("Configuring Modem Settings\n");
@@ -203,7 +204,7 @@ void lora_reset() {
 }
 
 void lora_write_reg(uint8_t reg, uint8_t data) {
-    printf("Writing to register 0x%02X: value 0x%02X\n", reg, data);
+    // printf("Writing to register 0x%02X: value 0x%02X\n", reg, data);
     uint8_t buf[2] = {reg | 0x80, data};  // Set MSB for write
 
     gpio_put(PIN_CS, 0);
@@ -224,23 +225,6 @@ uint8_t lora_read_reg(uint8_t reg) {
     return RX_buf[1];
 }
 
-void unshift(uint8_t newElement, uint8_t arr[], int *size, int capacity) {
-    if (*size >= capacity) {
-        printf("Array is full, cannot unshift.\n");
-        return;
-    }
-
-    // Shift elements to the right
-    for (int i = *size; i > 0; i--) {
-        arr[i] = arr[i - 1];
-    }
-
-    // Insert new element at index 0
-    arr[0] = newElement;
-    (*size)++;
-}
-
-
 void lora_send_packet(const uint8_t *data, uint8_t len) {
     printf("Preparing to send packet of length %d\n", len);
 
@@ -250,20 +234,16 @@ void lora_send_packet(const uint8_t *data, uint8_t len) {
     
     // Reset FIFO pointer
     printf("Resetting FIFO pointer\n");
-    lora_write_reg(REG_FIFO_ADDR_PTR, 0x00);
+    uint8_t tx_base_add = lora_read_reg(REG_FIFO_TX_BASE_ADDR);
+    lora_write_reg(REG_FIFO_ADDR_PTR, tx_base_add);
     
     // Write data to FIFO
     printf("Writing data to FIFO\n");
 
-    uint8_t msg[len+1];
-    msg[0] = REG_FIFO | 0x80;
-    for(int i = 1; i<=len; i++){
-        msg[i] = data[i-1];
-        printf("%c", msg[i]);
-    }
-
+    uint8_t header = REG_FIFO | 0x80;
     gpio_put(PIN_CS, 0);
-    spi_write_blocking(SPI_PORT, msg, 1);
+    spi_write_blocking(SPI_PORT, &header, 1);
+    spi_write_blocking(SPI_PORT, data, len);
     gpio_put(PIN_CS, 1);
     
     // Set payload length
@@ -277,17 +257,30 @@ void lora_send_packet(const uint8_t *data, uint8_t len) {
     lora_write_reg(REG_OP_MODE, TX_MODE);  // TX mode
     
     // Wait for TX done
+
+    // TODO
+    // There are no breaks in the lora signal
+    // never jumping out while loop checking irq flags
+
     printf("Waiting for transmission to complete\n");
     while((lora_read_reg(REG_IRQ_FLAGS) & 0x08) == 0) {
-        sleep_ms(1);
+        sleep_ms(100);
+        printf("IRQ Flags: 0x%02X\n", lora_read_reg(REG_IRQ_FLAGS));
+        printf("TX Base Addr: 0x%02X\n", lora_read_reg(REG_FIFO_TX_BASE_ADDR));
+        printf("FIFO Addr Ptr: 0x%02X\n", lora_read_reg(REG_FIFO_ADDR_PTR));
+        printf("FIFO: 0x%02X\n\n\n", lora_read_reg(REG_FIFO));
     }
 
     gpio_put(PIN_TX, 0); // Set TXEN Pin to low
+    printf("IRQ Flags: 0x%02X\n", lora_read_reg(REG_IRQ_FLAGS));
     
     // Clear IRQ flags
     printf("Clearing IRQ flags\n");
     lora_write_reg(REG_IRQ_FLAGS, 0xFF);
-    sleep_ms(10);
+
+    lora_write_reg(REG_OP_MODE, STDBY_MODE);
+
+    sleep_ms(100);
     printf("Packet transmission complete\n");
 }
 
@@ -307,7 +300,7 @@ int main() {
     
     // Test message
     //uint8_t message[] = "Hello from RP2040 LoRa!";
-    uint8_t message[] = {0x41,0x42,0x43,0x44};
+    uint8_t message[] = {0x42, 0x43};
     
     printf("Starting TX Loop\n");
 
@@ -322,7 +315,7 @@ int main() {
         }
         printf("\n");
         
-        lora_send_packet(message, sizeof(message) - 1);
+        lora_send_packet(message, sizeof(message));
         printf("Packet sent successfully!\n");
         
         sleep_ms(1000);
