@@ -299,8 +299,8 @@ int main() {
     lora_init();
     
     // Test message
-    // uint8_t message[] = "Hello from RP2040 LoRa!";
-    uint8_t message[] = {0x42, 0x43};
+    uint8_t message[] = "Hello from RP2040 LoRa!";
+    // uint8_t message[] = {0x42, 0x43};
     
     printf("Starting TX Loop\n");
 
