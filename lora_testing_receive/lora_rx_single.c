@@ -204,7 +204,7 @@ void lora_init() {
     // printf("Setting IRQ Mask\n");
     // lora_write_reg(REG_IRQ_FLAGS_MASK,0b01000000); // 01000000
 
-    lora_write_reg(REG_PAYLOAD_LENGTH,2);
+    lora_write_reg(REG_PAYLOAD_LENGTH,24);
 
     // Set modem config
     printf("Configuring Modem Settings\n");
