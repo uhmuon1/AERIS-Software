@@ -3,6 +3,10 @@
 #include "pico/binary_info.h"
 #include "hardware/i2c.h"
 
+
+#define PICO_DEFAULT_I2C_SDA_PIN   6
+#define PICO_DEFAULT_I2C_SCL_PIN   7
+
 // I2C reserves some addresses for special purposes. We exclude these from the scan.
 // These are any addresses of the form 000 0xxx or 111 1xxx
 bool reserved_addr(uint8_t addr) {
