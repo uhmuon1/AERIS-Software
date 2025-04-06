@@ -145,7 +145,7 @@ void lora_init() {
     
     // PA BOOST
     printf("Configuring PA BOOST\n");
-    lora_write_reg(REG_PA_CONFIG, 0b11110011);  // 0-011-1111 PA BOOST enabled, output power = 15dBm
+    lora_write_reg(REG_PA_CONFIG, 0b11111111);  // 1-111-1111 PA BOOST enabled, output power = 15dBm
     lora_write_reg(REG_PA_DAC, 0x84);     // PA_HF/LF or +17dBm
     // Setting over current protection
     lora_write_reg(REG_OCP, 0b00111111); // 00-1-11111
@@ -299,7 +299,7 @@ int main() {
     lora_init();
     
     // Test message
-    uint8_t message[] = "Hello from RP2040 LoRa!";
+    uint8_t message[] = "KF0ORX LoRa Testing";
     // uint8_t message[] = {0x42, 0x43};
     
     printf("Starting TX Loop\n");
@@ -318,7 +318,7 @@ int main() {
         lora_send_packet(message, sizeof(message));
         printf("Packet sent successfully!\n");
         
-        sleep_ms(200);
+        sleep_ms(2000);
         // Uncomment the sleep if you want to control transmission rate
         // sleep_ms(5000);  // Wait 5 seconds between transmissions
     }
