@@ -41,6 +41,7 @@ void pico_set_led(bool led_on) {
 int main() {
     // Enable UART so we can print status output
     stdio_init_all();
+    pico_led_init();
 #if !defined(i2c_default) || !defined(PICO_DEFAULT_I2C_SDA_PIN) || !defined(PICO_DEFAULT_I2C_SCL_PIN)
 #warning i2c/bus_scan example requires a board with I2C pins
     puts("Default I2C pins were not defined");
@@ -53,6 +54,7 @@ int main() {
     gpio_pull_up(PICO_DEFAULT_I2C_SCL_PIN);
     // Make the I2C pins available to picotool
     bi_decl(bi_2pins_with_func(PICO_DEFAULT_I2C_SDA_PIN, PICO_DEFAULT_I2C_SCL_PIN, GPIO_FUNC_I2C));
+    pico_set_led(true);
     while(true){
         printf("\nI2C Bus Scan\n");
         printf("   0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F\n");
