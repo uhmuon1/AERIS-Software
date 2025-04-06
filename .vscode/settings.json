@@ -1,8 +1,0 @@
-{
-    "files.associations": {
-        "stdlib.h": "c",
-        "i2c.h": "c",
-        "pico.h": "c",
-        "binary_info.h": "c"
-    }
-}
