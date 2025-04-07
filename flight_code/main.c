@@ -16,8 +16,9 @@
 
 
 int main(){
+    switch ()
 
-    // GNSS main code
+void get_data() {
     stdio_init_all();
     
     // Important: Give enough time for UART to initialize
@@ -67,14 +68,12 @@ int main(){
                         
                         time_limit_started = true;
                         start_time = current_time;  // Start counting time from here
-                        blink_freq = 50;
                         // Create the file with a date-time based filename
                         if (!create_data_file(&pvt_data)) {
                             printf("File creation failed\n");
                             while (1) tight_loop_contents();
                         }
                     }
-                    // blink_freq = fixedfreq;
                     write_data_to_sd(&pvt_data, current_time);
                 }
                 
@@ -88,7 +87,6 @@ int main(){
         
         // Check if we've exceeded the time limit after the first 3D fix
         if (time_limit_started && current_time - start_time >= time_limit) {
-            blink_freq = 3000;
             printf("Time limit reached, stopping logging...\n");
             break;  // Exit the loop after 80 seconds
         }
@@ -100,12 +98,11 @@ int main(){
     // Close the data file and unmount the SD card
     f_close(&data_file);
     f_unmount("0:");
+}
 
 
 
-
-
-    // Motor main code
+int main() {
     stdio_init_all();
     sleep_ms(2000);  // Give time for terminal initialization
 
@@ -125,36 +122,35 @@ int main(){
     int motor_a_speed = 0;  // Motor A at 0 speed
     int motor_b_speed = 0;  // Motor B at 0 speed
 
-    uint32_t next_motor_control_time = 0;
-    uint32_t motor_run_time = 1000;  // Time to run motors in milliseconds (1 second)
+    uint32_t current_time, motor_start_time = 0;
+    bool motors_running = false;
 
     // Main control loop
     while (true) {
-        uint32_t current_time = to_ms_since_boot(get_absolute_time());
+        current_time = to_ms_since_boot(get_absolute_time());
 
-        // Run motors for 1 second (1000 ms)
-        if (current_time >= next_motor_control_time && current_time < next_motor_control_time + motor_run_time) {
-            // Start spinning motors with a certain speed
-            motor_a_speed = 50;  // Adjust this value as needed (e.g., motor speed between -100 and 100)
-            motor_b_speed = 50;  // Adjust this value as needed
-            
-            // Control the motors based on the current speeds
+        // Start motors after 1 second of running
+        if (!motors_running) {
+            motor_a_speed = 100;  // Set motor speed to maximum (or whatever speed you desire)
+            motor_b_speed = 100;
             motor_control(i2c_default, motor_a_speed, motor_b_speed);
+            motor_start_time = current_time;  // Record when the motors started
+            motors_running = true;
         }
-        else if (current_time >= next_motor_control_time + motor_run_time) {
-            // Stop motors after 1 second
-            motor_a_speed = 0;
-            motor_b_speed = 0;
-            
-            // Control the motors to stop them
+
+        // Stop motors after 1 second
+        if (motors_running && current_time >= motor_start_time + MOTOR_RUN_TIME_MS) {
+            motor_a_speed = 0;  // Stop motor A
+            motor_b_speed = 0;  // Stop motor B
             motor_control(i2c_default, motor_a_speed, motor_b_speed);
-            
-            // Wait for the next cycle (1 second after stopping)
-            next_motor_control_time = current_time + motor_run_time;
+            motors_running = false;  // Motors stopped
+
+            // Wait for 2 seconds before the next cycle (adjust as needed)
+            sleep_ms(MOTOR_STOP_TIME_MS);
         }
 
         sleep_us(1000);  // Sleep to reduce CPU usage
     }
 
-
+    return 0;
 }

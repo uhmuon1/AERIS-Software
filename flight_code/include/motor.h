@@ -24,7 +24,8 @@
 #define SCMD_MOTOR_B_INVERT      0x13  // Invert motor B (if needed)
 
 // Timing control
-#define MOTOR_CONTROL_INTERVAL_MS 20  // Control motor every 20ms (50Hz)
+#define MOTOR_RUN_TIME_MS 1000  // Time to run motors in milliseconds (1 second)
+#define MOTOR_STOP_TIME_MS 2000 // Wait time after motor stops
 
 void motor_control(i2c_inst_t *i2c, int motor_a_speed, int motor_b_speed);
 void setup_motor_driver(i2c_inst_t *i2c);
