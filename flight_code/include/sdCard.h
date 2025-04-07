@@ -24,8 +24,9 @@ extern int failed_writes;
 
 bool init_sd_card();
 bool create_data_file(const gnss_data_t *pvt_data);
+bool reset_f_ptr();
 bool write_data_to_sd(const gnss_data_t *data, uint32_t system_timestamp_ms);
-bool read_data_from_sd(const gnss_data_t *buffer);
+uint read_data_from_sd(const gnss_data_t *buffer);
 bool quit_sd_card();
 
 #endif

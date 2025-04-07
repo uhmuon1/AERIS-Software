@@ -42,6 +42,10 @@ bool create_data_file(const gnss_data_t *pvt_data) {
     return true;
 }
 
+bool reset_f_ptr(){
+    f_lseek(&data_file, 0);
+}
+
 bool write_data_to_sd(const gnss_data_t *data, uint32_t system_timestamp_ms) {
     char buffer[LOG_BUFFER_SIZE];
     uint32_t sys_seconds = system_timestamp_ms / 1000;
@@ -87,14 +91,16 @@ bool write_data_to_sd(const gnss_data_t *data, uint32_t system_timestamp_ms) {
     return true;
 }
 
-bool read_data_from_sd(const gnss_data_t *buffer) {
+
+uint read_data_from_sd(const gnss_data_t *buffer) {
     UINT br;
     FRESULT fr = f_read(&data_file, buffer, sizeof(buffer) - 1, &br);
     if (fr != FR_OK) {
-        printf("Failed to read file: %d\n", fr);
+        printf("Failed to read file: %d\n Closing file", fr);
         f_close(&data_file);
         return -1;
     }
+    return br;
 }
 
 bool quit_sd_card(){
