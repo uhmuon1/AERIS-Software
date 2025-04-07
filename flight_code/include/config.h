@@ -14,12 +14,12 @@
 #define CONFIG_LORA_POWER               0xff       // Maximum power
 
 // Hardware pins - SPI for LoRa
-#define CONFIG_PIN_MISO                 16
-#define CONFIG_PIN_CS                   17
-#define CONFIG_PIN_SCK                  18
-#define CONFIG_PIN_MOSI                 19
-#define CONFIG_PIN_RST                  20
-#define CONFIG_PIN_TX                   21
+#define CONFIG_PIN_MISO                 4
+#define CONFIG_PIN_CS                   1
+#define CONFIG_PIN_SCK                  2
+#define CONFIG_PIN_MOSI                 3
+#define CONFIG_PIN_RST                  17 // Alex said so
+#define CONFIG_PIN_TX                   18
 #define CONFIG_PIN_RX                   22
 #define CONFIG_SPI_PORT                 spi0
 
