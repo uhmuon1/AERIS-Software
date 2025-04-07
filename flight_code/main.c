@@ -126,25 +126,35 @@ int main(){
     int motor_b_speed = 0;  // Motor B at 0 speed
 
     uint32_t next_motor_control_time = 0;
+    uint32_t motor_run_time = 1000;  // Time to run motors in milliseconds (1 second)
 
     // Main control loop
     while (true) {
         uint32_t current_time = to_ms_since_boot(get_absolute_time());
 
-        // Control motors every MOTOR_CONTROL_INTERVAL_MS
-        if (current_time >= next_motor_control_time) {
-            next_motor_control_time = current_time + MOTOR_CONTROL_INTERVAL_MS;
-
-            // Change motor speeds (can be set to any value you want)
-            // For example, ramping up motor speeds for demonstration
-            if (motor_a_speed < 100) motor_a_speed += 5;
-            if (motor_b_speed < 100) motor_b_speed += 5;
-
+        // Run motors for 1 second (1000 ms)
+        if (current_time >= next_motor_control_time && current_time < next_motor_control_time + motor_run_time) {
+            // Start spinning motors with a certain speed
+            motor_a_speed = 50;  // Adjust this value as needed (e.g., motor speed between -100 and 100)
+            motor_b_speed = 50;  // Adjust this value as needed
+            
             // Control the motors based on the current speeds
             motor_control(i2c_default, motor_a_speed, motor_b_speed);
+        }
+        else if (current_time >= next_motor_control_time + motor_run_time) {
+            // Stop motors after 1 second
+            motor_a_speed = 0;
+            motor_b_speed = 0;
+            
+            // Control the motors to stop them
+            motor_control(i2c_default, motor_a_speed, motor_b_speed);
+            
+            // Wait for the next cycle (1 second after stopping)
+            next_motor_control_time = current_time + motor_run_time;
         }
 
         sleep_us(1000);  // Sleep to reduce CPU usage
     }
+
 
 }
