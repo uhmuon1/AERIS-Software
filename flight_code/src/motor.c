@@ -1,5 +1,5 @@
 /**
- * motor.c - Implementation of LoRa module functionality
+ * motor.c - Implementation of deployment motors
  */
 
  #include <stdio.h>
