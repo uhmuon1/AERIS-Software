@@ -23,7 +23,6 @@ static FIL data_file;
 // Timing and logging control
 #define LOG_INTERVAL_MS 40  // 25Hz = 40ms between samples
 #define STATUS_INTERVAL_MS 1000  // Status update every second
-#define LOG_BUFFER_SIZE 256
 
 void blink_core1_entry();
 
@@ -63,8 +62,8 @@ typedef struct {
 
 // Function prototypes
 bool gnss_init(i2c_inst_t *i2c);
-bool gnss_read_location(i2c_inst_t *i2c, gnss_data_t *data);
-void gnss_print_status(const gnss_data_t *data);
+bool gnss_read_location(i2c_inst_t *i2c, ubx_pvt_data_t *data);
+void gnss_print_status(const ubx_pvt_data_t *data);
 const char* gnss_get_fix_type_str(uint8_t fix_type);
 
 #endif // GNSS_H

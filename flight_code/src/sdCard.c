@@ -92,7 +92,7 @@ bool write_data_to_sd(const gnss_data_t *data, uint32_t system_timestamp_ms) {
 }
 
 
-uint read_data_from_sd(const gnss_data_t *buffer) {
+uint read_data_from_sd(const ubx_pvt_data_t *buffer) {
     UINT br;
     FRESULT fr = f_read(&data_file, buffer, sizeof(buffer) - 1, &br);
     if (fr != FR_OK) {

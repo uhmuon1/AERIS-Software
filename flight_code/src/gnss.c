@@ -30,6 +30,8 @@ static uint32_t failed_reads = 0;
 
 bool gnss_init(i2c_inst_t *i2c) {
     printf("Initializing GNSS module...\n");
+
+
     
     // Poll the module to check if it's responding
     if (!send_poll_request(i2c)) {
@@ -40,7 +42,7 @@ bool gnss_init(i2c_inst_t *i2c) {
     sleep_ms(100);
     
     // Try to read a message to verify communications
-    gnss_data_t dummy_data;
+    ubx_pvt_data_t dummy_data;
     if (!gnss_read_location(i2c, &dummy_data)) {
         printf("Failed to read initial GNSS data\n");
         // We'll continue anyway as the module might need time to start up
@@ -74,7 +76,7 @@ bool wait_for_sync(i2c_inst_t *i2c) {
     return false;
 }
 
-bool gnss_read_location(i2c_inst_t *i2c, gnss_data_t *data) {
+bool gnss_read_location(i2c_inst_t *i2c, ubx_pvt_data_t *data) {
     total_reads++;
     
     // First send poll request
@@ -133,17 +135,17 @@ bool gnss_read_location(i2c_inst_t *i2c, gnss_data_t *data) {
     data->min = pvt_data[9];
     data->sec = pvt_data[10];
     
-    data->fix_type = pvt_data[20];
-    data->satellites = pvt_data[23];
+    data->fixType = pvt_data[20];
+    data->numSV = pvt_data[23];
     
     data->lon = pvt_data[24] | (pvt_data[25] << 8) | (pvt_data[26] << 16) | (pvt_data[27] << 24);
     data->lat = pvt_data[28] | (pvt_data[29] << 8) | (pvt_data[30] << 16) | (pvt_data[31] << 24);
-    data->altitude = pvt_data[36] | (pvt_data[37] << 8) | (pvt_data[38] << 16) | (pvt_data[39] << 24);
+    data->hMSL = pvt_data[36] | (pvt_data[37] << 8) | (pvt_data[38] << 16) | (pvt_data[39] << 24);
     
-    data->vel_north = pvt_data[48] | (pvt_data[49] << 8) | (pvt_data[50] << 16) | (pvt_data[51] << 24);
-    data->vel_east = pvt_data[52] | (pvt_data[53] << 8) | (pvt_data[54] << 16) | (pvt_data[55] << 24);
-    data->vel_down = pvt_data[56] | (pvt_data[57] << 8) | (pvt_data[58] << 16) | (pvt_data[59] << 24);
-    data->ground_speed = pvt_data[60] | (pvt_data[61] << 8) | (pvt_data[62] << 16) | (pvt_data[63] << 24);
+    data->velN = pvt_data[48] | (pvt_data[49] << 8) | (pvt_data[50] << 16) | (pvt_data[51] << 24);
+    data->velE = pvt_data[52] | (pvt_data[53] << 8) | (pvt_data[54] << 16) | (pvt_data[55] << 24);
+    data->velD = pvt_data[56] | (pvt_data[57] << 8) | (pvt_data[58] << 16) | (pvt_data[59] << 24);
+    data->gSpeed = pvt_data[60] | (pvt_data[61] << 8) | (pvt_data[62] << 16) | (pvt_data[63] << 24);
     
     successful_reads++;
     return true;
@@ -160,13 +162,13 @@ const char* gnss_get_fix_type_str(uint8_t fix_type) {
     }
 }
 
-void gnss_print_status(const gnss_data_t *data) {
+void gnss_print_status(const ubx_pvt_data_t *data) {
     // Simple, single-line status update
     printf("Time: %02d:%02d:%02d | Pos: %.5f, %.5f | Alt: %.1fm | Fix: %s | Sats: %d | Stats: %lu/%lu\r",
         data->hour, data->min, data->sec,
         data->lat * 1e-7, data->lon * 1e-7,
-        data->altitude / 1000.0,
-        gnss_get_fix_type_str(data->fix_type),
-        data->satellites,
+        data->hMSL / 1000.0,
+        gnss_get_fix_type_str(data->fixType),
+        data->numSV,
         successful_reads, total_reads);
 }
