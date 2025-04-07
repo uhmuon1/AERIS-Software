@@ -15,24 +15,27 @@
 #define NAV_PVT_ID 0x07
 #define MAX_UBX_LENGTH 100
 
+// Statistics counters
+static uint32_t total_reads = 0;
+static uint32_t successful_reads = 0;
+static uint32_t failed_reads = 0;
+
 // UBX-NAV-PVT Poll Request message
-const uint8_t ubx_nav_pvt_poll[] = {
+extern const uint8_t ubx_nav_pvt_poll[] = {
     0xB5, 0x62,     // Sync chars
     0x01, 0x07,     // Class (NAV) + ID (PVT)
     0x00, 0x00,     // Length (0 for poll request)
     0x08, 0x19      // Checksum
 };
 
-// Statistics counters
-static uint32_t total_reads = 0;
-static uint32_t successful_reads = 0;
-static uint32_t failed_reads = 0;
+bool send_poll_request(i2c_inst_t *i2c) {
+    int result = i2c_write_blocking(i2c, GNSS_ADDR, ubx_nav_pvt_poll, sizeof(ubx_nav_pvt_poll), false);
+    return (result == sizeof(ubx_nav_pvt_poll));
+}
 
 bool gnss_init(i2c_inst_t *i2c) {
     printf("Initializing GNSS module...\n");
 
-
-    
     // Poll the module to check if it's responding
     if (!send_poll_request(i2c)) {
         printf("GNSS module not responding\n");
@@ -50,11 +53,6 @@ bool gnss_init(i2c_inst_t *i2c) {
     
     printf("GNSS module initialized\n");
     return true;
-}
-
-bool send_poll_request(i2c_inst_t *i2c) {
-    int result = i2c_write_blocking(i2c, GNSS_ADDR, ubx_nav_pvt_poll, sizeof(ubx_nav_pvt_poll), false);
-    return (result == sizeof(ubx_nav_pvt_poll));
 }
 
 bool read_byte(i2c_inst_t *i2c, uint8_t *byte) {

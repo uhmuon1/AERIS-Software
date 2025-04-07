@@ -9,6 +9,21 @@
 
 #define LORA_MAX_PACKET_SIZE 64
 
+// LoRa configuration
+#define CONFIG_LORA_FREQUENCY           433000000  // 433 MHz
+#define CONFIG_LORA_TX_INTERVAL_MS      5000       // 5 seconds between transmissions
+#define CONFIG_LORA_POWER               0xff       // Maximum power
+
+// Hardware pins - SPI for LoRa
+#define CONFIG_PIN_MISO                 4
+#define CONFIG_PIN_CS                   1
+#define CONFIG_PIN_SCK                  2
+#define CONFIG_PIN_MOSI                 3
+#define CONFIG_PIN_RST                  17 // Alex said so
+#define CONFIG_PIN_TX                   18
+#define CONFIG_PIN_RX                   22
+#define CONFIG_SPI_PORT                 spi0
+
 // Function prototypes
 /*! \brief Initialise LoRa Board to transmit
  *  \ingroup lora

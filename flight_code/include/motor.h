@@ -30,4 +30,4 @@
 void motor_control(i2c_inst_t *i2c, int motor_a_speed, int motor_b_speed);
 void setup_motor_driver(i2c_inst_t *i2c);
 
-#endif // GNSS_H
+#endif // MOTOR_H

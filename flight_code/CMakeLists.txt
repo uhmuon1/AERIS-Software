@@ -15,17 +15,22 @@ pico_sdk_init()
 file(GLOB_RECURSE SOURCES "src/*.c")
 file(GLOB_RECURSE HEADERS "include/*.h")
 
+add_subdirectory(FatFs_SPI)
+
 add_executable(flight_code
     ${SOURCES} 
     ${HEADERS}
-    main.c
+    main_parker.c
     )
+
+target_include_directories(flight_code PUBLIC include)
 
 target_link_libraries(flight_code 
     pico_stdlib
     FatFs_SPI
     hardware_spi 
     hardware_i2c
+    hardware_clocks
     )
 
 pico_enable_stdio_usb(flight_code 1)

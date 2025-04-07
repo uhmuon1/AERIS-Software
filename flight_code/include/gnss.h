@@ -16,23 +16,10 @@
 #define NAV_PVT_ID 0x07
 #define MAX_UBX_LENGTH 100
 
-// File system objects
-static FATFS fs;
-static FIL data_file;
 
 // Timing and logging control
 #define LOG_INTERVAL_MS 40  // 25Hz = 40ms between samples
 #define STATUS_INTERVAL_MS 1000  // Status update every second
-
-void blink_core1_entry();
-
-// UBX-NAV-PVT Poll Request message
-const uint8_t ubx_nav_pvt_poll[] = {
-    0xB5, 0x62,     // Sync chars
-    0x01, 0x07,     // Class (NAV) + ID (PVT)
-    0x00, 0x00,     // Length (0 for poll request)
-    0x08, 0x19      // Checksum
-};
 
 typedef struct {
     // Time data

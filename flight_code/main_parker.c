@@ -21,7 +21,7 @@ uint32_t time_limit = 80 * 1000;  // 80 seconds in milliseconds
 uint32_t next_sample_time = 0;
 uint32_t next_status_time = 0;
 ubx_pvt_data_t pvt_data;
-bool chute_open = false;
+bool mode_switched = false;
 bool beacon_tx = false;
 
 int main(){
@@ -49,15 +49,30 @@ int main(){
         current_time = to_ms_since_boot(get_absolute_time());
         switch(curr_mode){
             case MODE_GNSS_LOG:
-                read_ubx_message(i2c0, &pvt_data);
+                gnss_read_location(i2c0, &pvt_data);
                 write_data_to_sd(&pvt_data,current_time);
             break;
             case MODE_TRANSMIT:
-                motor_control(i2c0, 100, 100);
+                if(!mode_switched){
+                    motor_control(i2c0, 100, 100);
+                    sleep_ms(500);
+                    motor_control(i2c0, 0, 0);
+                    reset_f_ptr();
+                    mode_switched = true;
+                }
                 read_data_from_sd(lora_packet);
                 lora_send_packet(lora_packet, packet_size);
             break;
         }
-        if (current_time < GNSS)
+
+        // Check alt if needed
+        gnss_read_location(i2c0, &pvt_data);
+        pvt_data.hMSL;
+
+        if (GNSS_BEGIN_POLL < current_time && current_time < TX_TIME){
+            curr_mode = MODE_GNSS_LOG;
+        } else if(TX_TIME < current_time){
+            curr_mode = MODE_TRANSMIT;
+        }
     }
 }

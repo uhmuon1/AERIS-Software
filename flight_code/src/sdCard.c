@@ -1,5 +1,8 @@
 #include "sdCard.h"
 
+int successful_writes;
+int failed_writes;
+
 bool init_sd_card() {
     printf("Initializing SD card...\n");
     FRESULT fr = f_mount(&fs, "0:", 1);
@@ -14,7 +17,7 @@ bool init_sd_card() {
     return true;
 }
 
-bool create_data_file(const gnss_data_t *pvt_data) {
+bool create_data_file(const ubx_pvt_data_t *pvt_data) {
     char filename[32];
     // Create a filename based on timestamp from boot
     uint32_t timestamp = to_ms_since_boot(get_absolute_time());
@@ -46,7 +49,7 @@ bool reset_f_ptr(){
     f_lseek(&data_file, 0);
 }
 
-bool write_data_to_sd(const gnss_data_t *data, uint32_t system_timestamp_ms) {
+bool write_data_to_sd(const ubx_pvt_data_t *data, uint32_t system_timestamp_ms) {
     char buffer[LOG_BUFFER_SIZE];
     uint32_t sys_seconds = system_timestamp_ms / 1000;
     uint32_t sys_ms = system_timestamp_ms % 1000;
@@ -65,11 +68,11 @@ bool write_data_to_sd(const gnss_data_t *data, uint32_t system_timestamp_ms) {
         sys_seconds, sys_ms,
         data->hour, data->min, data->sec, milliseconds, // Include milliseconds here
         data->lat * 1e-7, data->lon * 1e-7,
-        data->altitude / 1000.0,
-        data->vel_north / 1000.0, data->vel_east / 1000.0, data->vel_down / 1000.0,
-        data->ground_speed / 1000.0,
-        get_fix_type_str(data->fix_type),
-        data->satellites);
+        data->hMSL / 1000.0,
+        data->velN / 1000.0, data->velE / 1000.0, data->velD / 1000.0,
+        data->gSpeed / 1000.0,
+        gnss_get_fix_type_str(data->fixType),
+        data->numSV);
     
     UINT bw;
     FRESULT fr = f_write(&data_file, buffer, len, &bw);
@@ -92,7 +95,7 @@ bool write_data_to_sd(const gnss_data_t *data, uint32_t system_timestamp_ms) {
 }
 
 
-uint read_data_from_sd(const ubx_pvt_data_t *buffer) {
+uint read_data_from_sd(uint8_t *buffer) {
     UINT br;
     FRESULT fr = f_read(&data_file, buffer, sizeof(buffer) - 1, &br);
     if (fr != FR_OK) {
