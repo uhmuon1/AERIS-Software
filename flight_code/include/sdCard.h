@@ -20,3 +20,5 @@ static FIL data_file;
 
 bool init_sd_card();
 bool create_data_file(const gnss_data_t *pvt_data);
+
+#endif
