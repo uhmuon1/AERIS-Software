@@ -8,6 +8,9 @@ bool init_sd_card() {
         return false;
     }
     printf("SD card mounted\n");
+
+    successful_writes = 0;
+    failed_writes = 0;
     return true;
 }
 
@@ -58,11 +61,11 @@ bool write_data_to_sd(const gnss_data_t *data, uint32_t system_timestamp_ms) {
         sys_seconds, sys_ms,
         data->hour, data->min, data->sec, milliseconds, // Include milliseconds here
         data->lat * 1e-7, data->lon * 1e-7,
-        data->hMSL / 1000.0,
-        data->velN / 1000.0, data->velE / 1000.0, data->velD / 1000.0,
-        data->gSpeed / 1000.0,
-        get_fix_type_str(data->fixType),
-        data->numSV);
+        data->altitude / 1000.0,
+        data->vel_north / 1000.0, data->vel_east / 1000.0, data->vel_down / 1000.0,
+        data->ground_speed / 1000.0,
+        get_fix_type_str(data->fix_type),
+        data->satellites);
     
     UINT bw;
     FRESULT fr = f_write(&data_file, buffer, len, &bw);
@@ -82,4 +85,19 @@ bool write_data_to_sd(const gnss_data_t *data, uint32_t system_timestamp_ms) {
     
     successful_writes++;
     return true;
+}
+
+bool read_data_from_sd(const gnss_data_t *buffer) {
+    UINT br;
+    FRESULT fr = f_read(&data_file, buffer, sizeof(buffer) - 1, &br);
+    if (fr != FR_OK) {
+        printf("Failed to read file: %d\n", fr);
+        f_close(&data_file);
+        return -1;
+    }
+}
+
+bool quit_sd_card(){
+    f_close(&data_file);
+    f_unmount("0:");
 }
