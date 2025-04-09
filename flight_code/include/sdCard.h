@@ -24,11 +24,7 @@ bool init_sd_card();
 bool create_data_file();
 bool file_read_setup();
 bool write_data_to_sd(const ubx_pvt_data_t *data, uint32_t system_timestamp_ms);
-<<<<<<< HEAD
 uint32_t read_data_from_sd(uint8_t *buffer);
-=======
-uint read_data_from_sd(uint8_t *buffer, uint8_t size);
->>>>>>> bc1daf1cf9b655f9bf7b9db8662090e9e6beec56
 bool quit_sd_card();
 
 #endif // end SD_H
