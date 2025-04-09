@@ -67,7 +67,13 @@ int main(){
     while(current_time < 15*1000){
         // printf("Polling GNSS\n");
         current_time = to_ms_since_boot(get_absolute_time());
-        write_data_to_sd(&pvt_data,current_time);
+        gnss_read_location(i2c_default, &pvt_data);
+        if(gnss_get_fix_type_str(pvt_data.fixType) == "3D"){
+            write_data_to_sd(&pvt_data,current_time);
+        }
+        else{
+
+        }
     }
 
     printf("Activate Motor\n");
@@ -81,11 +87,11 @@ int main(){
     {
         printf("Sending Data via LoRa\n");
         current_time = to_ms_since_boot(get_absolute_time());
-        read_data_from_sd(buffer);
+        read_data_from_sd(buffer, packet_size);
 
-        *(uint16_t*)lora_packet = pvt_data.year; *lora_packet += 2;
-        *lora_packet = pvt_data.month; (*lora_packet)++;
-        *lora_packet = pvt_data.day; (*lora_packet)++;
+        // *(uint16_t*)lora_packet = pvt_data.year; *lora_packet += 2;
+        // *lora_packet = pvt_data.month; (*lora_packet)++;
+        // *lora_packet = pvt_data.day; (*lora_packet)++;
         *lora_packet = pvt_data.hour; (*lora_packet)++;
         *lora_packet = pvt_data.min; (*lora_packet)++;
         *lora_packet = pvt_data.sec; (*lora_packet)++;
@@ -100,7 +106,7 @@ int main(){
         *(int32_t*)lora_packet = pvt_data.velN;   (*lora_packet) += 4;
         *(int32_t*)lora_packet = pvt_data.velE;   (*lora_packet) += 4;
         *(int32_t*)lora_packet = pvt_data.velD;   (*lora_packet) += 4;
-        *(uint32_t*)lora_packet = pvt_data.gSpeed;
+        // *(uint32_t*)lora_packet = pvt_data.gSpeed;
 
         lora_send_packet(lora_packet, packet_size);
     }

@@ -82,14 +82,7 @@ bool write_data_to_sd(const ubx_pvt_data_t *data, uint32_t system_timestamp_ms) 
         return false;
     }
     
-    // Sync every 25 samples (about once per second)
-    if (successful_writes % 25 == 0) {
-        fr = f_sync(&data_file);
-        if (fr != FR_OK) {
-            return false;
-        }
-    }
-    
+    f_sync(&data_file);
     successful_writes++;
     return true;
 }
