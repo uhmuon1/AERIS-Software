@@ -86,44 +86,8 @@ int main(){
     {
         printf("Sending Data via LoRa\n");
         current_time = to_ms_since_boot(get_absolute_time());
-        read_data_from_sd(&pvt_data, packet_size);
-
-        size_t offset = 0;
-    
-        // Copy time data (6 bytes total)
-        memcpy(lora_packet + offset, pvt_data.year, sizeof(uint16_t));
-        offset += sizeof(uint16_t);
-        
-        lora_packet[offset++] = pvt_data.month;
-        lora_packet[offset++] = pvt_data.day;
-        lora_packet[offset++] = pvt_data.hour;
-        lora_packet[offset++] = pvt_data.min;
-        lora_packet[offset++] = pvt_data.sec;
-        
-        // Copy position data (12 bytes total)
-        memcpy(lora_packet + offset, &pvt_data.lon, sizeof(int32_t));
-        offset += sizeof(int32_t);
-        
-        memcpy(lora_packet + offset, &pvt_data.lat, sizeof(int32_t));
-        offset += sizeof(int32_t);
-        
-        memcpy(lora_packet + offset, &pvt_data.height, sizeof(int32_t));
-        offset += sizeof(int32_t);
-        
-        // Copy velocity data (16 bytes total)
-        memcpy(lora_packet + offset, &pvt_data.velN, sizeof(int32_t));
-        offset += sizeof(int32_t);
-        
-        memcpy(lora_packet + offset, &pvt_data.velE, sizeof(int32_t));
-        offset += sizeof(int32_t);
-        
-        memcpy(lora_packet + offset, &pvt_data.velD, sizeof(int32_t));
-        offset += sizeof(int32_t);
-        
-        memcpy(lora_packet + offset, &pvt_data.gSpeed, sizeof(uint32_t));
-        offset += sizeof(uint32_t);
-        
-        lora_send_packet(lora_packet, packet_size); // Total bytes written (34 bytes)
+        read_data_from_sd(&pvt_data);
+        lora_send_packet(&pvt_data, 61); // Total bytes written (34 bytes)
     }
-    return 0;
+    return 0
 }
