@@ -17,43 +17,71 @@ uint32_t time_limit = 80 * 1000;  // 80 seconds in milliseconds
 uint32_t next_sample_time = 0;
 uint32_t next_status_time = 0;
 ubx_pvt_data_t pvt_data;
+uint8_t buffer[sizeof(ubx_pvt_data_t)];
 bool mode_switched = false;
 bool beacon_tx = false;
 
+int pico_led_init(void) {
+    gpio_init(PICO_DEFAULT_LED_PIN);
+    gpio_set_dir(PICO_DEFAULT_LED_PIN, GPIO_OUT);
+    return PICO_OK;
+}
+void pico_set_led(bool led_on) {
+    gpio_put(PICO_DEFAULT_LED_PIN, led_on);
+}
+
 int main(){
-
     stdio_init_all();
+    sleep_ms(3000);
 
-    i2c_init(i2c0, 100 * 1000);
+    pico_led_init();
+
+    
+    printf("Init I2C\n");
+    i2c_init(i2c_default, 100 * 1000);
     gpio_set_function(PICO_DEFAULT_I2C_SDA_PIN, GPIO_FUNC_I2C);
     gpio_set_function(PICO_DEFAULT_I2C_SCL_PIN, GPIO_FUNC_I2C);
     gpio_pull_up(PICO_DEFAULT_I2C_SDA_PIN);
     gpio_pull_up(PICO_DEFAULT_I2C_SCL_PIN);
 
-    gnss_init(i2c0);
+    pico_set_led(true);
+    printf("Init GNSS\n");
+    gnss_init(i2c_default);
+
+    printf("Init SD\n");
     init_sd_card();
+
+    printf("Init LoRa\n");
     lora_init();
-    setup_motor_driver(i2c0);
+
+    printf("Init Motor\n");
+    setup_motor_driver(i2c_default);
 
     uint32_t current_time = to_ms_since_boot(get_absolute_time());
     uint8_t packet_size = 39;
     uint8_t lora_packet[packet_size];
 
-    while(current_time < GNSS_BEGIN_POLL){
+    create_data_file();
+
+    // while(current_time < GNSS_BEGIN_POLL){
+    while(current_time < 15*1000){
+        // printf("Polling GNSS\n");
         current_time = to_ms_since_boot(get_absolute_time());
-        gnss_read_location(i2c0, &pvt_data);
         write_data_to_sd(&pvt_data,current_time);
     }
 
-    motor_control(i2c0, 100, 100);
-    sleep_ms(500);
-    motor_control(i2c0, 0, 0);
+    printf("Activate Motor\n");
+    motor_control(i2c_default, 2, 2);
+    sleep_ms(5000);
+    // motor_control(i2c_default, 0, 0);
+    disable_motor_driver(i2c_default);
     reset_f_ptr();
 
     while (current_time < TX_TIME)
     {
+        printf("Sending Data via LoRa\n");
         current_time = to_ms_since_boot(get_absolute_time());
-        read_data_from_sd(&pvt_data);
+        read_data_from_sd(buffer);
 
         *(uint16_t*)lora_packet = pvt_data.year; *lora_packet += 2;
         *lora_packet = pvt_data.month; (*lora_packet)++;
@@ -76,9 +104,5 @@ int main(){
 
         lora_send_packet(lora_packet, packet_size);
     }
-    
-
-    // Check alt if needed
-    // gnss_read_location(i2c0, &pvt_data);
-    // pvt_data.hMSL;
+    return 0;
 }

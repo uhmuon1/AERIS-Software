@@ -17,15 +17,15 @@ bool init_sd_card() {
     return true;
 }
 
-bool create_data_file(const ubx_pvt_data_t *pvt_data) {
+bool create_data_file() {
     char filename[32];
     // Create a filename based on timestamp from boot
     uint32_t timestamp = to_ms_since_boot(get_absolute_time());
-    snprintf(filename, sizeof(filename), "0:/gnss_%04d-%02d-%02d_%02d%02d%02d.csv", 
-             pvt_data->year, pvt_data->month, pvt_data->day, 
-             pvt_data->hour, pvt_data->min, pvt_data->sec);
+    // snprintf(filename, sizeof(filename), "0:/gnss_%04d-%02d-%02d_%02d%02d%02d.csv", 
+    //          pvt_data->year, pvt_data->month, pvt_data->day, 
+    //          pvt_data->hour, pvt_data->min, pvt_data->sec);
     
-    FRESULT fr = f_open(&data_file, filename, FA_WRITE | FA_CREATE_ALWAYS);
+    FRESULT fr = f_open(&data_file, FILE_NAME, FA_WRITE | FA_CREATE_ALWAYS);
     if (fr != FR_OK) {
         printf("Failed to create file: %d\n", fr);
         return false;

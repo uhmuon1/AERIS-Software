@@ -21,7 +21,7 @@ static uint32_t successful_reads = 0;
 static uint32_t failed_reads = 0;
 
 // UBX-NAV-PVT Poll Request message
-extern const uint8_t ubx_nav_pvt_poll[] = {
+const uint8_t ubx_nav_pvt_poll[] = {
     0xB5, 0x62,     // Sync chars
     0x01, 0x07,     // Class (NAV) + ID (PVT)
     0x00, 0x00,     // Length (0 for poll request)

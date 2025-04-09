@@ -56,3 +56,14 @@ void setup_motor_driver(i2c_inst_t *i2c) {
         printf("Error writing to motor B inversion\n");
     }
 }
+
+void disable_motor_driver(i2c_inst_t *i2c) {
+    // Enable the motor driver
+    uint8_t enable_motor_driver[2] = { SCMD_DRIVER_ENABLE, 0x00 };  // 0x00 to disable the driver
+    int res = i2c_write_blocking(i2c, MOTOR_DRIVER_ADDR, enable_motor_driver, sizeof(enable_motor_driver), false);
+    if (res != sizeof(enable_motor_driver)) {
+        printf("Error enabling motor driver (I2C Write: %d)\n", res);
+    }
+
+    printf("Motor Driver Disable\n");
+}

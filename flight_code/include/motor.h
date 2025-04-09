@@ -29,5 +29,6 @@
 
 void motor_control(i2c_inst_t *i2c, int motor_a_speed, int motor_b_speed);
 void setup_motor_driver(i2c_inst_t *i2c);
+void disable_motor_driver(i2c_inst_t *i2c);
 
 #endif // MOTOR_H
