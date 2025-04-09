@@ -36,7 +36,7 @@ int main(){
     setup_motor_driver(i2c0);
 
     uint32_t current_time = to_ms_since_boot(get_absolute_time());
-    uint16_t packet_size = sizeof(ubx_pvt_data_t);
+    uint8_t packet_size = 39;
     uint8_t lora_packet[packet_size];
 
     while(current_time < GNSS_BEGIN_POLL){
@@ -53,7 +53,27 @@ int main(){
     while (current_time < TX_TIME)
     {
         current_time = to_ms_since_boot(get_absolute_time());
-        read_data_from_sd(lora_packet);
+        read_data_from_sd(&pvt_data);
+
+        *(uint16_t*)lora_packet = pvt_data.year; *lora_packet += 2;
+        *lora_packet = pvt_data.month; (*lora_packet)++;
+        *lora_packet = pvt_data.day; (*lora_packet)++;
+        *lora_packet = pvt_data.hour; (*lora_packet)++;
+        *lora_packet = pvt_data.min; (*lora_packet)++;
+        *lora_packet = pvt_data.sec; (*lora_packet)++;
+    
+        // Position (4 * 4 bytes)
+        *(int32_t*)lora_packet = pvt_data.lon;    (*lora_packet) += 4;
+        *(int32_t*)lora_packet = pvt_data.lat;    (*lora_packet) += 4;
+        *(int32_t*)lora_packet = pvt_data.height; (*lora_packet) += 4;
+        *(int32_t*)lora_packet = pvt_data.hMSL;   (*lora_packet) += 4;
+    
+        // Velocity (3 * int32 + 1 * uint32 = 16 bytes)
+        *(int32_t*)lora_packet = pvt_data.velN;   (*lora_packet) += 4;
+        *(int32_t*)lora_packet = pvt_data.velE;   (*lora_packet) += 4;
+        *(int32_t*)lora_packet = pvt_data.velD;   (*lora_packet) += 4;
+        *(uint32_t*)lora_packet = pvt_data.gSpeed;
+
         lora_send_packet(lora_packet, packet_size);
     }
     
