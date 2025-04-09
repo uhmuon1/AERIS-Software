@@ -21,8 +21,33 @@
 #define LOG_INTERVAL_MS 40  // 25Hz = 40ms between samples
 #define STATUS_INTERVAL_MS 1000  // Status update every second
 
+// typedef struct {
+//     // Time data
+//     uint16_t year;
+//     uint8_t month;
+//     uint8_t day;
+//     uint8_t hour;
+//     uint8_t min;
+//     uint8_t sec;
+    
+//     // Position data (all in cm)
+//     int32_t lon;    // Scaled by 10^-7
+//     int32_t lat;    // Scaled by 10^-7
+//     int32_t height; // Height above ellipsoid in mm
+//     int32_t hMSL;   // Height above mean sea level in mm
+    
+//     // Velocity data (all in mm/s)
+//     int32_t velN;   // North velocity
+//     int32_t velE;   // East velocity
+//     int32_t velD;   // Down velocity
+//     uint32_t gSpeed; // Ground speed
+    
+//     // Status data
+//     uint8_t numSV;  // Number of satellites used
+//     uint8_t fixType;// Fix type
+// } ubx_pvt_data_t;
 typedef struct {
-    // Time data
+    // Time data remains as integers
     uint16_t year;
     uint8_t month;
     uint8_t day;
@@ -30,19 +55,19 @@ typedef struct {
     uint8_t min;
     uint8_t sec;
     
-    // Position data (all in cm)
-    int32_t lon;    // Scaled by 10^-7
-    int32_t lat;    // Scaled by 10^-7
-    int32_t height; // Height above ellipsoid in mm
-    int32_t hMSL;   // Height above mean sea level in mm
+    // Position data as double for maximum precision
+    double lon;    // Decimal degrees
+    double lat;    // Decimal degrees
+    double height; // Height above ellipsoid in meters
+    double hMSL;   // Height above mean sea level in meters
     
-    // Velocity data (all in mm/s)
-    int32_t velN;   // North velocity
-    int32_t velE;   // East velocity
-    int32_t velD;   // Down velocity
-    uint32_t gSpeed; // Ground speed
+    // Velocity data as double for maximum precision
+    double velN;   // North velocity in m/s
+    double velE;   // East velocity in m/s
+    double velD;   // Down velocity in m/s
+    double gSpeed; // Ground speed in m/s
     
-    // Status data
+    // Status data remains as integers
     uint8_t numSV;  // Number of satellites used
     uint8_t fixType;// Fix type
 } ubx_pvt_data_t;

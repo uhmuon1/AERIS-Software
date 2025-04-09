@@ -1,4 +1,4 @@
-// Padded and checksummed version of: /home/connerparker/ASEN_4013/AERIS-Software/flight_code/build/pico-sdk/src/rp2040/boot_stage2/bs2_default.bin
+// Padded and checksummed version of: /Users/tommycollier/Downloads/AERIS-Software/flight_code/build/pico-sdk/src/rp2040/boot_stage2/bs2_default.bin
 
 .cpu cortex-m0plus
 .thumb

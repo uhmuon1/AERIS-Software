@@ -124,6 +124,8 @@ bool gnss_read_location(i2c_inst_t *i2c, ubx_pvt_data_t *data) {
         failed_reads++;
         return false;
     }
+
+    // ... existing code ...
     
     // Parse PVT data
     data->year = pvt_data[4] | (pvt_data[5] << 8);
@@ -136,18 +138,54 @@ bool gnss_read_location(i2c_inst_t *i2c, ubx_pvt_data_t *data) {
     data->fixType = pvt_data[20];
     data->numSV = pvt_data[23];
     
-    data->lon = pvt_data[24] | (pvt_data[25] << 8) | (pvt_data[26] << 16) | (pvt_data[27] << 24);
-    data->lat = pvt_data[28] | (pvt_data[29] << 8) | (pvt_data[30] << 16) | (pvt_data[31] << 24);
-    data->hMSL = pvt_data[36] | (pvt_data[37] << 8) | (pvt_data[38] << 16) | (pvt_data[39] << 24);
+    // Extract raw integer values
+    int32_t raw_lon = pvt_data[24] | (pvt_data[25] << 8) | (pvt_data[26] << 16) | (pvt_data[27] << 24);
+    int32_t raw_lat = pvt_data[28] | (pvt_data[29] << 8) | (pvt_data[30] << 16) | (pvt_data[31] << 24);
+    int32_t raw_height = pvt_data[32] | (pvt_data[33] << 8) | (pvt_data[34] << 16) | (pvt_data[35] << 24);
+    int32_t raw_hMSL = pvt_data[36] | (pvt_data[37] << 8) | (pvt_data[38] << 16) | (pvt_data[39] << 24);
     
-    data->velN = pvt_data[48] | (pvt_data[49] << 8) | (pvt_data[50] << 16) | (pvt_data[51] << 24);
-    data->velE = pvt_data[52] | (pvt_data[53] << 8) | (pvt_data[54] << 16) | (pvt_data[55] << 24);
-    data->velD = pvt_data[56] | (pvt_data[57] << 8) | (pvt_data[58] << 16) | (pvt_data[59] << 24);
-    data->gSpeed = pvt_data[60] | (pvt_data[61] << 8) | (pvt_data[62] << 16) | (pvt_data[63] << 24);
+    int32_t raw_velN = pvt_data[48] | (pvt_data[49] << 8) | (pvt_data[50] << 16) | (pvt_data[51] << 24);
+    int32_t raw_velE = pvt_data[52] | (pvt_data[53] << 8) | (pvt_data[54] << 16) | (pvt_data[55] << 24);
+    int32_t raw_velD = pvt_data[56] | (pvt_data[57] << 8) | (pvt_data[58] << 16) | (pvt_data[59] << 24);
+    int32_t raw_gSpeed = pvt_data[60] | (pvt_data[61] << 8) | (pvt_data[62] << 16) | (pvt_data[63] << 24);
+    
+    // Convert to appropriate units using doubles
+    data->lon = raw_lon * 1e-7;        // Convert to decimal degrees
+    data->lat = raw_lat * 1e-7;        // Convert to decimal degrees
+    data->height = raw_height / 1000.0; // Convert mm to meters
+    data->hMSL = raw_hMSL / 1000.0;     // Convert mm to meters
+    
+    data->velN = raw_velN / 1000.0;     // Convert mm/s to m/s
+    data->velE = raw_velE / 1000.0;     // Convert mm/s to m/s
+    data->velD = raw_velD / 1000.0;     // Convert mm/s to m/s
+    data->gSpeed = raw_gSpeed / 1000.0; // Convert mm/s to m/s
     
     successful_reads++;
     return true;
 }
+//     // Parse PVT data
+//     data->year = pvt_data[4] | (pvt_data[5] << 8);
+//     data->month = pvt_data[6];
+//     data->day = pvt_data[7];
+//     data->hour = pvt_data[8];
+//     data->min = pvt_data[9];
+//     data->sec = pvt_data[10];
+    
+//     data->fixType = pvt_data[20];
+//     data->numSV = pvt_data[23];
+    
+//     data->lon = pvt_data[24] | (pvt_data[25] << 8) | (pvt_data[26] << 16) | (pvt_data[27] << 24);
+//     data->lat = pvt_data[28] | (pvt_data[29] << 8) | (pvt_data[30] << 16) | (pvt_data[31] << 24);
+//     data->hMSL = pvt_data[36] | (pvt_data[37] << 8) | (pvt_data[38] << 16) | (pvt_data[39] << 24);
+    
+//     data->velN = pvt_data[48] | (pvt_data[49] << 8) | (pvt_data[50] << 16) | (pvt_data[51] << 24);
+//     data->velE = pvt_data[52] | (pvt_data[53] << 8) | (pvt_data[54] << 16) | (pvt_data[55] << 24);
+//     data->velD = pvt_data[56] | (pvt_data[57] << 8) | (pvt_data[58] << 16) | (pvt_data[59] << 24);
+//     data->gSpeed = pvt_data[60] | (pvt_data[61] << 8) | (pvt_data[62] << 16) | (pvt_data[63] << 24);
+    
+//     successful_reads++;
+//     return true;
+// }
 
 const char* gnss_get_fix_type_str(uint8_t fix_type) {
     switch(fix_type) {
@@ -164,9 +202,20 @@ void gnss_print_status(const ubx_pvt_data_t *data) {
     // Simple, single-line status update
     printf("Time: %02d:%02d:%02d | Pos: %.5f, %.5f | Alt: %.1fm | Fix: %s | Sats: %d | Stats: %lu/%lu\r",
         data->hour, data->min, data->sec,
-        data->lat * 1e-7, data->lon * 1e-7,
-        data->hMSL / 1000.0,
+        data->lat, data->lon,  // Now already in decimal degrees
+        data->hMSL,            // Now already in meters
         gnss_get_fix_type_str(data->fixType),
         data->numSV,
         successful_reads, total_reads);
 }
+
+// void gnss_print_status(const ubx_pvt_data_t *data) {
+//     // Simple, single-line status update
+//     printf("Time: %02d:%02d:%02d | Pos: %.5f, %.5f | Alt: %.1fm | Fix: %s | Sats: %d | Stats: %lu/%lu\r",
+//         data->hour, data->min, data->sec,
+//         data->lat * 1e-7, data->lon * 1e-7,
+//         data->hMSL / 1000.0,
+//         gnss_get_fix_type_str(data->fixType),
+//         data->numSV,
+//         successful_reads, total_reads);
+// }

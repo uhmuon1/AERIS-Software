@@ -75,33 +75,13 @@ int main(){
     sleep_ms(5000);
     // motor_control(i2c_default, 0, 0);
     disable_motor_driver(i2c_default);
-    reset_f_ptr();
+    file_read_setup();
 
     while (current_time < TX_TIME)
     {
         printf("Sending Data via LoRa\n");
         current_time = to_ms_since_boot(get_absolute_time());
         read_data_from_sd(buffer);
-
-        *(uint16_t*)lora_packet = pvt_data.year; *lora_packet += 2;
-        *lora_packet = pvt_data.month; (*lora_packet)++;
-        *lora_packet = pvt_data.day; (*lora_packet)++;
-        *lora_packet = pvt_data.hour; (*lora_packet)++;
-        *lora_packet = pvt_data.min; (*lora_packet)++;
-        *lora_packet = pvt_data.sec; (*lora_packet)++;
-    
-        // Position (4 * 4 bytes)
-        *(int32_t*)lora_packet = pvt_data.lon;    (*lora_packet) += 4;
-        *(int32_t*)lora_packet = pvt_data.lat;    (*lora_packet) += 4;
-        *(int32_t*)lora_packet = pvt_data.height; (*lora_packet) += 4;
-        *(int32_t*)lora_packet = pvt_data.hMSL;   (*lora_packet) += 4;
-    
-        // Velocity (3 * int32 + 1 * uint32 = 16 bytes)
-        *(int32_t*)lora_packet = pvt_data.velN;   (*lora_packet) += 4;
-        *(int32_t*)lora_packet = pvt_data.velE;   (*lora_packet) += 4;
-        *(int32_t*)lora_packet = pvt_data.velD;   (*lora_packet) += 4;
-        *(uint32_t*)lora_packet = pvt_data.gSpeed;
-
         lora_send_packet(lora_packet, packet_size);
     }
     return 0;
