@@ -89,5 +89,5 @@ int main(){
         read_data_from_sd(&pvt_data);
         lora_send_packet(&pvt_data, 61); // Total bytes written (34 bytes)
     }
-    return 0
+    return 0;
 }
