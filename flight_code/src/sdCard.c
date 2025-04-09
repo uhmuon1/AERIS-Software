@@ -45,8 +45,9 @@ bool create_data_file() {
     return true;
 }
 
-bool reset_f_ptr(){
-    f_lseek(&data_file, 0);
+bool file_read_setup(){
+    f_close(&data_file);
+    f_open(&data_file, FILE_NAME, FA_READ);
 }
 
 bool write_data_to_sd(const ubx_pvt_data_t *data, uint32_t system_timestamp_ms) {
@@ -81,7 +82,7 @@ bool write_data_to_sd(const ubx_pvt_data_t *data, uint32_t system_timestamp_ms) 
         failed_writes++;
         return false;
     }
-    
+
     f_sync(&data_file);
     successful_writes++;
     return true;

@@ -41,14 +41,14 @@ int main() {
 
     // Close the file
     f_close(&fil);
-
+    
     // Read back the file to verify
     fr = f_open(&fil, "0:/test.txt", FA_READ);
     if (fr != FR_OK) {
-        printf("Failed to open file for reading: %d\n", fr);
-        return -1;
-    }
-
+            printf("Failed to open file for reading: %d\n", fr);
+            return -1;
+        }
+        
     char buffer[64];
     UINT br;
     fr = f_read(&fil, buffer, sizeof(buffer) - 1, &br);

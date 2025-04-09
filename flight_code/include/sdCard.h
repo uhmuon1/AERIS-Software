@@ -18,11 +18,11 @@
 static FATFS fs;
 static FIL data_file;
 static uint LOG_BUFFER_SIZE = 256;
-static char* FILE_NAME = "GNSS_Data_log.csv";
+static char* FILE_NAME = "0:/GNSS_Data_log.csv";
 
 bool init_sd_card();
 bool create_data_file();
-bool reset_f_ptr();
+bool file_read_setup();
 bool write_data_to_sd(const ubx_pvt_data_t *data, uint32_t system_timestamp_ms);
 uint read_data_from_sd(uint8_t *buffer, uint8_t size);
 bool quit_sd_card();

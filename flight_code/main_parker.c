@@ -80,7 +80,7 @@ int main(){
     sleep_ms(5000);
     // motor_control(i2c_default, 0, 0);
     disable_motor_driver(i2c_default);
-    reset_f_ptr();
+    file_read_setup();
 
     while (current_time < TX_TIME)
     {
