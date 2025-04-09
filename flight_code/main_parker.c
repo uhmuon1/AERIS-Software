@@ -62,8 +62,8 @@ int main(){
 
     create_data_file();
 
-    // while(current_time < GNSS_BEGIN_POLL){
-    while(current_time < 15*1000){
+    while(current_time < GNSS_BEGIN_POLL){
+    // while(current_time < 15*1000){
         // printf("Polling GNSS\n");
         current_time = to_ms_since_boot(get_absolute_time());
         gnss_read_location(i2c_default, &pvt_data);
@@ -81,6 +81,10 @@ int main(){
     // motor_control(i2c_default, 0, 0);
     disable_motor_driver(i2c_default);
     file_read_setup();
+
+    // Turn on beacon
+    gpio_set_dir(16, GPIO_OUT);
+    gpio_put(16,1);
 
     while (current_time < TX_TIME)
     {
