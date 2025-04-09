@@ -17,7 +17,6 @@ uint32_t time_limit = 80 * 1000;  // 80 seconds in milliseconds
 uint32_t next_sample_time = 0;
 uint32_t next_status_time = 0;
 ubx_pvt_data_t pvt_data;
-uint8_t buffer[sizeof(ubx_pvt_data_t)];
 bool mode_switched = false;
 bool beacon_tx = false;
 
@@ -58,7 +57,7 @@ int main(){
     setup_motor_driver(i2c_default);
 
     uint32_t current_time = to_ms_since_boot(get_absolute_time());
-    uint8_t packet_size = 39;
+    uint8_t packet_size = 34;
     uint8_t lora_packet[packet_size];
 
     create_data_file();
@@ -87,28 +86,44 @@ int main(){
     {
         printf("Sending Data via LoRa\n");
         current_time = to_ms_since_boot(get_absolute_time());
-        read_data_from_sd(buffer, packet_size);
+        read_data_from_sd(&pvt_data, packet_size);
 
-        // *(uint16_t*)lora_packet = pvt_data.year; *lora_packet += 2;
-        // *lora_packet = pvt_data.month; (*lora_packet)++;
-        // *lora_packet = pvt_data.day; (*lora_packet)++;
-        *lora_packet = pvt_data.hour; (*lora_packet)++;
-        *lora_packet = pvt_data.min; (*lora_packet)++;
-        *lora_packet = pvt_data.sec; (*lora_packet)++;
+        size_t offset = 0;
     
-        // Position (4 * 4 bytes)
-        *(int32_t*)lora_packet = pvt_data.lon;    (*lora_packet) += 4;
-        *(int32_t*)lora_packet = pvt_data.lat;    (*lora_packet) += 4;
-        *(int32_t*)lora_packet = pvt_data.height; (*lora_packet) += 4;
-        *(int32_t*)lora_packet = pvt_data.hMSL;   (*lora_packet) += 4;
-    
-        // Velocity (3 * int32 + 1 * uint32 = 16 bytes)
-        *(int32_t*)lora_packet = pvt_data.velN;   (*lora_packet) += 4;
-        *(int32_t*)lora_packet = pvt_data.velE;   (*lora_packet) += 4;
-        *(int32_t*)lora_packet = pvt_data.velD;   (*lora_packet) += 4;
-        // *(uint32_t*)lora_packet = pvt_data.gSpeed;
-
-        lora_send_packet(lora_packet, packet_size);
+        // Copy time data (6 bytes total)
+        memcpy(lora_packet + offset, pvt_data.year, sizeof(uint16_t));
+        offset += sizeof(uint16_t);
+        
+        lora_packet[offset++] = pvt_data.month;
+        lora_packet[offset++] = pvt_data.day;
+        lora_packet[offset++] = pvt_data.hour;
+        lora_packet[offset++] = pvt_data.min;
+        lora_packet[offset++] = pvt_data.sec;
+        
+        // Copy position data (12 bytes total)
+        memcpy(lora_packet + offset, &pvt_data.lon, sizeof(int32_t));
+        offset += sizeof(int32_t);
+        
+        memcpy(lora_packet + offset, &pvt_data.lat, sizeof(int32_t));
+        offset += sizeof(int32_t);
+        
+        memcpy(lora_packet + offset, &pvt_data.height, sizeof(int32_t));
+        offset += sizeof(int32_t);
+        
+        // Copy velocity data (16 bytes total)
+        memcpy(lora_packet + offset, &pvt_data.velN, sizeof(int32_t));
+        offset += sizeof(int32_t);
+        
+        memcpy(lora_packet + offset, &pvt_data.velE, sizeof(int32_t));
+        offset += sizeof(int32_t);
+        
+        memcpy(lora_packet + offset, &pvt_data.velD, sizeof(int32_t));
+        offset += sizeof(int32_t);
+        
+        memcpy(lora_packet + offset, &pvt_data.gSpeed, sizeof(uint32_t));
+        offset += sizeof(uint32_t);
+        
+        lora_send_packet(lora_packet, packet_size); // Total bytes written (34 bytes)
     }
     return 0;
 }
