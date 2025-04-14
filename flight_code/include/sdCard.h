@@ -18,7 +18,7 @@
 static FATFS fs;
 static FIL data_file;
 static uint LOG_BUFFER_SIZE = 256;
-static char* FILE_NAME = "0:/GNSS_Data_log.csv";
+static char* FILE_NAME = "0:/gnss_2025-04-11_191055.csv";
 
 bool init_sd_card();
 bool create_data_file();

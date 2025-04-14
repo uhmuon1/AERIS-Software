@@ -12,7 +12,7 @@
 // LoRa configuration
 #define CONFIG_LORA_FREQUENCY           433000000  // 433 MHz
 #define CONFIG_LORA_TX_INTERVAL_MS      5000       // 5 seconds between transmissions
-#define CONFIG_LORA_POWER               0xff       // Maximum power
+#define CONFIG_LORA_POWER               0xf7       // Maximum power
 
 // Hardware pins - SPI for LoRa
 #define CONFIG_PIN_MISO                 4

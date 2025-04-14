@@ -68,7 +68,7 @@ int main(){
         current_time = to_ms_since_boot(get_absolute_time());
         gnss_read_location(i2c_default, &pvt_data);
         if(gnss_get_fix_type_str(pvt_data.fixType) == "3D"){
-            write_data_to_sd(&pvt_data,current_time);
+            // write_data_to_sd(&pvt_data,current_time);
         }
         else{
 
@@ -90,8 +90,9 @@ int main(){
     {
         printf("Sending Data via LoRa\n");
         current_time = to_ms_since_boot(get_absolute_time());
-        read_data_from_sd(&pvt_data);
-        lora_send_packet(&pvt_data, 61); // Total bytes written (34 bytes)
+        int packet_length = read_data_from_sd(&pvt_data);
+        lora_send_packet(&pvt_data, packet_length); // Total bytes written (34 bytes)
+        sleep_ms(100);
     }
     return 0;
 }
