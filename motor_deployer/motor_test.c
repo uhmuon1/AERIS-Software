@@ -107,6 +107,9 @@
  #define STEP_PIN    17   // Connect to DRV8834 STEP pin
  #define DIR_PIN     16   // Connect to DRV8834 DIR pin
  #define SLP_PIN     19   // Connect to DRV8834 SLP pin (Sleep, active low)
+ #define SOL_PIN     18   // Connect solenoid
+ #define GO_PIN      20
+ #define LED_PIN     PICO_DEFAULT_LED_PIN
  
  // Stepper control parameters
  #define STEPS_PER_REV   200     // Standard for 1.8° stepper motor (adjust for your motor)
@@ -120,52 +123,58 @@
  void sleep_driver(void);
  void step_motor(uint32_t steps, bool direction);
  void rotate_degrees(float degrees, bool direction);
+ void gpio_callback(uint gpio, uint32_t events);
+ 
  
  int main() {
-     // Initialize standard I/O
-     stdio_init_all();
-     
-     // Wait a moment for USB to connect (helpful for debugging)
-     sleep_ms(1000);
-     
-     printf("SparkFun Thing Plus RP2040 - DRV8834 Stepper Control\n");
-     
-     // Initialize stepper motor control pins
-     init_stepper_pins();
+    // Initialize standard I/O
+    stdio_init_all();
+    
+    // Wait a moment for USB to connect (helpful for debugging)
+    sleep_ms(2000);
+    
+    printf("SparkFun Thing Plus RP2040 - DRV8834 Stepper Control\n");
+    
+    // Initialize stepper motor control pins
+    init_stepper_pins();
+
+    gpio_init(LED_PIN);
+    gpio_set_dir(LED_PIN, GPIO_OUT);
+    gpio_put(LED_PIN, 0); // Start with LED off
+    
+    // Initialize the GPIO pin for input
+    gpio_init(GO_PIN);
+    gpio_set_dir(GO_PIN, GPIO_IN);
+    gpio_pull_down(GO_PIN); // Optional: Enable pull-down resistor
+    
+    // Set up the interrupt handler
+    // GPIO_IRQ_LEVEL_HIGH means it triggers when the pin is high
+    gpio_set_irq_enabled_with_callback(GO_PIN, GPIO_IRQ_LEVEL_HIGH, true, &gpio_callback);
+    
+    wake_driver();
+    step_motor(4000, CW);
      
      // Main control loop
+    // gpio_put(SOL_PIN, 1);
      while (true) {
-         // Wake up the driver
-         wake_driver();
-         sleep_ms(5);  // Small delay to ensure driver is ready
-         
-         // Example movement pattern
-         
-         // Rotate 360 degrees clockwise
-         printf("Rotating 360° clockwise...\n");
-         rotate_degrees(360.0, CW);
-         sleep_ms(500);
-         
-         // Rotate 180 degrees counter-clockwise
-         printf("Rotating 180° counter-clockwise...\n");
-         rotate_degrees(180.0, CCW);
-         sleep_ms(500);
-         
-         // Step by specific step count in each direction
-         printf("Stepping 50 steps clockwise...\n");
-         step_motor(50, CW);
-         sleep_ms(500);
-         
-         printf("Stepping 50 steps counter-clockwise...\n");
-         step_motor(50, CCW);
-         sleep_ms(500);
-         
-         // Put the driver to sleep to save power
-         sleep_driver();
-         
-         // Wait before repeating
-         printf("Waiting 3 seconds...\n");
-         sleep_ms(3000);
+        // gpio_put(SOL_PIN, 0);
+        // // Wake up the driver
+        // wake_driver();
+        // sleep_ms(5);  // Small delay to ensure driver is ready
+        
+        // // Example movement pattern
+        
+        // rotate_degrees(180.0, CCW);
+        // sleep_ms(5000);
+                
+        // // Put the driver to sleep to save power
+        // sleep_driver();
+
+        // gpio_put(SOL_PIN, 1);
+
+        // // Wait before repeating
+        // printf("Waiting 3 seconds...\n");
+        sleep_ms(20000);
      }
      
      return 0;
@@ -179,11 +188,13 @@
      gpio_init(STEP_PIN);
      gpio_init(DIR_PIN);
      gpio_init(SLP_PIN);
+     gpio_init(SOL_PIN);
      
      // Set as outputs
      gpio_set_dir(STEP_PIN, GPIO_OUT);
      gpio_set_dir(DIR_PIN, GPIO_OUT);
      gpio_set_dir(SLP_PIN, GPIO_OUT);
+     gpio_set_dir(SOL_PIN, GPIO_OUT);
      
      // Set initial state
      gpio_put(STEP_PIN, 0);
@@ -245,3 +256,23 @@
      step_motor(steps, direction);
  }
 
+
+ void gpio_callback(uint gpio, uint32_t events) {
+    // This function is called when the GPIO pin goes high
+    
+    // Wake up the driver
+    wake_driver();
+    sleep_ms(5);  // Small delay to ensure driver is ready
+    
+    // Example movement pattern
+    
+    rotate_degrees(90.0, CCW);
+    sleep_ms(3000);
+            
+    // Put the driver to sleep to save power
+    sleep_driver();
+
+    gpio_put(SOL_PIN, 1);
+    sleep_ms(3000);
+    gpio_put(SOL_PIN, 0);
+}
