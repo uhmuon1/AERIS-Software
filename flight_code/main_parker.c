@@ -57,8 +57,10 @@ int main(){
     setup_motor_driver(i2c_default);
 
     uint32_t current_time = to_ms_since_boot(get_absolute_time());
-    uint8_t packet_size = 34;
-    uint8_t lora_packet[packet_size];
+    // uint8_t packet_size = 34;
+    uint8_t packet_size = 61;
+    // uint8_t lora_packet[packet_size];
+    uint8_t buffer[packet_size];
 
     create_data_file();
 
@@ -90,8 +92,8 @@ int main(){
     {
         printf("Sending Data via LoRa\n");
         current_time = to_ms_since_boot(get_absolute_time());
-        int packet_length = read_data_from_sd(&pvt_data);
-        lora_send_packet(&pvt_data, packet_length); // Total bytes written (34 bytes)
+        int packet_length = read_data_from_sd(buffer);
+        lora_send_packet(buffer, packet_length); // Total bytes written (34 bytes)
         sleep_ms(100);
     }
     return 0;

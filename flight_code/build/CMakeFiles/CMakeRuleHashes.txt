@@ -1,0 +1,4 @@
+# Hashes of file build rules.
+d48175c692601ed9d04d13ba84067983 pico-sdk/src/rp2040/boot_stage2/CMakeFiles/bs2_default_bin
+6a7595277d1015772b2d9fb43835b29a pico-sdk/src/rp2040/boot_stage2/bs2_default.bin
+9fbf2c9c07e7f530a3a832e3a21b2c10 pico-sdk/src/rp2040/boot_stage2/bs2_default_padded_checksummed.S
