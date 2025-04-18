@@ -75,7 +75,6 @@ int main(){
         }
         else{
             printf("%s\n",gnss_get_fix_type_str(pvt_data.fixType));
-
         }
     }
 
