@@ -46,8 +46,13 @@ bool create_data_file() {
 }
 
 bool file_read_setup(){
-    f_close(&data_file);
-    f_open(&data_file, FILE_NAME, FA_READ);
+    FRESULT fr = f_close(&data_file);
+    fr = f_open(&data_file, FILE_NAME, FA_READ);
+    if (fr != FR_OK) {
+        printf("Failed to open file for reading: %d\n", fr);
+        return false;
+    }
+    return true;
 }
 
 bool write_data_to_sd(const ubx_pvt_data_t *data, uint32_t system_timestamp_ms) {

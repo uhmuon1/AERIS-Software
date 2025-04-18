@@ -9,7 +9,7 @@
 #include "motor.h"
 #include "sdCard.h"
 
-#define GNSS_BEGIN_POLL    80*1000
+#define GNSS_BEGIN_POLL    8*1000
 #define TX_TIME   3600*1000
 
 uint32_t start_time = 0;
@@ -62,7 +62,7 @@ int main(){
     // uint8_t lora_packet[packet_size];
     uint8_t buffer[packet_size];
 
-    create_data_file();
+    // create_data_file();
 
     while(current_time < GNSS_BEGIN_POLL){
     // while(current_time < 15*1000){
@@ -70,7 +70,7 @@ int main(){
         current_time = to_ms_since_boot(get_absolute_time());
         gnss_read_location(i2c_default, &pvt_data);
         if(gnss_get_fix_type_str(pvt_data.fixType) == "3D"){
-            write_data_to_sd(&pvt_data,current_time);
+            // write_data_to_sd(&pvt_data,current_time);
             printf("Polling GNSS\n");
         }
         else{
@@ -95,7 +95,7 @@ int main(){
         current_time = to_ms_since_boot(get_absolute_time());
         int packet_length = read_data_from_sd(buffer);
         lora_send_packet(buffer, packet_length); // Total bytes written (34 bytes)
-        sleep_ms(100);
+        sleep_ms(500);
     }
     return 0;
 }
