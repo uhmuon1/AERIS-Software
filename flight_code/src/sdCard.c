@@ -137,6 +137,7 @@ uint32_t read_data_from_sd(uint8_t *lora_packet) {
     // Get GNSS time (column 2)
     token = strtok_r(rest, ",", &rest);
     if (token == NULL) return 0;
+    printf("GNSS time: %s\n",token);
     
     // Parse HH:MM:SS:MS
     uint8_t hour, min, sec;
@@ -148,36 +149,43 @@ uint32_t read_data_from_sd(uint8_t *lora_packet) {
     token = strtok_r(rest, ",", &rest);
     if (token == NULL) return 0;
     double lat = atof(token);
+    printf("Latitude: %s\n",token);
     
     // Lon (column 4)
     token = strtok_r(rest, ",", &rest);
     if (token == NULL) return 0;
     double lon = atof(token);
+    printf("Longitude: %s\n",token);
     
     // Height (column 5)
     token = strtok_r(rest, ",", &rest);
     if (token == NULL) return 0;
     double height = atof(token);
+    printf("Height: %s\n",token);
     
     // hMSL (column 6)
     token = strtok_r(rest, ",", &rest);
     if (token == NULL) return 0;
     double hMSL = atof(token);
+    printf("hMSL: %s\n",token);
     
     // velN (column 7)
     token = strtok_r(rest, ",", &rest);
     if (token == NULL) return 0;
     double velN = atof(token);
+    printf("velN: %s\n",token);
     
     // velE (column 8)
     token = strtok_r(rest, ",", &rest);
     if (token == NULL) return 0;
     double velE = atof(token);
+    printf("velE: %s\n",token);
     
     // velD (column 9)
     token = strtok_r(rest, ",", &rest);
     if (token == NULL) return 0;
     double velD = atof(token);
+    printf("velD: %s\n",token);
     
     // Now pack into binary format for LoRa
     uint32_t pos = 0;
@@ -210,6 +218,12 @@ uint32_t read_data_from_sd(uint8_t *lora_packet) {
     
     memcpy(lora_packet + pos, &velD, sizeof(double));
     pos += sizeof(double);
+
+    printf("Raw data (hex): ");
+    for (int i = 0; i < pos; i++) {
+        printf("%02X ", lora_packet[i]);
+    }
+    printf("\n\n");
     
     return pos;  // Return number of bytes packed
 }
