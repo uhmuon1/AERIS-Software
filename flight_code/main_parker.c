@@ -70,16 +70,18 @@ int main(){
         current_time = to_ms_since_boot(get_absolute_time());
         gnss_read_location(i2c_default, &pvt_data);
         if(gnss_get_fix_type_str(pvt_data.fixType) == "3D"){
-            // write_data_to_sd(&pvt_data,current_time);
+            write_data_to_sd(&pvt_data,current_time);
+            printf("Polling GNSS\n");
         }
         else{
+            printf("%s\n",gnss_get_fix_type_str(pvt_data.fixType));
 
         }
     }
 
     printf("Activate Motor\n");
     motor_control(i2c_default, 2, 2);
-    sleep_ms(5000);
+    sleep_ms(50);
     // motor_control(i2c_default, 0, 0);
     disable_motor_driver(i2c_default);
     file_read_setup();
