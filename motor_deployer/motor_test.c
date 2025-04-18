@@ -152,7 +152,7 @@
     gpio_set_irq_enabled_with_callback(GO_PIN, GPIO_IRQ_LEVEL_HIGH, true, &gpio_callback);
     
     wake_driver();
-    step_motor(4000, CW);
+    step_motor(400, CCW);
      
      // Main control loop
     // gpio_put(SOL_PIN, 1);
