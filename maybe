@@ -517,6 +517,56 @@ void blink_core1_entry() {
     blink_task(freq, on);
 }
 
+// UBX-CFG-PRT message to configure I2C port
+const uint8_t ubx_cfg_prt_i2c[] = {
+    0xB5, 0x62,        // UBX header
+    0x06, 0x00,        // CFG-PRT message class and ID
+    0x14, 0x00,        // Length (20 bytes)
+    0x00,              // Port ID (0 = I2C)
+    0x00,              // Reserved
+    0x00, 0x00,        // TX ready config
+    0x84, 0x00, 0x00, 0x00, // Mode (0x00000084 for I2C mode)
+    0x00, 0x00, 0x00, 0x00, // Baud rate (not used for I2C)
+    0x01, 0x00,        // Input protocols (0x01 = UBX only)
+    0x01, 0x00,        // Output protocols (0x01 = UBX only)
+    0x00, 0x00,        // Flags
+    0x00, 0x00,        // Reserved
+    0x9C, 0x6F         // Checksum (CK_A, CK_B)
+};
+
+// UBX-CFG-CFG message to save configuration to BBR and Flash
+const uint8_t ubx_cfg_save[] = {
+    0xB5, 0x62,        // UBX header
+    0x06, 0x09,        // CFG-CFG message class and ID
+    0x0D, 0x00,        // Length (13 bytes)
+    0x00, 0x00, 0x00, 0x00, // Clear mask (don't clear anything)
+    0x1F, 0x1E, 0x00, 0x00, // Save mask (save port and message configs)
+    0x00, 0x00, 0x00, 0x00, // Load mask (don't load anything)
+    0x03,              // Device mask: 0x03 = save to BBR (bit 0) and Flash (bit 1)
+    0x42, 0x59         // Checksum (CK_A, CK_B)
+};
+
+// Function to send configuration to the GPS module
+void configure_gps(i2c_inst_t *i2c) {
+    printf("Configuring GPS module...\n");
+    
+    // Configure the port to use I2C with UBX protocols
+    int result = i2c_write_blocking(i2c, GNSS_ADDR, ubx_cfg_prt_i2c, sizeof(ubx_cfg_prt_i2c), false);
+    printf("Port config result: %d/%lu bytes\n", result, sizeof(ubx_cfg_prt_i2c));
+    
+    // Wait for the module to process the command
+    sleep_ms(100);
+    
+    // Save configuration to BBR and Flash
+    result = i2c_write_blocking(i2c, GNSS_ADDR, ubx_cfg_save, sizeof(ubx_cfg_save), false);
+    printf("Save config result: %d/%lu bytes\n", result, sizeof(ubx_cfg_save));
+    
+    // Wait for the Flash write to complete
+    sleep_ms(1000);
+    
+    printf("GPS configuration complete\n");
+}
+
 int main() {
     stdio_init_all();
     
@@ -535,6 +585,7 @@ int main() {
     gpio_pull_up(PICO_DEFAULT_I2C_SCL_PIN);
     
     printf("I2C Initialized\n");
+    configure_gps(i2c_default);
 
     pico_led_init();
 
